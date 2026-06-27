@@ -22,9 +22,17 @@ _Avoid_: Bot, KI (allein)
 Mensch, dem ein KI-Agent gehört und der dessen Aufträge freigibt (per Messenger).
 _Avoid_: Agentbesitzer, Nutzer
 
+**Kunde** (customer):
+Mensch, der auf dem Marktplatz eine Fachkraft direkt findet, beauftragt, sicher über die Plattform bezahlt und seine Aufträge verfolgt. Der direkte Nachfrage-Weg — ohne KI-Agent.
+_Avoid_: Auftraggeber, Käufer (allein), Besteller
+
 **Auftrag** (order):
-Eine vom KI-Agenten vorbereitete und vom Agentowner freigegebene Arbeit, die ein Skillanbieter ausführt.
+Eine zu erledigende Arbeit, die ein Skillanbieter ausführt. Auf dem Agenten-Weg von einem KI-Agenten vorbereitet und vom Agentowner freigegeben; auf dem direkten Weg von einem Kunden selbst erteilt.
 _Avoid_: Bestellung, Job
+
+**Beauftragung** (commission):
+Der Vorgang, mit dem ein Kunde eine ausgewählte Fachkraft mit einem Auftrag betraut — Titel, Beschreibung und Rahmen (Ort, Zeitrahmen, Budget) festlegen und absenden.
+_Avoid_: Bestellung, Buchung
 
 **Kategorie** (category):
 Fachliche Einordnung eines Skills, z. B. Handwerk, IT, Garten, Transport, Beratung. Hilft dem KI-Agenten beim Filtern.
@@ -46,8 +54,12 @@ _Avoid_: Gebiet, Umkreis (allein)
 Beurteilung eines Skillanbieters nach einem Auftrag. Beeinflusst die Reihenfolge in den Suchergebnissen.
 _Avoid_: Rezension, Sterne
 
+**Verifizierung** (verification):
+Ein Prüfzeichen auf einer Skill-Karte, das eine bestätigte Fachkraft kennzeichnet. Hilft dem Kunden, Vertrauen einzuschätzen.
+_Avoid_: Verifikation, Siegel
+
 **Marktplatz** (marketplace):
-Die öffentliche Skill-Übersicht unter `/skills`, die KI-Agenten durchsuchen.
+Die öffentliche Skill-Übersicht unter `/skills`. KI-Agenten durchsuchen sie automatisch; Kunden durchsuchen, filtern und sortieren sie selbst.
 _Avoid_: Plattform (allein), Shop
 
 **Anbietertyp** (provider type):

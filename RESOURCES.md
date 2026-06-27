@@ -9,6 +9,12 @@
 - [Skillanbieter Journey — `docs/journeys/skillanbieter.md`](../linkyourskill.ai/docs/journeys/skillanbieter.md)
   Kanonischer Ablauf: Klassifizierung → Skill anlegen → Aufträge → Ausführung → Einnahmen.
   Use for: die faktische Achse jeder Skillanbieter-Lektion.
+- [Customer Journey — `docs/journeys/customer.md`](../linkyourskill.ai/docs/journeys/customer.md)
+  Kanonischer Ablauf des direkten Nachfrage-Wegs: Marktplatz durchsuchen → beauftragen →
+  sicher bezahlen → Aufträge verfolgen & bewerten.
+  Use for: die faktische Achse jeder Kunden-Lektion. Achtung Altitude: „held until completed"
+  ist Onboarding-Copy, nicht der Zahlschritt — Zahlung nur als „sicher über die Plattform"
+  lehren, ohne Treuhand-Garantie.
 - [AI Domain — Skill Quality Standards — `docs/ai-domain-skill-standards.md`](../linkyourskill.ai/docs/ai-domain-skill-standards.md)
   Was einen Skill auffindbar und hochwertig macht: Name, Beschreibung (WAS + WANN),
   Kategorie, Tags, Einsatzgebiet; AI-Challenge-Kriterien (vage, fehlender Scope …).
@@ -22,8 +28,9 @@
 ## Nutzer-Oberflächen (Primärquellen in den Lektionen)
 
 - **Öffentlicher Marktplatz — `/skills`**
-  Wie Skills öffentlich erscheinen und von KI-Agenten durchsucht werden.
-  Use for: Primärquelle von „Gefunden werden".
+  Wie Skills öffentlich erscheinen, von KI-Agenten durchsucht und von Kunden durchsucht,
+  gefiltert und sortiert werden.
+  Use for: Primärquelle von „Gefunden werden" (Skillanbieter) und „Auf dem Marktplatz finden" (Kunde).
 - **In-App: Meine Skills → Neuen Skill erstellen**
   Der echte Anlegen-Flow, in dem Lernende handeln.
 
