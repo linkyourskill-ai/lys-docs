@@ -1,0 +1,26 @@
+<!-- @dsCard group="Colors" viewport="700x180" name="Glass & Surfaces" subtitle="Translucent card, panel and input surfaces over the cosmic backdrop" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--bg); padding: 24px; position: relative; overflow: hidden; }
+  .row { display: flex; gap: 14px; flex-wrap: wrap; position: relative; z-index: 1; }
+  .sw { flex: 1; min-width: 110px; }
+  .chip { height: 70px; border-radius: var(--radius-md); }
+  .name { color: var(--text); font-size: 13px; font-weight: 600; margin-top: 8px; }
+  .hex { color: var(--muted); font-size: 11px; font-family: var(--font-mono); margin-top: 2px; }
+</style>
+</head>
+<body>
+  <div class="cosmic-glow cosmic-glow-1" style="top:-300px"></div>
+  <div class="row">
+    <div class="sw"><div class="chip" style="background:var(--card-bg);border:1px solid var(--card-border);backdrop-filter:blur(16px)"></div><div class="name">card-bg</div><div class="hex">white / 0.03</div></div>
+    <div class="sw"><div class="chip" style="background:var(--surface)"></div><div class="name">surface</div><div class="hex">#121223 / .98</div></div>
+    <div class="sw"><div class="chip" style="background:var(--surface-alt)"></div><div class="name">surface-alt</div><div class="hex">#0A0A16 / .6</div></div>
+    <div class="sw"><div class="chip" style="background:var(--input-bg);border:1px solid var(--input-border)"></div><div class="name">input-bg</div><div class="hex">white / 0.05</div></div>
+    <div class="sw"><div class="chip inverse-surface"></div><div class="name">inverse-surface</div><div class="hex">stays dark</div></div>
+  </div>
+</body>
+</html>

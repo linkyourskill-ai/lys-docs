@@ -1,0 +1,26 @@
+<!-- @dsCard group="Spacing" viewport="700x180" name="Corner Radius" subtitle="From 10px chips to 24px modals, plus full pills" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--bg); padding: 28px; }
+  .row { display: flex; gap: 20px; flex-wrap: wrap; }
+  .item { text-align: center; }
+  .box { width: 90px; height: 70px; background: rgba(168,85,247,0.12); border: 1px solid var(--accent-1); }
+  .name { color: var(--text); font-size: 12px; font-weight: 600; margin-top: 8px; }
+  .val { color: var(--muted); font-size: 11px; font-family: var(--font-mono); }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="item"><div class="box" style="border-radius:var(--radius-sm)"></div><div class="name">sm</div><div class="val">10px</div></div>
+    <div class="item"><div class="box" style="border-radius:var(--radius-md)"></div><div class="name">md</div><div class="val">12px</div></div>
+    <div class="item"><div class="box" style="border-radius:var(--radius-lg)"></div><div class="name">lg</div><div class="val">16px</div></div>
+    <div class="item"><div class="box" style="border-radius:var(--radius-xl)"></div><div class="name">xl</div><div class="val">20px</div></div>
+    <div class="item"><div class="box" style="border-radius:var(--radius-2xl)"></div><div class="name">2xl</div><div class="val">24px</div></div>
+    <div class="item"><div class="box" style="border-radius:var(--radius-full);width:70px"></div><div class="name">full</div><div class="val">pill</div></div>
+  </div>
+</body>
+</html>

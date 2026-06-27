@@ -1,0 +1,52 @@
+/* ===== EFFECTS — radius, shadow, glow, gradients ===== */
+/* The cosmic look is built from: glassy translucent cards, purple glow shadows,
+   a 135° brand gradient (buttons + gradient-text), and large blurred radial
+   "cosmic glow" blobs behind content. */
+
+:root {
+  /* ---- Corner radius ---- */
+  --radius-sm: 10px;     /* code blocks, chips */
+  --radius-md: 12px;     /* buttons, badges */
+  --radius-lg: 16px;     /* compact cards */
+  --radius-xl: 20px;     /* glass cards */
+  --radius-2xl: 24px;    /* modals */
+  --radius-full: 9999px;
+
+  /* ---- Brand gradient ---- */
+  --gradient-brand: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+  --gradient-brand-bright: linear-gradient(135deg, var(--accent-light), var(--accent-1), var(--accent-2));
+  --gradient-success: linear-gradient(135deg, var(--success), var(--success-deep));
+
+  /* ---- Shadows ---- */
+  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 24px rgba(168, 85, 247, 0.06);
+  --shadow-glow: 0 0 30px rgba(168, 85, 247, 0.35), 0 4px 15px rgba(0, 0, 0, 0.3);
+  --shadow-glow-hover: 0 0 40px rgba(168, 85, 247, 0.5), 0 6px 20px rgba(0, 0, 0, 0.4);
+  --shadow-modal: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 50px rgba(168, 85, 247, 0.12);
+
+  /* ---- Glass blur ---- */
+  --blur-glass: blur(16px);  /* @kind other */
+  --blur-nav: blur(20px);    /* @kind other */
+  --blur-overlay: blur(10px); /* @kind other */
+
+  /* ---- Transitions ---- */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);     /* @kind other */
+  --ease-pop: cubic-bezier(0.17, 0.67, 0.35, 1.1); /* @kind other */
+  --dur-fast: 0.2s;  /* @kind other */
+  --dur-base: 0.3s;  /* @kind other */
+}
+
+/* Light theme softens the glow into a gentle drop shadow. */
+html.light {
+  --shadow-card: 0 4px 24px rgba(124, 58, 237, 0.08), 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-glow: 0 0 20px rgba(168, 85, 247, 0.2), 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-glow-hover: 0 0 28px rgba(168, 85, 247, 0.3), 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== Brand gradient text ===== */
+.gradient-text {
+  background: var(--gradient-brand-bright);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}

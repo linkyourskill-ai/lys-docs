@@ -1,0 +1,427 @@
+/* ============================================================
+   lys-teach — Lesson & reference stylesheet
+   Built ON TOP OF the LinkYourSkill Design System ("Dark Cosmic").
+
+   Every lesson (./lessons/*.html) and reference document
+   (./reference/*.html) links THIS one file:
+
+     <link rel="stylesheet" href="../assets/design-system/lessons.css">
+
+   It imports the LinkYourSkill brand (styles.css → Inter, the
+   Dark-Cosmic tokens, and the base layer: .glass-card, .btn-*,
+   .eyebrow, .check-badge, .gradient-text, .cosmic-glow) and adds
+   the teaching-specific components: the floating reading surface,
+   objectives, callouts, the primary-source box, quizzes, the
+   "frag deine Lehrkraft" reminder, the gradient section divider,
+   footer nav, and print rules.
+
+   RULE: compose from the LinkYourSkill tokens (--accent-1,
+   --space-5, --font-sans, --radius-xl, --gradient-brand,
+   --shadow-glow …) and reuse the base classes. Never invent new
+   colors, fonts, or spacing a token already defines.
+
+   Dark is the brand's home turf and the default here. A light
+   variant works for free: add class="light" to <html> (the brand's
+   light-theme tokens cascade). Print always flips to light.
+   ============================================================ */
+
+@import url('styles.css');
+
+/* ============================================================
+   Cosmic backdrop — every lesson floats over the deep-space
+   canvas with two fixed, blurred purple glows. Baked in here so
+   lesson authors get it automatically (no extra markup).
+   ============================================================ */
+
+body {
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: 50%;
+  filter: blur(120px);
+}
+body::before {              /* top-right nebula */
+  width: min(800px, 90vw);
+  height: 600px;
+  top: -180px;
+  right: -200px;
+  background: radial-gradient(ellipse,
+    rgba(168, 85, 247, 0.22) 0%,
+    rgba(124, 58, 237, 0.10) 40%,
+    transparent 70%);
+}
+body::after {               /* bottom-left nebula */
+  width: min(600px, 80vw);
+  height: 600px;
+  bottom: 5%;
+  left: -220px;
+  background: radial-gradient(ellipse,
+    rgba(124, 58, 237, 0.10) 0%,
+    transparent 70%);
+}
+
+/* ============================================================
+   Reading surface — a single glass panel, centered on a
+   readable measure, floating over the cosmic backdrop. Lessons
+   get revisited and printed, so legibility beats density: white
+   ink, long-form body size, relaxed leading, lots of air.
+   ============================================================ */
+
+.lesson,
+.reference {
+  position: relative;
+  z-index: 1;
+  max-width: 768px;
+  margin: var(--space-16) auto;
+  padding: clamp(var(--space-6), 5vw, var(--space-12));
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-card);
+  backdrop-filter: var(--blur-glass);
+  -webkit-backdrop-filter: var(--blur-glass);
+}
+
+/* ---- Header: eyebrow (mission tie-in) → title → lead → meta ---- */
+.lesson__header { margin-bottom: var(--space-8); }
+
+.lesson__eyebrow {                  /* the mission tie-in / topic kicker */
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-eyebrow);
+  color: var(--accent-light);
+  margin: 0 0 var(--space-4);
+}
+
+.lesson__header h1 {                /* sentence case; one .gradient-text phrase */
+  margin: 0 0 var(--space-5);
+  text-wrap: balance;
+}
+
+.lesson__lead {                     /* one-sentence "why this lesson" */
+  font-size: var(--text-lead);
+  line-height: var(--leading-snug);
+  color: var(--muted);
+  margin: 0 0 var(--space-5);
+  text-wrap: pretty;
+}
+
+.lesson__meta {                     /* lesson no. · est. time · type — middot-separated */
+  font-size: var(--text-xs);
+  color: var(--muted);
+}
+
+/* ---- Body rhythm ---- */
+.lesson__body {
+  font-size: var(--text-body-lg);
+  line-height: var(--leading-relaxed);
+  color: var(--text);
+}
+.lesson__body > * + * { margin-top: var(--space-5); }
+.lesson__body h2 { margin-top: var(--space-10); }
+.lesson__body h3 { margin-top: var(--space-8); }
+.lesson__body a { color: var(--accent-light); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+.lesson__body a:hover { color: var(--text); }
+.lesson__body strong { color: var(--text); font-weight: var(--weight-semibold); }
+.lesson__body code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  background: var(--code-bg);
+  border: 1px solid var(--code-border);
+  color: var(--accent-light);
+}
+
+/* ============================================================
+   Section divider — replaces Atruvia's VIA Line. A short glowing
+   gradient bar that marks a beat between sections. It is a
+   graphic accent, never a full-width border.
+   ============================================================ */
+
+.lesson__divider {
+  width: 80px;
+  height: 3px;
+  border: 0;
+  margin: var(--space-12) auto;
+  border-radius: var(--radius-full);
+  background: var(--gradient-brand-bright);
+  box-shadow: var(--shadow-glow);
+}
+
+/* ============================================================
+   Objectives — "Das kannst du danach" (what you'll be able to do).
+   Uses the brand's green check-badge motif for outcome lists.
+   ============================================================ */
+
+.objectives {
+  list-style: none;
+  margin: 0 0 var(--space-6);
+  padding: 0;
+}
+.objectives li {
+  position: relative;
+  padding-left: calc(22px + var(--space-3));
+  margin: 0 0 var(--space-4);
+  line-height: var(--leading-snug);
+}
+.objectives li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0.1em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--radius-full);
+  background: var(--gradient-success);
+  color: #fff;
+  font-size: 12px;
+  font-weight: var(--weight-bold);
+}
+
+/* ============================================================
+   Callouts — key insight (purple-tinted glass) / neutral note.
+   ============================================================ */
+
+.callout {
+  background: rgba(168, 85, 247, 0.06);
+  border: 1px solid rgba(168, 85, 247, 0.28);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  margin: var(--space-6) 0;
+}
+.callout > :first-child { margin-top: 0; }
+.callout > :last-child { margin-bottom: 0; }
+.callout > * + * { margin-top: var(--space-3); }
+
+.callout__label {
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-eyebrow);
+  color: var(--accent-light);
+  margin: 0 0 var(--space-2);
+}
+
+/* A neutral note variant on a plain glass surface */
+.callout--note {
+  background: var(--card-bg);
+  border-color: var(--card-border);
+}
+.callout--note .callout__label { color: var(--muted); }
+
+/* ============================================================
+   Primary source — the single best resource to read/watch next.
+   lys-teach: every lesson recommends one high-trust primary source.
+   ============================================================ */
+
+.primary-source {
+  background: rgba(168, 85, 247, 0.04);
+  border: 1px solid var(--card-border);
+  border-left: 3px solid var(--accent-1);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  margin: var(--space-8) 0;
+}
+.primary-source > :first-child { margin-top: 0; }
+.primary-source > :last-child { margin-bottom: 0; }
+.primary-source__label {
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-eyebrow);
+  color: var(--accent-light);
+  margin: 0 0 var(--space-2);
+}
+.primary-source a { font-weight: var(--weight-semibold); }
+
+/* ============================================================
+   Citations — inline references that back up claims. Lessons
+   should be littered with them. Small + muted so reading flows.
+   ============================================================ */
+
+.cite {
+  font-size: var(--text-xs);
+  color: var(--muted);
+}
+.cite a { color: var(--muted); text-decoration-thickness: 1px; }
+.cite a:hover { color: var(--accent-light); }
+
+/* ============================================================
+   Quiz — retrieval practice with the tightest possible feedback
+   loop (see quiz.js). Options are full-width pills; correct /
+   incorrect states use the semantic tokens. Keep every answer the
+   same length so formatting gives nothing away.
+   ============================================================ */
+
+.quiz {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  margin: var(--space-8) 0;
+}
+.quiz__label {
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-eyebrow);
+  color: var(--accent-light);
+  margin: 0 0 var(--space-3);
+}
+.quiz__q {
+  font-weight: var(--weight-semibold);
+  color: var(--text);
+  margin: 0 0 var(--space-5);
+}
+.quiz__options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.quiz__option {
+  font: inherit;
+  text-align: left;
+  color: var(--text);
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+  cursor: pointer;
+  transition: border-color var(--dur-fast) var(--ease-out),
+              background var(--dur-fast) var(--ease-out);
+  -webkit-tap-highlight-color: transparent;
+}
+.quiz__option:hover { border-color: var(--accent-1); }
+.quiz__option:disabled { cursor: default; }
+.quiz__option.is-correct {
+  border-color: var(--success);
+  background: rgba(34, 197, 94, 0.12);
+  color: var(--success-on-dark);
+  font-weight: var(--weight-semibold);
+}
+.quiz__option.is-wrong {
+  border-color: var(--danger);
+  background: rgba(239, 68, 68, 0.10);
+  color: var(--danger-text-dark);
+}
+.quiz__feedback {
+  margin: var(--space-5) 0 0;
+  font-size: var(--text-sm);
+  color: var(--muted);
+}
+.quiz__feedback[hidden] { display: none; }
+
+/* ============================================================
+   Ask-your-teacher reminder — the agent IS the learner's teacher.
+   Every lesson closes with an invitation to ask follow-ups.
+   A highlighted glass panel with the LinkYourSkill mark.
+   ============================================================ */
+
+.ask-teacher {
+  display: flex;
+  gap: var(--space-5);
+  align-items: flex-start;
+  background: rgba(168, 85, 247, 0.06);
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  margin: var(--space-10) 0 0;
+}
+.ask-teacher__mark {
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+}
+.ask-teacher h2,
+.ask-teacher h3 { margin: 0 0 var(--space-2); }
+.ask-teacher p { color: var(--muted); margin: 0; }
+
+/* ============================================================
+   Footer navigation — previous / next lesson + reference links.
+   Lessons interlink via anchors (lys-teach: a connected course, not
+   a pile of one-offs).
+   ============================================================ */
+
+.lesson__nav {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  max-width: 768px;
+  margin: var(--space-6) auto 0;
+  padding: var(--space-5) clamp(var(--space-6), 5vw, var(--space-12)) 0;
+}
+.lesson__nav a {
+  color: var(--muted);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.lesson__nav a:hover { color: var(--text); }
+
+.lesson__brand {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  max-width: 768px;
+  margin: var(--space-8) auto var(--space-16);
+  padding: 0 clamp(var(--space-6), 5vw, var(--space-12));
+  color: var(--muted);
+  font-size: var(--text-xs);
+}
+.lesson__brand img { height: 24px; width: auto; }
+
+/* ============================================================
+   Print — lessons & reference docs must print out well. The
+   Dark-Cosmic canvas is a screen treatment; on paper we flip to
+   clean light: white page, no glows, no glass blur, dark ink,
+   keep the violet for headings/links.
+   ============================================================ */
+
+@media print {
+  html, body { background: #fff !important; color: #14121f !important; }
+  body::before, body::after { display: none !important; }
+
+  .lesson, .reference {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    background: none !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  .lesson__body, .lesson__lead, .lesson__meta, p, li { color: #14121f !important; }
+  h1, h2, h3, h4 { color: #14121f !important; }
+  .gradient-text { -webkit-text-fill-color: #6d28d9 !important; color: #6d28d9 !important; }
+  .lesson__eyebrow, .callout__label, .primary-source__label, .quiz__label { color: #6d28d9 !important; }
+
+  .callout, .primary-source, .quiz, .ask-teacher, .glass-card {
+    background: #f6f3fc !important;
+    border: 1px solid #d9cdf0 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  .lesson__divider { box-shadow: none !important; }
+
+  a { color: #6d28d9 !important; }
+  .btn-primary, .btn-secondary, .lesson__nav, .quiz__feedback[hidden] { display: none !important; }
+}

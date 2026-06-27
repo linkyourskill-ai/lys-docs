@@ -1,0 +1,13 @@
+/* ===========================================================================
+   LinkYourSkill Design System — global entry point.
+   Consumers link THIS one file. It is import-only: every token, font-face and
+   base class ships through the closure below. Order matters: fonts + tokens
+   first, then the base layer that consumes them.
+   =========================================================================== */
+
+@import "./tokens/fonts.css";
+@import "./tokens/colors.css";
+@import "./tokens/typography.css";
+@import "./tokens/spacing.css";
+@import "./tokens/effects.css";
+@import "./tokens/base.css";

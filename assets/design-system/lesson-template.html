@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<!--
+  lys-teach — Lektionsvorlage (LinkYourSkill Design System, "Dark Cosmic")
+
+  Kopiere diese Datei nach ./lessons/0001-<name>.html und ersetze die
+  Platzhalter. Die relativen Pfade (../assets/design-system/…) stimmen,
+  sobald die Lektion in ./lessons/ liegt und das Design-System nach
+  ./assets/design-system/ kopiert wurde.
+
+  Marke: LinkYourSkill. Stimme: selbstbewusst, technisch, nutzenorientiert;
+  direkte Anrede ("dein Agent", "du entscheidest"). Überschriften in
+  Satzschreibung mit GENAU EINER per .gradient-text hervorgehobenen Phrase.
+  Deutsche Fachbegriffe behalten (Skillanbieter, Agentowner, Auftraggeber).
+  Pfeile (→) beenden CTAs. Nur LinkYourSkill-Tokens — keine erfundenen
+  Farben, Schriften oder Abstände.
+
+  Dunkel ist die Standard-Bühne der Marke. Für eine helle Variante:
+  <html lang="de" class="light">. Der Druck wird ohnehin hell gesetzt.
+-->
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>01 — Lektionstitel · lys-teach</title>
+  <link rel="stylesheet" href="../assets/design-system/lessons.css">
+</head>
+<body>
+  <main class="lesson">
+
+    <!-- ── Kopf: Eyebrow (Mission-Bezug) → Titel (eine .gradient-text-Phrase) → Lead ── -->
+    <header class="lesson__header">
+      <p class="lesson__eyebrow">Mission · Warum das hier zählt</p>
+      <h1>Ein eng umrissener Gedanke, den du <span class="gradient-text">heute mitnimmst</span></h1>
+      <p class="lesson__lead">
+        Ein Satz, der die Lektion an deine Mission knüpft — was du danach
+        kannst und warum es sich lohnt.
+      </p>
+      <p class="lesson__meta">Lektion 01 · ca. 6 Minuten · Wissen &amp; Übung</p>
+    </header>
+
+    <section class="lesson__body">
+
+      <!-- Lernziele: Ergebnisliste mit dem grünen Check-Pill der Marke -->
+      <h2>Das kannst du danach</h2>
+      <ul class="objectives">
+        <li>Ein konkretes, überprüfbares Ergebnis.</li>
+        <li>Ein zweites, das auf dem ersten aufbaut.</li>
+      </ul>
+
+      <!-- Wissen zuerst, knapp gehalten (kleines Arbeitsgedächtnis) -->
+      <h2>Worum es geht</h2>
+      <p>
+        Erkläre nur das Wissen, das für die Fertigkeit nötig ist. Belege
+        Aussagen mit Quellen<span class="cite"> (<a href="#">Quelle, Jahr</a>)</span>,
+        damit die Lektion vertrauenswürdig bleibt. Code oder Begriffe stehen
+        inline als <code>code</code>.
+      </p>
+
+      <div class="callout">
+        <p class="callout__label">Kerngedanke</p>
+        <p>Die eine Sache, die hängen bleiben soll. Klar und konkret formuliert.</p>
+      </div>
+
+      <!-- Abschnittstrenner: der leuchtende Gradient-Balken (ersetzt die VIA-Linie) -->
+      <hr class="lesson__divider">
+
+      <!-- Fertigkeit: enge Rückkopplung. Schwierigkeit ist hier das Werkzeug. -->
+      <h2>Jetzt du</h2>
+      <p>Prüfe dich selbst — Abrufen aus dem Gedächtnis baut echtes Behalten auf.</p>
+
+      <div class="quiz">
+        <p class="quiz__label">Wissens-Check</p>
+        <p class="quiz__q">Welche Aussage trifft zu?</p>
+        <div class="quiz__options">
+          <!-- Antworten gleich lang halten; data-correct markiert die richtige. -->
+          <button class="quiz__option" data-correct="true">Die erste klar formulierte Option</button>
+          <button class="quiz__option">Die zweite klar formulierte Option</button>
+          <button class="quiz__option">Die dritte klar formulierte Option</button>
+        </div>
+        <p class="quiz__feedback" hidden>
+          Kurze Begründung, warum die richtige Antwort stimmt — und warum die
+          anderen verlocken, aber danebenliegen.
+        </p>
+      </div>
+
+      <!-- Primärquelle: die eine beste Ressource zum Weiterlernen -->
+      <aside class="primary-source">
+        <p class="primary-source__label">Primärquelle</p>
+        <p>
+          Lies oder schau als Nächstes:
+          <a href="#">Titel der hochwertigsten Quelle, die du gefunden hast →</a>
+        </p>
+      </aside>
+
+      <!-- Frag deine Lehrkraft: der Agent ist die Lehrkraft -->
+      <aside class="ask-teacher">
+        <img class="ask-teacher__mark" src="../assets/design-system/assets/logo-linkyourskill.png" alt="">
+        <div>
+          <h3>Etwas unklar?</h3>
+          <p>Frag einfach nach — wir gehen jeden Schritt gemeinsam durch, bis es sitzt.</p>
+        </div>
+      </aside>
+
+    </section>
+
+  </main>
+
+  <!-- Fußnavigation: verbindet die Lektionen zu einem Kurs -->
+  <nav class="lesson__nav">
+    <a href="#">‹ Vorherige Lektion</a>
+    <a href="../reference/index.html">Nachschlagewerk</a>
+    <a href="#">Nächste Lektion ›</a>
+  </nav>
+
+  <p class="lesson__brand">
+    <img src="../assets/design-system/assets/logo-linkyourskill.png" alt="LinkYourSkill">
+    <span>Gestaltet im LinkYourSkill Design System</span>
+  </p>
+
+  <script src="../assets/design-system/quiz.js"></script>
+</body>
+</html>

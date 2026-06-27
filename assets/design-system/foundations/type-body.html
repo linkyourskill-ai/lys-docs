@@ -1,0 +1,27 @@
+<!-- @dsCard group="Type" viewport="700x230" name="Body & Labels" subtitle="Lead, body, small, meta and the uppercase eyebrow" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--bg); padding: 28px; }
+  .stack { display: flex; flex-direction: column; gap: 16px; }
+  .item { display: flex; align-items: baseline; gap: 16px; }
+  .meta { color: var(--muted); font-size: 11px; font-family: var(--font-mono); width: 130px; flex-shrink: 0; }
+  .lead { color: var(--text); font-size: 19px; line-height: 1.6; }
+  .body { color: var(--muted); font-size: 15px; line-height: 1.7; }
+  .sm { color: var(--muted); font-size: 14px; }
+  .meta-text { color: rgba(255,255,255,0.35); font-size: 13px; }
+</style>
+</head>
+<body>
+  <div class="stack">
+    <div class="item"><span class="meta">lead · 19px</span><p class="lead">The physical API for AI agents.</p></div>
+    <div class="item"><span class="meta">body · 15px · 1.7</span><p class="body">Verified humans do what AI can't — inspections, repairs, on-site checks.</p></div>
+    <div class="item"><span class="meta">small · 14px</span><p class="sm">MCP integration in 5 minutes.</p></div>
+    <div class="item"><span class="meta">meta · 13px</span><p class="meta-text">🔒 Verified profiles · EU data protection</p></div>
+    <div class="item"><span class="meta">eyebrow</span><span class="eyebrow">Best Match</span></div>
+  </div>
+</body>
+</html>

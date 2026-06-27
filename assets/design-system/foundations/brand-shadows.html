@@ -1,0 +1,24 @@
+<!-- @dsCard group="Brand" viewport="700x200" name="Shadows & Glow" subtitle="Card shadow, button glow, hover glow, modal glow" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--bg); padding: 32px; }
+  .row { display: flex; gap: 28px; flex-wrap: wrap; }
+  .item { text-align: center; }
+  .box { width: 120px; height: 76px; border-radius: var(--radius-lg); background: var(--surface); border: 1px solid var(--card-border); }
+  .name { color: var(--text); font-size: 12px; font-weight: 600; margin-top: 14px; }
+  .val { color: var(--muted); font-size: 11px; font-family: var(--font-mono); }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="item"><div class="box" style="box-shadow:var(--shadow-card)"></div><div class="name">shadow-card</div></div>
+    <div class="item"><div class="box" style="box-shadow:var(--shadow-glow)"></div><div class="name">shadow-glow</div></div>
+    <div class="item"><div class="box" style="box-shadow:var(--shadow-glow-hover)"></div><div class="name">glow-hover</div></div>
+    <div class="item"><div class="box" style="box-shadow:var(--shadow-modal)"></div><div class="name">shadow-modal</div></div>
+  </div>
+</body>
+</html>

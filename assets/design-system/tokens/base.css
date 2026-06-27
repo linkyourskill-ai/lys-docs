@@ -1,0 +1,212 @@
+/* ===== BASE LAYER ===== */
+/* Reset + the signature reusable classes the product relies on globally:
+   glass cards, gradient buttons, code snippets, inverse surfaces, cosmic glow.
+   These mirror src/app/globals.css so cards/components render identically. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  background: var(--bg-deep);
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: var(--leading-snug);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ===== HEADINGS ===== */
+h1, h2, h3, h4 {
+  margin: 0;
+  color: var(--text-heading);
+  font-weight: var(--weight-bold);
+}
+h1 {
+  font-size: var(--text-hero);
+  font-weight: var(--weight-extrabold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-hero);
+}
+h2 {
+  font-size: var(--text-h2);
+  letter-spacing: var(--tracking-heading);
+}
+h3 {
+  font-size: var(--text-h3);
+}
+p { margin: 0; }
+a { color: inherit; text-decoration: none; }
+
+/* ===== GLASS CARDS ===== */
+.glass-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-xl);
+  padding: var(--pad-card);
+  transition: border-color var(--dur-base), box-shadow var(--dur-base);
+  backdrop-filter: var(--blur-glass);
+  -webkit-backdrop-filter: var(--blur-glass);
+}
+.glass-card:hover {
+  box-shadow: var(--shadow-card);
+}
+.glass-card.highlight {
+  border-color: rgba(168, 85, 247, 0.4);
+  background: rgba(168, 85, 247, 0.04);
+}
+.glass-card.highlight:hover {
+  border-color: rgba(168, 85, 247, 0.6);
+}
+html.light .glass-card {
+  box-shadow: var(--shadow-card);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+/* ===== BUTTONS ===== */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  background: var(--gradient-brand);
+  border: none;
+  padding: var(--pad-btn-y) var(--pad-btn-x);
+  border-radius: var(--radius-md);
+  color: #fff;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-tight);
+  cursor: pointer;
+  box-shadow: var(--shadow-glow);
+  transition: transform var(--dur-fast), box-shadow var(--dur-fast);
+  -webkit-tap-highlight-color: transparent;
+}
+.btn-primary:hover { transform: translateY(-1px); box-shadow: var(--shadow-glow-hover); }
+.btn-primary:active { transform: translateY(0); }
+.btn-primary.small { padding: 11px 22px; font-size: var(--text-sm); }
+.btn-primary.large { padding: 18px 52px; font-size: 18px; border-radius: 14px; }
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  background: transparent;
+  border: 1px solid var(--btn-secondary-border);
+  padding: var(--pad-btn-y) 28px;
+  border-radius: var(--radius-md);
+  color: var(--btn-secondary-color);
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: var(--weight-medium);
+  cursor: pointer;
+  transition: border-color var(--dur-fast), background var(--dur-fast);
+  -webkit-tap-highlight-color: transparent;
+}
+.btn-secondary:hover { background: var(--btn-secondary-hover-bg); }
+.btn-secondary.small { padding: 11px 22px; font-size: var(--text-sm); }
+
+.btn-link {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: var(--weight-medium);
+  cursor: pointer;
+  padding: var(--pad-btn-y) var(--space-4);
+  transition: color var(--dur-fast);
+  -webkit-tap-highlight-color: transparent;
+}
+.btn-link:hover { color: var(--text); }
+
+/* ===== CODE SNIPPET ===== */
+.code-snippet {
+  background: var(--code-bg);
+  border: 1px solid var(--code-border);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: var(--leading-relaxed);
+  color: var(--code-keyword);
+  overflow-x: auto;
+}
+.code-snippet .code-string { color: var(--code-string); }
+.code-snippet .code-muted { color: var(--muted); }
+
+/* ===== INVERSE SURFACE (stays dark in both themes) ===== */
+.inverse-surface {
+  background: var(--inverse-surface-bg);
+  border: 1px solid var(--inverse-surface-border);
+  color: var(--inverse-surface-fg);
+}
+.inverse-surface-accent { color: var(--inverse-surface-accent); }
+.inverse-surface-muted { color: var(--inverse-surface-muted); }
+
+/* ===== CHECK BADGE (green pill used in lists/hero) ===== */
+.check-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--radius-full);
+  background: var(--gradient-success);
+  color: #fff;
+  font-size: 12px;
+  font-weight: var(--weight-bold);
+  flex-shrink: 0;
+}
+
+/* ===== EYEBROW LABEL ===== */
+.eyebrow {
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-eyebrow);
+  color: var(--accent-light);
+}
+
+/* ===== COSMIC GLOW BACKDROP ===== */
+/* Large blurred radial blobs behind content. Place inside a position:relative
+   container with overflow hidden, or fixed on a full page. */
+.cosmic-glow {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 50%;
+  filter: blur(120px);
+}
+.cosmic-glow-1 {
+  width: min(800px, 90vw);
+  height: 600px;
+  top: -150px;
+  right: -200px;
+  background: radial-gradient(ellipse, rgba(168, 85, 247, 0.25) 0%, rgba(124, 58, 237, 0.12) 40%, transparent 70%);
+}
+.cosmic-glow-2 {
+  width: min(600px, 80vw);
+  height: 600px;
+  bottom: 10%;
+  left: -200px;
+  background: radial-gradient(ellipse, rgba(124, 58, 237, 0.1) 0%, transparent 70%);
+}

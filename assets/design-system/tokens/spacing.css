@@ -1,0 +1,47 @@
+/* ===== SPACING & LAYOUT ===== */
+/* The product drives section rhythm from a small set of layout variables that
+   shift at each breakpoint (--section-pad-x, --nav-height, --section-max).
+   Component padding follows a loose 4px-based scale. */
+
+:root {
+  /* ---- Base 4px scale ---- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-25: 100px;   /* default vertical section padding */
+
+  /* ---- Layout frame (desktop defaults; product overrides per breakpoint) ---- */
+  --section-pad-x: 6%;        /* horizontal page gutter */
+  --section-max: 1200px;      /* content max width */
+  --nav-height: 72px;
+
+  /* ---- Common gaps ---- */
+  --gap-card: 32px;       /* grid gap between cards */
+  --gap-tight: 8px;
+  --gap-inline: 24px;     /* footer / nav inline gap */
+
+  /* ---- Component padding ---- */
+  --pad-card: 40px;          /* .glass-card desktop */
+  --pad-card-snug: 24px;     /* .glass-card mobile / compact */
+  --pad-btn-y: 14px;
+  --pad-btn-x: 32px;
+}
+
+/* The product narrows gutters and nav height as the viewport shrinks. */
+@media (max-width: 479px) {
+  :root { --section-pad-x: 4%; --nav-height: 60px; }
+}
+@media (min-width: 480px) and (max-width: 767px) {
+  :root { --section-pad-x: 5%; --nav-height: 60px; }
+}
+@media (min-width: 1600px) {
+  :root { --section-pad-x: 8%; --section-max: 1400px; }
+}

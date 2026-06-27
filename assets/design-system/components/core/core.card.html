@@ -1,0 +1,69 @@
+<!-- @dsCard group="Components" viewport="700x300" name="Core — Button, Badge, GlassCard, CodeBlock" subtitle="Action, status and surface primitives" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  body { margin: 0; background: var(--bg); padding: 28px; }
+  .group { margin-bottom: 22px; }
+  .group:last-child { margin-bottom: 0; }
+  .lbl { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent-light); margin-bottom: 12px; }
+  .row { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+  #root > div { } 
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+  const { Button, Badge, GlassCard, CodeBlock } = window.LinkYourSkillDesignSystem_da1488;
+  function Demo() {
+    return (
+      <>
+        <div className="group">
+          <div className="lbl">Buttons</div>
+          <div className="row">
+            <Button variant="primary" rightIcon={<span>→</span>}>Get Token</Button>
+            <Button variant="secondary" size="small">Offer Skills</Button>
+            <Button variant="link">Hire as Customer →</Button>
+            <Button variant="primary" disabled>Disabled</Button>
+          </div>
+        </div>
+        <div className="group">
+          <div className="lbl">Badges</div>
+          <div className="row">
+            <Badge tone="accent">in_progress</Badge>
+            <Badge tone="success">Available now</Badge>
+            <Badge tone="warning">pending</Badge>
+            <Badge tone="danger">failed</Badge>
+            <Badge tone="neutral" outline>MCP</Badge>
+          </div>
+        </div>
+        <div className="group">
+          <div className="row" style={{ alignItems: "stretch" }}>
+            <GlassCard padding={20} style={{ flex: 1 }}>
+              <h3 style={{ fontSize: 16 }}>For Customers</h3>
+              <p style={{ color: "var(--muted)", fontSize: 14, marginTop: 6 }}>Verified professionals for every task.</p>
+            </GlassCard>
+            <CodeBlock
+              style={{ flex: 1 }}
+              comment="Create order"
+              lines={[
+                ["mcp.call(", { text: '"prepare_order"', tone: "string" }, ", {"],
+                ["  ", { text: "title:", tone: "muted" }, " ", { text: '"Vor-Ort-Check"', tone: "string" }],
+                ["})"],
+              ]}
+            />
+          </div>
+        </div>
+      </>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById("root")).render(<Demo />);
+</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+/* ===== TYPOGRAPHY ===== */
+/* One typeface — Inter — across marketing and platform. Tight negative tracking
+   on headings, generous line-height on body. Gradient-text treatment is reserved
+   for hero highlights and the wordmark (see effects.css / .gradient-text). */
+
+:root {
+  /* ---- Families ---- */
+  --font-sans: var(--font-inter), "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", "Menlo", "Consolas", monospace;
+
+  /* ---- Weights ---- */
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --weight-extrabold: 800;
+
+  /* ---- Fluid display sizes (clamp: min, preferred, max) ---- */
+  --text-hero: clamp(24px, 5vw, 52px);      /* h1 hero headline */
+  --text-h2: clamp(24px, 3.5vw, 38px);      /* section headline */
+  --text-lead: clamp(16px, 2.2vw, 19px);    /* hero subtitle / lead */
+  --text-body-lg: clamp(15px, 2vw, 18px);   /* intro body */
+
+  /* ---- Fixed steps ---- */
+  --text-h3: 20px;       /* card titles */
+  --text-body: 15px;     /* default body / card copy */
+  --text-sm: 14px;       /* secondary, nav links */
+  --text-xs: 13px;       /* meta, captions */
+  --text-2xs: 11px;      /* eyebrow / uppercase label */
+
+  /* ---- Line heights ---- */
+  --leading-tight: 1.18;   /* hero headline */
+  --leading-heading: 1.3;
+  --leading-snug: 1.5;     /* default body */
+  --leading-relaxed: 1.7;  /* long-form paragraphs */
+
+  /* ---- Letter spacing ---- */
+  --tracking-hero: -0.03em;
+  --tracking-heading: -0.02em;
+  --tracking-tight: -0.01em;
+  --tracking-eyebrow: 0.12em;   /* uppercase labels */
+
+  /* ---- Semantic aliases ---- */
+  --font-display: var(--font-sans);
+  --font-body: var(--font-sans);
+}

@@ -1,0 +1,27 @@
+<!-- @dsCard group="Brand" viewport="700x230" name="Glass Card" subtitle="Translucent blur card — default and highlighted variants" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--bg); padding: 24px; position: relative; overflow: hidden; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; position: relative; z-index: 1; }
+  .glass-card { padding: 24px; }
+  .glass-card p { color: var(--muted); font-size: 14px; line-height: 1.6; margin-top: 8px; }
+</style>
+</head>
+<body>
+  <div class="cosmic-glow cosmic-glow-1" style="top:-340px;right:-100px"></div>
+  <div class="grid">
+    <div class="glass-card">
+      <h3 style="font-size:18px">For Customers</h3>
+      <p>Verified professionals for every task. Commission directly and pay securely.</p>
+    </div>
+    <div class="glass-card highlight">
+      <h3 style="font-size:18px">For Developers &amp; AI Agents</h3>
+      <p>Integrate human execution into your agent. 8 MCP tools, REST API, WhatsApp approval.</p>
+    </div>
+  </div>
+</body>
+</html>

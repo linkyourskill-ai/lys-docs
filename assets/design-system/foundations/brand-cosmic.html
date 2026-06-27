@@ -1,0 +1,24 @@
+<!-- @dsCard group="Brand" viewport="700x220" name="Cosmic Backdrop" subtitle="Blurred radial glow blobs + the 135° brand gradient" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--bg-deep); padding: 0; position: relative; overflow: hidden; height: 220px; }
+  .content { position: relative; z-index: 1; padding: 32px; display: flex; flex-direction: column; gap: 16px; height: 100%; box-sizing: border-box; justify-content: center; }
+  .grad-bar { height: 14px; border-radius: 999px; background: var(--gradient-brand-bright); }
+  .label { color: var(--muted); font-size: 12px; font-family: var(--font-mono); }
+  h2 { color: var(--text); }
+</style>
+</head>
+<body>
+  <div class="cosmic-glow cosmic-glow-1" style="top:-260px;right:-120px"></div>
+  <div class="cosmic-glow cosmic-glow-2" style="bottom:-260px;left:-160px"></div>
+  <div class="content">
+    <h2>When AI needs the <span class="gradient-text">real world</span></h2>
+    <div class="grad-bar"></div>
+    <span class="label">cosmic-glow-1 · cosmic-glow-2 · gradient-brand-bright</span>
+  </div>
+</body>
+</html>

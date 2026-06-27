@@ -1,0 +1,12 @@
+/* ===== FONTS ===== */
+/* LinkYourSkill uses Inter as its single typeface, loaded via next/font in the
+   product (variable --font-inter). Here we ship it from Google Fonts so cards,
+   components and UI kits render with the real face. */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800&display=swap");
+
+:root {
+  /* The product exposes the face through this variable (next/font). We alias it
+     to the loaded Inter so var(--font-inter) keeps working verbatim. */
+  --font-inter: "Inter";
+}
