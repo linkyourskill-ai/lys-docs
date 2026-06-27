@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<!--
+  LinkYourSkill Learn — Startseite / landing (DE-first, EN mirror links).
+  Top entry point for the persona course set. Links each persona's de/en index.
+  Served from the repo root as the GitHub Pages home page.
+-->
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LinkYourSkill Learn · Kurse für jede Rolle</title>
+  <meta name="description" content="Kurze, zweisprachige Onboarding-Kurse für jede Rolle auf LinkYourSkill: Skillanbieter, Kunde und Agentowner. Short bilingual onboarding courses for every LinkYourSkill role.">
+  <link rel="stylesheet" href="assets/design-system/lessons.css">
+  <link rel="icon" href="assets/design-system/assets/icon-512.png">
+  <style>
+    /* Layout-only, composed from design-system tokens — no new colors/fonts. */
+    .home {
+      position: relative;
+      z-index: 1;
+      max-width: 1040px;
+      margin: var(--space-16) auto;
+      padding: clamp(var(--space-6), 5vw, var(--space-12));
+    }
+    .home__header { text-align: center; margin-bottom: var(--space-12); }
+    .home__header h1 { margin: 0 0 var(--space-5); text-wrap: balance; }
+    .home__lead {
+      font-size: var(--text-lead);
+      line-height: var(--leading-snug);
+      color: var(--muted);
+      max-width: 40rem;
+      margin: 0 auto var(--space-3);
+      text-wrap: pretty;
+    }
+    .home__lead--en { font-size: var(--text-body-lg); }
+    .home__meta { font-size: var(--text-xs); color: var(--muted); margin: var(--space-5) 0 0; }
+    .home__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: var(--space-6);
+    }
+    .persona-card { display: flex; flex-direction: column; }
+    .persona-card__eyebrow {
+      font-size: var(--text-2xs);
+      font-weight: var(--weight-bold);
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-eyebrow);
+      color: var(--accent-light);
+      margin: 0 0 var(--space-3);
+    }
+    .persona-card h2 { margin: 0 0 var(--space-3); }
+    .persona-card__de { color: var(--text); margin: 0 0 var(--space-2); }
+    .persona-card__en { color: var(--muted); font-size: var(--text-sm); margin: 0 0 var(--space-5); }
+    .persona-card__links { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: auto; }
+  </style>
+</head>
+<body>
+
+  <main class="home">
+
+    <header class="home__header">
+      <p class="lesson__eyebrow">LinkYourSkill · Lernen / Learn</p>
+      <h1>Meistere deine Rolle auf <span class="gradient-text">LinkYourSkill</span></h1>
+      <p class="home__lead">
+        Drei kurze, zweisprachige Kurse — einer für jede Rolle auf dem Marktplatz.
+        Wähle deine Rolle und leg los.
+      </p>
+      <p class="home__lead home__lead--en">
+        Three short bilingual courses — one per role on the marketplace. Pick yours and start.
+      </p>
+      <p class="home__meta">3 Kurse · Deutsch &amp; English · je 4 Lektionen</p>
+    </header>
+
+    <div class="home__grid">
+
+      <article class="glass-card persona-card">
+        <p class="persona-card__eyebrow">Anbieter · Provider</p>
+        <h2>Skillanbieter</h2>
+        <p class="persona-card__de">
+          Biete deine Skills an, werde von KI-Agenten gefunden, gewinne Aufträge und werde bezahlt.
+        </p>
+        <p class="persona-card__en">
+          Offer your skills, get found by AI agents, win orders, and get paid.
+        </p>
+        <div class="persona-card__links">
+          <a class="btn-primary small" href="skillanbieter/de/index.html">Deutsch →</a>
+          <a class="btn-secondary small" href="skillanbieter/en/index.html">English →</a>
+        </div>
+      </article>
+
+      <article class="glass-card persona-card">
+        <p class="persona-card__eyebrow">Nachfrage · Customer</p>
+        <h2>Kunde</h2>
+        <p class="persona-card__de">
+          Finde Leistungen auf dem Marktplatz, beauftrage gut, bezahle sicher und bewerte.
+        </p>
+        <p class="persona-card__en">
+          Find services on the marketplace, commission well, pay securely, and rate.
+        </p>
+        <div class="persona-card__links">
+          <a class="btn-primary small" href="customer/de/index.html">Deutsch →</a>
+          <a class="btn-secondary small" href="customer/en/index.html">English →</a>
+        </div>
+      </article>
+
+      <article class="glass-card persona-card">
+        <p class="persona-card__eyebrow">Agentenseite · Agent owner</p>
+        <h2>Agentowner</h2>
+        <p class="persona-card__de">
+          Verstehe deine KI-Agenten, setze Grenzen, gib Aufträge frei und bleibe konform.
+        </p>
+        <p class="persona-card__en">
+          Understand your AI agents, set limits, approve orders, and stay compliant.
+        </p>
+        <div class="persona-card__links">
+          <a class="btn-primary small" href="agentowner/de/index.html">Deutsch →</a>
+          <a class="btn-secondary small" href="agentowner/en/index.html">English →</a>
+        </div>
+      </article>
+
+    </div>
+
+  </main>
+
+  <p class="lesson__brand">
+    <img src="assets/design-system/assets/logo-linkyourskill.png" alt="LinkYourSkill">
+    <span>Gestaltet im LinkYourSkill Design System</span>
+  </p>
+
+</body>
+</html>

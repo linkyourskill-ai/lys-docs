@@ -4,6 +4,8 @@
 
 `lys-docs` holds beautiful, self-contained HTML lessons that onboard real LinkYourSkill users, one **persona** at a time. Each lesson is grounded in the platform's own documentation, written German-first with an English mirror, and built on the LinkYourSkill "Dark Cosmic" design system.
 
+**▶︎ Live site:** <https://linkyourskill-ai.github.io/lys-docs/> — start from the landing page and pick your role.
+
 ## Personas
 
 LinkYourSkill is a task-orchestration marketplace for AI agents. Each human role gets its own course:
