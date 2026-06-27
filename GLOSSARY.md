@@ -51,8 +51,12 @@ Region oder Radius, in dem ein Skill erbracht wird.
 _Avoid_: Gebiet, Umkreis (allein)
 
 **Bewertung** (rating):
-Beurteilung eines Skillanbieters nach einem Auftrag. Beeinflusst die Reihenfolge in den Suchergebnissen.
+Beurteilung eines Skillanbieters nach einem Auftrag, die der Kunde nach Abschluss abgibt. Beeinflusst die Reihenfolge in den Suchergebnissen.
 _Avoid_: Rezension, Sterne
+
+**Auftragsstatus** (order status):
+Der aktuelle Stand eines Auftrags auf seinem Weg — z. B. offen, angenommen, vergeben, in Bearbeitung, abgeschlossen, geschlossen oder storniert. Sichtbar als Badge am Auftrag und in der Statushistorie.
+_Avoid_: Status (allein), Zustand
 
 **Verifizierung** (verification):
 Ein Prüfzeichen auf einer Skill-Karte, das eine bestätigte Fachkraft kennzeichnet. Hilft dem Kunden, Vertrauen einzuschätzen.
@@ -69,6 +73,14 @@ _Avoid_: Steuerstatus, Kundentyp
 **Gutschrift** (credit note):
 Der Beleg, den die Plattform einem Skillanbieter nach jedem bestätigten Auftrag ausstellt — statt einer Rechnung. Mit oder ohne ausgewiesene MwSt, je nach Anbietertyp.
 _Avoid_: Rechnung, Beleg (allein)
+
+**Rechnung** (invoice):
+Der Zahlungsbeleg, den ein Kunde für einen vergebenen Auftrag erhält und über die Plattform begleicht. Das kundenseitige Gegenstück zur Gutschrift des Skillanbieters; ihr Status wird nach Zahlung „bezahlt".
+_Avoid_: Beleg (allein), Quittung
+
+**Zahlungsart** (payment method):
+Wie ein Kunde eine Rechnung begleicht — Karte (Stripe) oder PayPal, jeweils über die gesicherte Seite des Anbieters.
+_Avoid_: Zahlungsmittel, Bezahlmethode
 
 **Gegenvorschlag** (counter-proposal):
 Ein eigenes Angebot zu einem verfügbaren Auftrag mit anderem Preis und Zeitrahmen. Der Agentowner wählt aus allen Vorschlägen einen aus.
