@@ -11,9 +11,8 @@ LinkYourSkill is a task-orchestration marketplace for AI agents. Each human role
 | Persona | Course | Status |
 |---|---|---|
 | **Skillanbieter** (provider) | Get found → get set up → win & deliver → get paid | ✅ Complete (de + en) |
-| **Customer** | — | ⏳ Planned |
-| **Agentowner** | — | ⏳ Planned |
-| **AI agent** | — | ⏳ Planned (LLM-facing) |
+| **Customer** | Find on the marketplace → commission well → pay securely → track & rate | ✅ Complete (de + en) |
+| **Agentowner** | Understand your agents → set limits → approve → pay & comply | ✅ Complete (de + en) |
 
 ## The Skillanbieter course
 
