@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<!--
+  Agentowner · Lektion 04 — Bezahlen & konform bleiben (DE, kanonisch)
+  Persona-Kurs: Agentowner. Arc 4 von 4 („Bezahlen & konform bleiben") — Abschluss.
+  Leitidee: „Dein Agent handelt — du behältst die Kontrolle."
+
+  Provenance: grounded against docs/journeys/agentowner.md @ 2026-06-27 (docs-only, v1).
+  Altitude: Rechnung NACH Abschluss & Schließung; sicher über die Plattform per Karte (Stripe)
+  oder PayPal; Status → „bezahlt". KEINE Treuhand-/Escrow-Aussage. Compliance: Nutzungs-
+  bedingungen annehmen + Datenschutz/Einwilligung verwalten (GDPR-Art.-7-Audit-Detail gedroppt).
+  In-App-only: kein öffentlicher CTA, Primärquelle nennt UI-Beschriftungen als Text ohne Link.
+  Übersetzt, nicht transkribiert — keine internen Dev-Artefakte.
+-->
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>04 — Bezahlen &amp; konform bleiben · Agentowner · LinkYourSkill</title>
+  <link rel="stylesheet" href="../../../assets/design-system/lessons.css">
+</head>
+<body>
+  <main class="lesson">
+
+    <header class="lesson__header">
+      <p class="lesson__eyebrow">Mission · Warum das hier zählt</p>
+      <h1>Bezahl sicher und <span class="gradient-text">bleib konform</span></h1>
+      <p class="lesson__lead">
+        Der Auftrag deines Agenten ist erledigt — jetzt zahlst du. Auf LinkYourSkill begleichst du
+        eine Rechnung sicher über die Plattform, erst nach Abschluss. Und du hältst dein Konto
+        sauber: aktuelle Nutzungsbedingungen annehmen, Datenschutz-Einstellungen verwalten. Damit
+        schließt sich der Kreis — vom Einrichten bis zur Zahlung, immer unter deiner Kontrolle.
+      </p>
+      <p class="lesson__meta">Lektion 04 · ca. 6 Minuten · Wissen &amp; Übung</p>
+    </header>
+
+    <section class="lesson__body">
+
+      <h2>Das kannst du danach</h2>
+      <ul class="objectives">
+        <li>Eine Rechnung nach Abschluss sicher über die Plattform bezahlen.</li>
+        <li>Dein Konto konform halten: Nutzungsbedingungen annehmen und Datenschutz verwalten.</li>
+      </ul>
+
+      <h2>Wann die Rechnung kommt</h2>
+      <p>
+        Du zahlst nicht im Voraus. Erst wenn ein <strong>Auftrag</strong> abgeschlossen und
+        geschlossen ist, stellt die Plattform dir dafür eine <strong>Rechnung</strong>. Du findest
+        sie unter <strong>Rechnungen</strong>. Die Rechnung ist also der Auslöser fürs Bezahlen —
+        für Arbeit, die bereits erledigt ist.
+      </p>
+
+      <div class="callout">
+        <p class="callout__label">Kerngedanke</p>
+        <p>
+          Du gibst keiner fremden Person Bargeld und keine Bankdaten. Du zahlst <em>über die
+          Plattform</em> — gegen eine Rechnung, per Karte (Stripe) oder PayPal. Und du zahlst für
+          Erledigtes: Die Rechnung kommt nach Abschluss, nicht vorher.
+        </p>
+      </div>
+
+      <h2>So bezahlst du</h2>
+      <ol>
+        <li>Öffne unter <strong>Rechnungen</strong> die Rechnung zu deinem abgeschlossenen Auftrag — du siehst die Posten im Detail.</li>
+        <li>Bei Bedarf lädst du sie als PDF herunter (<strong>„PDF herunterladen"</strong>).</li>
+        <li>Wähle <strong>„Bezahlen"</strong> und deine <strong>Zahlungsart</strong> — Karte (Stripe) oder PayPal.</li>
+        <li>Du wirst zur gesicherten Seite des Anbieters geleitet und schließt die Zahlung dort ab. Danach wird der Status der Rechnung <strong>„bezahlt"</strong>.</li>
+      </ol>
+
+      <h2>Konform bleiben</h2>
+      <p>Zur Kontrolle gehört auch, dein Konto sauber zu halten. Zwei Dinge:</p>
+      <ul class="objectives">
+        <li><strong>Nutzungsbedingungen</strong> — Gibt es eine neue Version, erscheint ein Hinweis. Du liest sie und nimmst sie mit <strong>„Akzeptieren"</strong> an. Erst danach geht es weiter.</li>
+        <li><strong>Datenschutz</strong> — Unter <strong>Einstellungen → Datenschutz</strong> verwaltest du deine Einwilligungen, etwa zu Marketing-E-Mails, Analyse oder KI-Profilbildung.</li>
+      </ul>
+
+      <div class="callout callout--note">
+        <p class="callout__label">DSGVO: du hast die Wahl</p>
+        <p>
+          Deine Einwilligungen sind freiwillig und jederzeit widerrufbar — was du heute erlaubst,
+          kannst du morgen zurücknehmen. Damit schließt sich der Kreis dieses Kurses: Du hast deine
+          Agenten eingerichtet, ihnen Grenzen gesetzt, Aufträge freigegeben und sicher bezahlt.
+          Dein Agent handelt — und du behältst von Anfang bis Ende die Kontrolle.
+        </p>
+      </div>
+
+      <hr class="lesson__divider">
+
+      <h2>Jetzt du</h2>
+      <p>Prüf dich selbst — aus dem Gedächtnis abrufen baut echtes Behalten auf.</p>
+
+      <div class="quiz">
+        <p class="quiz__label">Wissens-Check</p>
+        <p class="quiz__q">Wann erhältst du die Rechnung für einen Auftrag?</p>
+        <div class="quiz__options">
+          <button class="quiz__option" data-correct="true">Erst nach dem Abschluss, für bereits getane Arbeit</button>
+          <button class="quiz__option">Sofort im Voraus, sobald dein Agent ihn vorbereitet</button>
+          <button class="quiz__option">Direkt bei der Freigabe, noch vor der Ausführung</button>
+        </div>
+        <p class="quiz__feedback" hidden>
+          Die Rechnung kommt erst, nachdem der Auftrag abgeschlossen und geschlossen ist — du
+          zahlst also für bereits erledigte Arbeit, nicht im Voraus und nicht schon bei der
+          Freigabe. Du findest sie unter „Rechnungen" und begleichst sie sicher über die Plattform
+          per Karte (Stripe) oder PayPal.
+        </p>
+      </div>
+
+      <aside class="primary-source">
+        <p class="primary-source__label">Primärquelle</p>
+        <p>
+          Sieh es dir in der App an: Öffne unter <strong>„Rechnungen"</strong> die Rechnung zu
+          einem abgeschlossenen Auftrag, sieh dir die Posten an und wähle <strong>„Bezahlen"</strong>
+          — Karte (Stripe) oder PayPal. Deine Einwilligungen findest du unter
+          <strong>„Einstellungen → Datenschutz"</strong>.
+        </p>
+      </aside>
+
+      <aside class="ask-teacher">
+        <img class="ask-teacher__mark" src="../../../assets/design-system/assets/logo-linkyourskill.png" alt="">
+        <div>
+          <h3>Fragen zu Rechnung oder Datenschutz?</h3>
+          <p>Der LinkYourSkill-Support hilft dir weiter, bis deine Rechnung bezahlt und dein Konto konform ist.</p>
+        </div>
+      </aside>
+
+    </section>
+
+  </main>
+
+  <nav class="lesson__nav">
+    <a href="0003-approve-orders.html">‹ Lektion 03 · Freigeben</a>
+    <a href="../../../GLOSSARY.md">Glossar</a>
+    <a href="../index.html">Kurs abgeschlossen · zur Übersicht ›</a>
+  </nav>
+
+  <p class="lesson__brand">
+    <img src="../../../assets/design-system/assets/logo-linkyourskill.png" alt="LinkYourSkill">
+    <span>Gestaltet im LinkYourSkill Design System</span>
+  </p>
+
+  <script src="../../../assets/design-system/quiz.js"></script>
+</body>
+</html>

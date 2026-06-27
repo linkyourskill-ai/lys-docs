@@ -22,6 +22,18 @@ _Avoid_: Bot, KI (allein)
 Mensch, dem ein KI-Agent gehört und der dessen Aufträge freigibt (per Messenger).
 _Avoid_: Agentbesitzer, Nutzer
 
+**Token** (token):
+Der Schlüssel, mit dem ein KI-Agent im Namen seines Agentowners auf der Plattform handelt. Wird einmal beim Agenten erstellt, nur einmal angezeigt und wie ein Passwort geheim gehalten.
+_Avoid_: Schlüssel (allein), API-Key, Zugangscode
+
+**Auftrags-Limit** (order limit):
+Die Grenze, die ein Agentowner seinem KI-Agenten setzt — in normaler Sprache, z. B. „maximal 5 Aufträge pro Tag, maximal 500 € pro Auftrag". Gilt automatisch bei jedem Auftrag, den der Agent vorbereitet.
+_Avoid_: Limit (allein), Budget, Kontingent
+
+**Freigabe** (approval):
+Die bewusste Bestätigung, mit der ein Agentowner einen von seinem KI-Agenten vorbereiteten Auftrag echt werden lässt — über mehrere Prüfschritte (Preis, Ort, Zeitrahmen, Zusammenfassung). Der Auftrag wechselt damit von „Vorbereitet" zu „Genehmigt"; ohne Freigabe geschieht nichts.
+_Avoid_: Genehmigung (allein), Zustimmung, Bestätigung (allein)
+
 **Kunde** (customer):
 Mensch, der auf dem Marktplatz eine Fachkraft direkt findet, beauftragt, sicher über die Plattform bezahlt und seine Aufträge verfolgt. Der direkte Nachfrage-Weg — ohne KI-Agent.
 _Avoid_: Auftraggeber, Käufer (allein), Besteller
@@ -55,7 +67,7 @@ Beurteilung eines Skillanbieters nach einem Auftrag, die der Kunde nach Abschlus
 _Avoid_: Rezension, Sterne
 
 **Auftragsstatus** (order status):
-Der aktuelle Stand eines Auftrags auf seinem Weg — z. B. offen, angenommen, vergeben, in Bearbeitung, abgeschlossen, geschlossen oder storniert. Sichtbar als Badge am Auftrag und in der Statushistorie.
+Der aktuelle Stand eines Auftrags auf seinem Weg — z. B. offen, angenommen, vergeben, in Bearbeitung, abgeschlossen, geschlossen oder storniert. Auf dem Agenten-Weg kommt davor „Vorbereitet" (vom KI-Agenten erstellt) und „Genehmigt" (vom Agentowner freigegeben). Sichtbar als Badge am Auftrag und in der Statushistorie.
 _Avoid_: Status (allein), Zustand
 
 **Verifizierung** (verification):
@@ -75,11 +87,11 @@ Der Beleg, den die Plattform einem Skillanbieter nach jedem bestätigten Auftrag
 _Avoid_: Rechnung, Beleg (allein)
 
 **Rechnung** (invoice):
-Der Zahlungsbeleg, den ein Kunde für einen vergebenen Auftrag erhält und über die Plattform begleicht. Das kundenseitige Gegenstück zur Gutschrift des Skillanbieters; ihr Status wird nach Zahlung „bezahlt".
+Der Zahlungsbeleg, den die Plattform für einen Auftrag ausstellt und den der Auftraggeber über die Plattform begleicht — ein Kunde für seinen vergebenen Auftrag, ein Agentowner für einen abgeschlossenen Auftrag seines KI-Agenten. Das nachfrageseitige Gegenstück zur Gutschrift des Skillanbieters; ihr Status wird nach Zahlung „bezahlt".
 _Avoid_: Beleg (allein), Quittung
 
 **Zahlungsart** (payment method):
-Wie ein Kunde eine Rechnung begleicht — Karte (Stripe) oder PayPal, jeweils über die gesicherte Seite des Anbieters.
+Wie der Auftraggeber eine Rechnung begleicht — Karte (Stripe) oder PayPal, jeweils über die gesicherte Seite des Anbieters. Gilt für Kunden wie für Agentowner.
 _Avoid_: Zahlungsmittel, Bezahlmethode
 
 **Gegenvorschlag** (counter-proposal):

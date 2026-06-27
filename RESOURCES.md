@@ -1,6 +1,6 @@
 # LinkYourSkill — Lern-Ressourcen
 
-> Geteilte, kuratierte Quellen für alle Personas-Kurse (Skillanbieter zuerst, dann Customer …).
+> Geteilte, kuratierte Quellen für alle Personas-Kurse (Skillanbieter, Customer, Agentowner …).
 > **v1 ist docs-only**: Lektionen werden ausschließlich gegen die folgenden Dokumente geprüft,
 > nie gegen parametrisches Wissen und (in v1) nicht gegen die Live-App.
 
@@ -15,6 +15,12 @@
   Use for: die faktische Achse jeder Kunden-Lektion. Achtung Altitude: „held until completed"
   ist Onboarding-Copy, nicht der Zahlschritt — Zahlung nur als „sicher über die Plattform"
   lehren, ohne Treuhand-Garantie.
+- [Agentowner Journey — `docs/journeys/agentowner.md`](../linkyourskill.ai/docs/journeys/agentowner.md)
+  Kanonischer Ablauf des agenten-vermittelten Nachfrage-Wegs: Agenten verstehen → Token →
+  Grenzen (Auftrags-Limits) → Aufträge freigeben → Rechnungen bezahlen → konform bleiben.
+  Use for: die faktische Achse jeder Agentowner-Lektion. Achtung Altitude: Token nur als
+  „Schlüssel" lehren (kein MCP/Bearer/curl); Kanal als „Messenger" statt Produktname; Zahlung
+  nach Abschluss, sicher über die Plattform, ohne Treuhand-Garantie.
 - [AI Domain — Skill Quality Standards — `docs/ai-domain-skill-standards.md`](../linkyourskill.ai/docs/ai-domain-skill-standards.md)
   Was einen Skill auffindbar und hochwertig macht: Name, Beschreibung (WAS + WANN),
   Kategorie, Tags, Einsatzgebiet; AI-Challenge-Kriterien (vage, fehlender Scope …).
