@@ -8,9 +8,10 @@
   verified live against n8n 2.4.5 @ 2026-07-05 (interne Staging-Umgebung: prepare_order-Lauf bis
   Status pending_approval + Messenger-Freigabenachricht beobachtet; Batch-Falle prepare_orders und
   Vorab-Suche bei „Test"-Titeln live reproduziert).
-  OFFEN vor Release: Ablehnen-Persistenz — Messenger-Reject wurde auf Staging quittiert, aber nicht
-  gespeichert (Plattform-Bug, gemeldet); In-App-Ablehnen-Pfad noch nicht lokalisiert. Finale-Schritte
-  nach dem Fix erneut live verifizieren. Endpunkt linkyourskill.ai geht 10.07.2026 öffentlich live.
+  Ablehnen-Persistenz: Plattform-Bug behoben, Ablehnen am 2026-07-05 live auf Staging verifiziert
+  (Wire-Status rejected; Badge „Abgelehnt" per Plattform-i18n). Ein In-App-Ablehnen-Pfad existiert
+  nicht — Messenger ist der einzige interaktive Ablehnen-Weg.
+  OFFEN vor Release: Endpunkt linkyourskill.ai geht 10.07.2026 öffentlich live — danach re-verifizieren.
 -->
 <html lang="de">
 <head>
@@ -118,6 +119,9 @@
         Auftrag, den du wirklich vergeben willst, würdest du hier freigeben. Ein
         Übungsauftrag wird immer abgelehnt: So bleibt der Marktplatz sauber, und du hast
         beide Seiten der Kontrolle einmal selbst bedient — bauen und entscheiden.
+        Nach deinem Ablehnen führt die Plattform den Auftrag als <code>rejected</code> —
+        im Web das Badge „Abgelehnt". Wie dein Agent solche Status selbst abfragt,
+        lernst du in der nächsten Lektion.
       </p>
 
       <h2>Wenn es hakt</h2>

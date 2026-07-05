@@ -12,10 +12,11 @@
   Badge-Wortlaut pending_approval = „Genehmigung ausstehend" am 2026-07-05 gegen die Plattform-i18n
   korrigiert — die zuvor zitierte Formulierung „Wartet auf Genehmigung" war die Ad-hoc-Übersetzung
   des Agenten im Spike-Chat, kein Plattform-String.
+  Wire-Status eines abgelehnten Auftrags am 2026-07-05 nach dem Plattform-Fix live verifiziert:
+  rejected (Badge „Abgelehnt" per Plattform-i18n) — seitdem zitiert die Lektion ihn.
   OFFEN vor Release: 429-Symptom in n8n noch nicht live provoziert (Formulierung bleibt auf
-  HTTP-Ebene); Wire-Status eines abgelehnten Auftrags bis zum Plattform-Fix unbekannt — Lektion
-  zitiert ihn deshalb nicht; ob list_orders wartende Aufträge (pending_approval) mitliefert, ist
-  noch nicht live beobachtet — die Lektion formuliert es als Erwartung, beim Finale-Re-Verify prüfen. Endpunkt linkyourskill.ai geht 10.07.2026 öffentlich live.
+  HTTP-Ebene); ob list_orders wartende Aufträge (pending_approval) mitliefert, ist noch nicht
+  live beobachtet — die Lektion formuliert es als Erwartung. Endpunkt linkyourskill.ai geht 10.07.2026 öffentlich live.
 -->
 <html lang="de">
 <head>
@@ -79,6 +80,7 @@
         <li><code>prepared</code> — der Auftrag ist vorbereitet; im Web kennst du ihn als Badge „Vorbereitet".</li>
         <li><code>approval_requested</code> — die Plattform hat deine Freigabe angefordert; die Messenger-Nachricht ist unterwegs.</li>
         <li><code>pending_approval</code> — der Auftrag wartet auf deine Entscheidung (Badge „Genehmigung ausstehend").</li>
+        <li><code>rejected</code> — du hast abgelehnt: Endstation für den Übungsauftrag (Badge „Abgelehnt").</li>
       </ul>
       <p>
         Dein Agent übersetzt diese Strings im Chat oft von selbst ins Deutsche — praktisch,

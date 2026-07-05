@@ -8,9 +8,10 @@
   verified live against n8n 2.4.5 @ 2026-07-05 (internal staging environment: prepare_order run up to
   status pending_approval + Messenger approval message observed; batch trap prepare_orders and the
   pre-search on "Test" titles reproduced live).
-  OPEN before release: decline persistence — the Messenger reject was acknowledged on staging but not
-  persisted (platform bug, reported); in-app decline path not yet located. Re-verify the finale steps
-  live after the fix. Endpoint linkyourskill.ai goes live publicly on 2026-07-10.
+  Decline persistence: platform bug fixed, decline verified live on staging 2026-07-05 (wire status
+  rejected; badge "Abgelehnt" per platform i18n). An in-app decline path does not exist — Messenger
+  is the only interactive decline path.
+  OPEN before release: endpoint linkyourskill.ai goes live publicly on 2026-07-10 — re-verify after.
 -->
 <html lang="en">
 <head>
@@ -117,6 +118,9 @@
         order you actually wanted to place, this is where you'd approve. A practice order
         always gets declined: that keeps the marketplace clean, and you have now operated
         both sides of control yourself — building and deciding.
+        After your decline, the platform records the order as <code>rejected</code> — on
+        the web, the badge "Abgelehnt". How your agent queries such statuses itself is
+        what the next lesson is about.
       </p>
 
       <h2>If it doesn't work</h2>

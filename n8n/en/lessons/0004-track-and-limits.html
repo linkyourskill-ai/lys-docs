@@ -12,10 +12,11 @@
   Badge wording pending_approval = "Genehmigung ausstehend" corrected against the platform i18n on
   2026-07-05 — the previously quoted phrase "Wartet auf Genehmigung" was the agent's ad-hoc chat
   translation during the spike, not a platform string.
+  The wire status of a declined order was verified live on 2026-07-05 after the platform fix:
+  rejected (badge "Abgelehnt" per platform i18n) — the lesson quotes it since then.
   OPEN before release: the 429 symptom has not been provoked live in n8n yet (wording stays at the
-  HTTP level); the wire status of a declined order is unknown until the platform fix — this lesson
-  therefore doesn't quote it; whether list_orders includes waiting orders (pending_approval) has not
-  been observed live yet — the lesson phrases it as an expectation, check during the finale re-verify. Endpoint linkyourskill.ai goes live publicly on 2026-07-10.
+  HTTP level); whether list_orders includes waiting orders (pending_approval) has not been observed
+  live yet — the lesson phrases it as an expectation. Endpoint linkyourskill.ai goes live publicly on 2026-07-10.
 -->
 <html lang="en">
 <head>
@@ -79,6 +80,7 @@
         <li><code>prepared</code> — the order is prepared; on the web you know it as the "Vorbereitet" badge.</li>
         <li><code>approval_requested</code> — the platform has requested your Freigabe; the Messenger message is on its way.</li>
         <li><code>pending_approval</code> — the order is waiting for your decision (badge "Genehmigung ausstehend").</li>
+        <li><code>rejected</code> — you declined: the practice order's final stop (badge "Abgelehnt").</li>
       </ul>
       <p>
         In the chat, your agent often translates these strings on its own — convenient, but
