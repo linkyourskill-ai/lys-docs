@@ -4,7 +4,7 @@ Every lesson and reference document this skill produces is built on the
 **LinkYourSkill Design System** ("Dark Cosmic"). This folder is the
 self-contained copy that `lys-teach` ships with.
 Source: <https://github.com/linkyourskill-ai/lys-design-system>.
-Synced: upstream **v1.1.3** — 2026-07-05 (brand files verbatim; repo machinery
+Synced: upstream **v1.1.4** — 2026-07-05 (brand files verbatim; repo machinery
 like `package.json`/`SKILL.md` deliberately not vendored).
 
 The point: a learner returns to these lessons again and again, so they must
