@@ -9,6 +9,9 @@
   prepared → approval_requested → pending_approval observed, the agent translated the wire strings
   into German unprompted; 401 symptoms captured exactly in n8n and on the wire).
   Tool names (get_order_status, list_orders) re-checked against the live tools/list on 2026-07-05.
+  Badge wording pending_approval = "Genehmigung ausstehend" corrected against the platform i18n on
+  2026-07-05 — the previously quoted phrase "Wartet auf Genehmigung" was the agent's ad-hoc chat
+  translation during the spike, not a platform string.
   OPEN before release: the 429 symptom has not been provoked live in n8n yet (wording stays at the
   HTTP level); the wire status of a declined order is unknown until the platform fix — this lesson
   therefore doesn't quote it; whether list_orders includes waiting orders (pending_approval) has not
@@ -75,7 +78,7 @@
       <ul class="objectives">
         <li><code>prepared</code> — the order is prepared; on the web you know it as the "Vorbereitet" badge.</li>
         <li><code>approval_requested</code> — the platform has requested your Freigabe; the Messenger message is on its way.</li>
-        <li><code>pending_approval</code> — the order is waiting for your decision ("Wartet auf Genehmigung").</li>
+        <li><code>pending_approval</code> — the order is waiting for your decision (badge "Genehmigung ausstehend").</li>
       </ul>
       <p>
         In the chat, your agent often translates these strings on its own — convenient, but
@@ -113,7 +116,7 @@
           <button class="quiz__option">The order has failed and the platform quietly dropped it</button>
         </div>
         <p class="quiz__feedback" hidden>
-          <code>pending_approval</code> means "Wartet auf Genehmigung" (waiting for approval):
+          <code>pending_approval</code> means "Genehmigung ausstehend" (approval pending):
           the platform has requested your Freigabe, and nothing happens until you decide. The
           order is only approved after your yes — and nothing here has failed or been
           dropped: this status means waiting, not failing.

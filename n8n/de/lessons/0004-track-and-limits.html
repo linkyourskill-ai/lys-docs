@@ -9,6 +9,9 @@
   prepared → approval_requested → pending_approval beobachtet, Agent übersetzte die Wire-Strings
   unaufgefordert ins Deutsche; 401-Symptome in n8n und auf der Leitung exakt erfasst).
   Tool-Namen (get_order_status, list_orders) am 2026-07-05 gegen das Live-tools/list gegengeprüft.
+  Badge-Wortlaut pending_approval = „Genehmigung ausstehend" am 2026-07-05 gegen die Plattform-i18n
+  korrigiert — die zuvor zitierte Formulierung „Wartet auf Genehmigung" war die Ad-hoc-Übersetzung
+  des Agenten im Spike-Chat, kein Plattform-String.
   OFFEN vor Release: 429-Symptom in n8n noch nicht live provoziert (Formulierung bleibt auf
   HTTP-Ebene); Wire-Status eines abgelehnten Auftrags bis zum Plattform-Fix unbekannt — Lektion
   zitiert ihn deshalb nicht; ob list_orders wartende Aufträge (pending_approval) mitliefert, ist
@@ -75,7 +78,7 @@
       <ul class="objectives">
         <li><code>prepared</code> — der Auftrag ist vorbereitet; im Web kennst du ihn als Badge „Vorbereitet".</li>
         <li><code>approval_requested</code> — die Plattform hat deine Freigabe angefordert; die Messenger-Nachricht ist unterwegs.</li>
-        <li><code>pending_approval</code> — der Auftrag wartet auf deine Entscheidung („Wartet auf Genehmigung").</li>
+        <li><code>pending_approval</code> — der Auftrag wartet auf deine Entscheidung (Badge „Genehmigung ausstehend").</li>
       </ul>
       <p>
         Dein Agent übersetzt diese Strings im Chat oft von selbst ins Deutsche — praktisch,
@@ -113,7 +116,7 @@
           <button class="quiz__option">Der Auftrag ist gescheitert und wurde von selbst verworfen</button>
         </div>
         <p class="quiz__feedback" hidden>
-          <code>pending_approval</code> heißt „Wartet auf Genehmigung": Die Plattform hat
+          <code>pending_approval</code> heißt „Genehmigung ausstehend": Die Plattform hat
           deine Freigabe angefordert, und nichts passiert, bis du entscheidest. Freigegeben
           ist der Auftrag erst nach deinem Ja — und gescheitert oder verworfen ist hier
           nichts: Dieser Status heißt Warten, nicht Scheitern.
