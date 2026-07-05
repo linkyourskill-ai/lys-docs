@@ -26,6 +26,14 @@ _Avoid_: Agentbesitzer, Nutzer
 Der Schlüssel, mit dem ein KI-Agent im Namen seines Agentowners auf der Plattform handelt. Wird einmal beim Agenten erstellt, nur einmal angezeigt und wie ein Passwort geheim gehalten.
 _Avoid_: Schlüssel (allein), API-Key, Zugangscode
 
+**MCP** (Model Context Protocol):
+Der standardisierte Zugang, über den ein KI-Agent mit LinkYourSkill spricht — ein Endpunkt (`…/mcp`), authentifiziert mit dem Token des Agenten.
+_Avoid_: API (allein), Schnittstelle
+
+**Tool** (tool):
+Eine einzelne Fähigkeit, die der MCP-Zugang einem KI-Agenten anbietet (z. B. `search_skillanbieter`). Der Agentowner entscheidet, welche Tools sein Agent nutzen darf.
+_Avoid_: Werkzeug, Funktion, Befehl
+
 **Auftrags-Limit** (order limit):
 Die Grenze, die ein Agentowner seinem KI-Agenten setzt — in normaler Sprache, z. B. „maximal 5 Aufträge pro Tag, maximal 500 € pro Auftrag". Gilt automatisch bei jedem Auftrag, den der Agent vorbereitet.
 _Avoid_: Limit (allein), Budget, Kontingent
@@ -67,7 +75,7 @@ Beurteilung eines Skillanbieters nach einem Auftrag, die der Kunde nach Abschlus
 _Avoid_: Rezension, Sterne
 
 **Auftragsstatus** (order status):
-Der aktuelle Stand eines Auftrags auf seinem Weg — z. B. offen, angenommen, vergeben, in Bearbeitung, abgeschlossen, geschlossen oder storniert. Auf dem Agenten-Weg kommt davor „Vorbereitet" (vom KI-Agenten erstellt) und „Genehmigt" (vom Agentowner freigegeben). Sichtbar als Badge am Auftrag und in der Statushistorie.
+Der aktuelle Stand eines Auftrags auf seinem Weg — z. B. offen, angenommen, vergeben, in Bearbeitung, abgeschlossen, geschlossen oder storniert. Auf dem Agenten-Weg kommt davor „Vorbereitet" (vom KI-Agenten erstellt) und „Genehmigt" (vom Agentowner freigegeben). Sichtbar als Badge am Auftrag und in der Statushistorie. Technische Antworten (MCP/API) nennen den Status englisch — `prepared` ist „Vorbereitet", `approved` ist „Genehmigt".
 _Avoid_: Status (allein), Zustand
 
 **Verifizierung** (verification):

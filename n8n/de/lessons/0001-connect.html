@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<!--
+  Dein Agent in n8n · Lektion 01 — Verbinden (DE, kanonisch)
+  Builder-Track für Agentowner. Arc 1 von 4 („Verbinden").
+  Leitidee: „Dein Agent handelt — du behältst die Kontrolle. Diesmal baust du ihn selbst."
+
+  Provenance: grounded against linkyourskill.ai/de/docs/mcp-integration + docs/mcp-guide.md @ 2026-07-05;
+  verified live against n8n 2.4.5 @ 2026-07-05 (interne Staging-Umgebung, alle Fehlertexte beobachtet).
+  Altitude: Builder-Track — MCP/Bearer/JSON hier bewusst erlaubt; der Agentowner-Kurs bleibt
+  auf der „Schlüssel"-Höhe. n8n-UI-Beschriftungen englisch, Wort für Wort.
+  Endpunkt linkyourskill.ai geht 10.07.2026 öffentlich live — vor Kurs-Release gegenprüfen.
+-->
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>01 — Verbinden · Dein Agent in n8n · LinkYourSkill</title>
+  <link rel="stylesheet" href="../../../assets/design-system/lessons.css">
+</head>
+<body>
+  <main class="lesson">
+
+    <header class="lesson__header">
+      <p class="lesson__eyebrow">Mission · Warum das hier zählt</p>
+      <h1>Verbinde n8n mit der Plattform — <span class="gradient-text">die Leitung steht</span></h1>
+      <p class="lesson__lead">
+        Im Agentowner-Kurs hast du deinem KI-Agenten seinen Token gegeben. Heute benutzt du
+        diesen Token zum ersten Mal selbst: Du verbindest n8n mit dem MCP-Zugang von
+        LinkYourSkill und siehst mit eigenen Augen, was deinem Agenten dort angeboten wird.
+        Noch ganz ohne KI — erst die Leitung, dann das Gehirn.
+      </p>
+      <p class="lesson__meta">Lektion 01 · ca. 8 Minuten · Wissen &amp; Übung</p>
+    </header>
+
+    <section class="lesson__body">
+
+      <h2>Das kannst du danach</h2>
+      <ul class="objectives">
+        <li>Den MCP-Zugang erklären: ein Endpunkt, dein Token, ein Katalog von Tools.</li>
+        <li>Eine erste Verbindung aus n8n aufbauen — und die zwei häufigsten Fehler selbst beheben.</li>
+      </ul>
+
+      <h2>Du steuerst schon — jetzt baust du</h2>
+      <p>
+        Aus dem <a href="../../../agentowner/de/index.html">Agentowner-Kurs</a> kennst du die
+        Regel: Dein <strong>KI-Agent</strong> handelt in deinem Namen, und nichts wird echt,
+        bevor du es freigibst. Bisher war der Agent für dich eine fertige Software. In diesem
+        Kurs baust du ihn selbst — aus n8n-Bausteinen. Dafür schauen wir heute auf die Stelle,
+        an der jeder Agent die Plattform berührt: den <strong>MCP</strong>-Zugang.
+      </p>
+
+      <div class="callout">
+        <p class="callout__label">Kerngedanke</p>
+        <p>
+          Der <strong>Token</strong>, den du im Agentowner-Kurs erstellt hast, ist genau das,
+          womit sich dein Agent an diesem Zugang ausweist. Es gibt kein zweites Geheimnis und
+          keine versteckte Technik: Wer den Token hat, handelt als dein Agent — innerhalb
+          deiner Grenzen. Darum bleibt er geheim wie ein Passwort, auch in n8n.
+        </p>
+      </div>
+
+      <h2>Bevor du startest</h2>
+      <ul class="objectives">
+        <li>Du hast den Agentowner-Kurs gemacht: Es gibt einen Agenten, und sein Token liegt sicher bei dir.</li>
+        <li>Ein laufendes n8n — in der Cloud oder selbst gehostet. Geprüft mit n8n 2.4.5; du brauchst eine Version, die den Transport <code>HTTP Streamable</code> anbietet.</li>
+        <li>Für die nächste Lektion: Zugang zu einem Chat-Model mit Tool-Unterstützung (im Kurs zeigen wir Anthropic Claude).</li>
+      </ul>
+
+      <div class="callout callout--note">
+        <p class="callout__label">Hinweis für Safari &amp; lokales n8n</p>
+        <p>
+          Wenn du n8n lokal startest und Safari benutzt, blockiert n8n die Anmeldung mit
+          einer Meldung über ein „secure cookie". Das ist eine n8n-Sicherheitseinstellung:
+          Starte n8n mit der Umgebungsvariable <code>N8N_SECURE_COOKIE=false</code> — oder
+          nutze n8n Cloud, dort tritt das nicht auf.
+        </p>
+      </div>
+
+      <h2>Was ist der MCP-Zugang?</h2>
+      <p>
+        <strong>MCP</strong> (Model Context Protocol) ist der standardisierte Zugang, über den
+        ein KI-Agent mit LinkYourSkill spricht. Drei Dinge reichen, um ihn zu verstehen:
+      </p>
+      <ul class="objectives">
+        <li><strong>Ein Endpunkt:</strong> <code>https://linkyourskill.ai/mcp</code> — eine Adresse, die Anfragen per POST entgegennimmt.</li>
+        <li><strong>Dein Token:</strong> Er wird bei jeder Anfrage als „Bearer Token" mitgeschickt — so weist sich dein Agent aus.</li>
+        <li><strong>Tools:</strong> Der Zugang bietet einen Katalog von 18 <strong>Tools</strong> an — einzelne Fähigkeiten wie <code>search_skillanbieter</code>. Welche davon dein Agent nutzen darf, entscheidest später du.</li>
+      </ul>
+
+      <h2>Die erste Verbindung — ohne KI</h2>
+      <p>
+        Bevor irgendein Chat-Model ins Spiel kommt, beweist du, dass die Leitung steht. In n8n:
+      </p>
+      <ol>
+        <li>Lege einen neuen Workflow an und füge den Node <strong>HTTP Request</strong> hinzu.</li>
+        <li>Stelle <strong>Method</strong> auf <code>POST</code> — der Standard ist GET, und der funktioniert hier nicht.</li>
+        <li>Trage als <strong>URL</strong> ein: <code>https://linkyourskill.ai/mcp</code></li>
+        <li>Aktiviere <strong>Send Headers</strong> und setze den Header <code>Accept</code> auf <code>application/json, text/event-stream</code>.</li>
+        <li>Aktiviere <strong>Send Body</strong>, wähle als <strong>Body Content Type</strong> „JSON" und trage ein: <code>{"jsonrpc":"2.0","method":"tools/list","id":1}</code></li>
+        <li>Führe den Node aus — <strong>absichtlich noch ohne Anmeldung</strong>. Du bekommst einen Fehler: <em>„Authorization failed - please check your credentials"</em>. Gut so: Die Plattform kennt dich noch nicht.</li>
+        <li>Jetzt der Token: Stelle <strong>Authentication</strong> auf <strong>Generic Credential Type</strong> → <strong>Bearer Auth</strong>, lege eine neue Credential an und füge deinen Token in das Feld <strong>Bearer Token</strong> ein.</li>
+        <li>Führe den Node noch einmal aus. Die Antwort beginnt mit <code>event: message</code> — und darin steht der komplette Tool-Katalog.</li>
+      </ol>
+
+      <div class="callout callout--note">
+        <p class="callout__label">Sieht roh aus — ist aber richtig</p>
+        <p>
+          n8n zeigt die Antwort als langen Text, der mit <code>event: message</code> beginnt.
+          Das ist das Streaming-Format des MCP-Zugangs, kein Fehler. Entscheidend ist, was
+          darin steht: <code>"tools":[</code> gefolgt von 18 Einträgen. Wenn du
+          <code>search_skillanbieter</code> und <code>prepare_order</code> entdeckst, ist
+          deine Leitung offiziell in Betrieb.
+        </p>
+      </div>
+
+      <h2>Wenn es hakt</h2>
+      <ul class="objectives">
+        <li><em>„Method not allowed. Use POST for stateless MCP."</em> — Method steht noch auf GET. Schritt 2 nachholen.</li>
+        <li><em>„Authorization failed - please check your credentials"</em> — der Token fehlt oder stimmt nicht. Prüfe die Bearer-Auth-Credential; zur Not erstellst du deinem Agenten einfach einen neuen Token.</li>
+        <li>Nur zum Ausprobieren ohne eigenen Token: In den <a href="https://linkyourskill.ai/de/docs/mcp-integration">API-Docs der Plattform</a> gibt es einen öffentlichen Demo-Schlüssel, der nur lesen darf.</li>
+      </ul>
+
+      <hr class="lesson__divider">
+
+      <h2>Jetzt du</h2>
+      <p>Prüf dich selbst — aus dem Gedächtnis abrufen baut echtes Behalten auf.</p>
+
+      <div class="quiz">
+        <p class="quiz__label">Wissens-Check</p>
+        <p class="quiz__q">Womit weist sich dein Agent am MCP-Zugang aus?</p>
+        <div class="quiz__options">
+          <button class="quiz__option" data-correct="true">Mit seinem Token als Bearer Auth im Node</button>
+          <button class="quiz__option">Mit deinem Passwort für den Login im Web</button>
+          <button class="quiz__option">Mit der E-Mail, die zu deinem Konto gehört</button>
+        </div>
+        <p class="quiz__feedback" hidden>
+          Der Token des Agenten ist sein einziger Ausweis: Er wird bei jeder Anfrage als
+          „Bearer Token" mitgeschickt — in n8n hinterlegst du ihn dafür als Bearer-Auth-Credential.
+          Dein Passwort und deine E-Mail gehören zu deinem eigenen Login als Mensch; am
+          MCP-Zugang spielen sie keine Rolle.
+        </p>
+      </div>
+
+      <aside class="primary-source">
+        <p class="primary-source__label">Primärquelle</p>
+        <p>
+          Sieh es dir an: Die Seite <a href="https://linkyourskill.ai/de/docs/mcp-integration">MCP
+          Integration</a> in den Docs der Plattform zeigt den Endpunkt und Code-Beispiele —
+          dieselbe Verbindung, die du gerade in n8n gebaut hast.
+        </p>
+      </aside>
+
+      <aside class="ask-teacher">
+        <img class="ask-teacher__mark" src="../../../assets/design-system/assets/logo-linkyourskill.png" alt="">
+        <div>
+          <h3>Fragen zur Verbindung?</h3>
+          <p>Der LinkYourSkill-Support hilft dir weiter, bis deine Leitung steht und der Tool-Katalog sichtbar ist.</p>
+        </div>
+      </aside>
+
+    </section>
+
+  </main>
+
+  <nav class="lesson__nav">
+    <a href="../index.html">‹ Kursübersicht</a>
+    <a href="../../../GLOSSARY.md">Glossar</a>
+  </nav>
+
+  <p class="lesson__brand">
+    <img src="../../../assets/design-system/assets/logo-linkyourskill.png" alt="LinkYourSkill">
+    <span>Gestaltet im LinkYourSkill Design System</span>
+  </p>
+
+  <script src="../../../assets/design-system/quiz.js"></script>
+</body>
+</html>
