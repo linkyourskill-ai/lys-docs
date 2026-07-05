@@ -11,7 +11,8 @@
   Tool-Namen (get_order_status, list_orders) am 2026-07-05 gegen das Live-tools/list gegengeprüft.
   OFFEN vor Release: 429-Symptom in n8n noch nicht live provoziert (Formulierung bleibt auf
   HTTP-Ebene); Wire-Status eines abgelehnten Auftrags bis zum Plattform-Fix unbekannt — Lektion
-  zitiert ihn deshalb nicht. Endpunkt linkyourskill.ai geht 10.07.2026 öffentlich live.
+  zitiert ihn deshalb nicht; ob list_orders wartende Aufträge (pending_approval) mitliefert, ist
+  noch nicht live beobachtet — die Lektion formuliert es als Erwartung, beim Finale-Re-Verify prüfen. Endpunkt linkyourskill.ai geht 10.07.2026 öffentlich live.
 -->
 <html lang="de">
 <head>
@@ -63,8 +64,8 @@
       <h2>Dein Agent verfolgt seine Aufträge</h2>
       <p>
         Frag im Chat: <code>Zeig mir meine letzten Aufträge.</code> Dein Agent ruft
-        <code>list_orders</code> auf und liefert die Liste — darin auch der Übungsauftrag
-        aus Lektion 3. Dann frag nach: <code>Wie ist der Status von „Test:
+        <code>list_orders</code> auf und liefert die Liste — darin solltest du den
+        Übungsauftrag aus Lektion 3 wiederfinden. Dann frag nach: <code>Wie ist der Status von „Test:
         Fensterreinigung"?</code> Jetzt antwortet <code>get_order_status</code>.
       </p>
       <p>
@@ -114,8 +115,8 @@
         <p class="quiz__feedback" hidden>
           <code>pending_approval</code> heißt „Wartet auf Genehmigung": Die Plattform hat
           deine Freigabe angefordert, und nichts passiert, bis du entscheidest. Freigegeben
-          ist der Auftrag erst nach deinem Ja — und verworfen wird er nie von selbst,
-          sondern nur durch dein bewusstes Ablehnen.
+          ist der Auftrag erst nach deinem Ja — und gescheitert oder verworfen ist hier
+          nichts: Dieser Status heißt Warten, nicht Scheitern.
         </p>
       </div>
 

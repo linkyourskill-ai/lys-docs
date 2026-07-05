@@ -11,7 +11,8 @@
   Tool names (get_order_status, list_orders) re-checked against the live tools/list on 2026-07-05.
   OPEN before release: the 429 symptom has not been provoked live in n8n yet (wording stays at the
   HTTP level); the wire status of a declined order is unknown until the platform fix — this lesson
-  therefore doesn't quote it. Endpoint linkyourskill.ai goes live publicly on 2026-07-10.
+  therefore doesn't quote it; whether list_orders includes waiting orders (pending_approval) has not
+  been observed live yet — the lesson phrases it as an expectation, check during the finale re-verify. Endpoint linkyourskill.ai goes live publicly on 2026-07-10.
 -->
 <html lang="en">
 <head>
@@ -63,8 +64,8 @@
       <h2>Your agent tracks its orders</h2>
       <p>
         Ask in the chat: <code>Show me my recent orders.</code> Your agent calls
-        <code>list_orders</code> and returns the list — including the practice order from
-        lesson 3. Then follow up: <code>What's the status of "Test: Fensterreinigung"?</code>
+        <code>list_orders</code> and returns the list — you should find the practice
+        order from lesson 3 in it. Then follow up: <code>What's the status of "Test: Fensterreinigung"?</code>
         Now <code>get_order_status</code> answers.
       </p>
       <p>
@@ -114,8 +115,8 @@
         <p class="quiz__feedback" hidden>
           <code>pending_approval</code> means "Wartet auf Genehmigung" (waiting for approval):
           the platform has requested your Freigabe, and nothing happens until you decide. The
-          order is only approved after your yes — and it is never dropped on its own, only
-          through your deliberate decline.
+          order is only approved after your yes — and nothing here has failed or been
+          dropped: this status means waiting, not failing.
         </p>
       </div>
 
