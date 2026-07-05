@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<!--
+  Your agent in n8n · Lesson 02 — Your agent searches (EN, mirror of de/ canonical)
+  Builder track for Agentowners. Arc 2 of 4 ("Your agent searches").
+  Through-line: "Your agent acts — you stay in control. This time you build it yourself."
+
+  Provenance: grounded against linkyourskill.ai/en/docs/mcp-integration + docs/mcp-guide.md @ 2026-07-05;
+  verified live against n8n 2.4.5 @ 2026-07-05 (internal staging environment: AI Agent + Anthropic Chat
+  Model/Claude Sonnet 5 + MCP Client Tool "HTTP Streamable", whitelist "Selected", chat run with
+  search_skillanbieter observed in the execution log; batch-tool trap prepare_orders reproduced live).
+  Altitude: builder track — MCP/Bearer/JSON deliberately allowed here. n8n UI labels in English,
+  word for word. Endpoint linkyourskill.ai goes live publicly on 2026-07-10 — re-verify before course release.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>02 — Your agent searches · Your agent in n8n · LinkYourSkill</title>
+  <link rel="stylesheet" href="../../../assets/design-system/lessons.css">
+</head>
+<body>
+  <main class="lesson">
+
+    <header class="lesson__header">
+      <p class="lesson__eyebrow">Mission · Why this matters</p>
+      <h1>Attach the brain — <span class="gradient-text">your agent searches on its own</span></h1>
+      <p class="lesson__lead">
+        The line has been live since lesson 1. Today it gets a brain: you connect a chat model
+        to the MCP access, allow your agent exactly two Tools — and then give it its first job
+        in the chat. Afterwards you read in the log what it really did. That is exactly what
+        control looks like when you build it yourself.
+      </p>
+      <p class="lesson__meta">Lesson 02 · ~8 minutes · Knowledge &amp; practice</p>
+    </header>
+
+    <section class="lesson__body">
+
+      <h2>What you'll be able to do</h2>
+      <ul class="objectives">
+        <li>Assemble a KI-Agent in n8n: AI Agent, chat model, and MCP Client Tool.</li>
+        <li>Decide via whitelist which Tools your agent is allowed to use at all.</li>
+        <li>Read in the execution log which Tool your agent called, and with which parameters.</li>
+      </ul>
+
+      <h2>Three building blocks, one agent</h2>
+      <p>
+        In lesson 1 you fetched the tool catalog by hand. From now on a <strong>KI-Agent</strong>
+        takes over — built from three n8n building blocks: the <strong>AI Agent</strong> node is
+        the frame that receives your chat message. A <strong>chat model</strong> is its brain —
+        it decides which Tool fits the job. And the <strong>MCP Client Tool</strong> is its hand:
+        the same connection to LinkYourSkill you built in lesson 1, except now the agent uses it
+        instead of you.
+      </p>
+      <p>
+        Any chat model with tool support works. We show the verified path with Anthropic: the
+        <strong>Anthropic Chat Model</strong> node with the model <strong>Claude Sonnet 5</strong>.
+        For that you need your own API key from Anthropic — it pays for the thinking, while your
+        LinkYourSkill Token pays for nothing and stays the same as before.
+      </p>
+
+      <h2>How to assemble it</h2>
+      <ol>
+        <li>Create a new workflow and add the <strong>AI Agent</strong> node.</li>
+        <li>Attach the <strong>Anthropic Chat Model</strong> node as the chat model, store your Anthropic API key as a credential, and pick the model <strong>Claude Sonnet 5</strong>.</li>
+        <li>Attach the <strong>MCP Client Tool</strong> node as a tool.</li>
+        <li>Inside it, set <strong>Server Transport</strong> to <code>HTTP Streamable</code>. The second option, <em>"Server Sent Events (Deprecated)"</em>, is outdated — don't pick it.</li>
+        <li>In the <strong>Endpoint</strong> field, enter: <code>https://linkyourskill.ai/mcp</code></li>
+        <li>Set <strong>Authentication</strong> to <strong>Bearer Auth</strong> and pick the credential from lesson 1 — it's the same Token, and your agent identifies itself exactly the way you did.</li>
+        <li>Set <strong>Tools to Include</strong> to <strong>Selected</strong>. The selection list now fills with all 18 Tools — the node performs the handshake with the platform by itself. When the list appears, you know the connection is right.</li>
+        <li>Select <strong>exactly two</strong> Tools: <code>search_skillanbieter</code> and <code>get_skillanbieter_ratings</code>. Everything else stays off.</li>
+      </ol>
+
+      <div class="callout">
+        <p class="callout__label">Core idea</p>
+        <p>
+          The whitelist is the twin of your <strong>Auftrags-Limits</strong> (order limits):
+          limits restrict how much may become real — the whitelist restricts what your agent
+          can even attempt. And precision matters: the catalog contains similar-sounding Tools
+          like <code>prepare_order</code> (one order) and <code>prepare_orders</code> (many at
+          once). Your chat model will take any of the allowed ones — which is why in lesson 3
+          you allow exactly <code>prepare_order</code>, not the plural.
+        </p>
+      </div>
+
+      <h2>The first chat with your agent</h2>
+      <p>
+        Open the workflow's chat and write to your agent:
+      </p>
+      <p>
+        <code>Find a cleaner in Münster — show me the best 3.</code>
+      </p>
+      <p>
+        Your agent then calls <code>search_skillanbieter</code> and receives hits sorted by
+        distance — providers from Münster come out on top. The "show me the best 3" is
+        deliberate: without that request, your agent happily presents you the complete list
+        of hits.
+      </p>
+
+      <h2>Read what it really did</h2>
+      <p>
+        The answer in the chat is half the truth — the whole truth is in the run's
+        <strong>execution log</strong>. There you see the call to <code>search_skillanbieter</code>
+        including the search query your agent made out of your request, with its own ID per tool
+        call. The chat model rephrases the query itself — so the log doesn't show your sentence
+        word for word, but what the agent turned it into. That look is exactly your control:
+        you don't take your agent's word for it, you read it up.
+      </p>
+
+      <h2>If it doesn't work</h2>
+      <ul class="objectives">
+        <li>The tool list under <strong>Tools to Include</strong> stays empty — then the Endpoint or the Bearer credential is wrong. It's the same handshake as your HTTP Request from lesson 1: check both there first.</li>
+        <li>Your agent answers without searching — look at the execution log. If the tool call is missing there, check that the MCP Client Tool is really attached to the AI Agent as a tool and that both Tools are selected.</li>
+      </ul>
+
+      <hr class="lesson__divider">
+
+      <h2>Your turn</h2>
+      <p>Test yourself — retrieving from memory is what builds real retention.</p>
+
+      <div class="quiz">
+        <p class="quiz__label">Knowledge check</p>
+        <p class="quiz__q">What does "Tools to Include → Selected" do on the MCP Client Tool?</p>
+        <div class="quiz__options">
+          <button class="quiz__option" data-correct="true">It restricts which Tools your agent may call</button>
+          <button class="quiz__option">It saves cost because the agent loads less</button>
+          <button class="quiz__option">It expands the rights your Token already has</button>
+        </div>
+        <p class="quiz__feedback" hidden>
+          "Selected" is your whitelist: your agent sees and uses only the Tools you selected —
+          the twin of your Auftrags-Limits. The selection has nothing to do with cost, and your
+          Token keeps exactly the rights it had before: the whitelist can only narrow rights,
+          never expand them.
+        </p>
+      </div>
+
+      <aside class="primary-source">
+        <p class="primary-source__label">Primary source</p>
+        <p>
+          See for yourself: the <a href="https://linkyourskill.ai/en/docs/mcp-integration">MCP
+          Integration</a> page in the platform docs describes the endpoint and the Tools —
+          among them <code>search_skillanbieter</code>, which your agent just used.
+        </p>
+      </aside>
+
+      <aside class="ask-teacher">
+        <img class="ask-teacher__mark" src="../../../assets/design-system/assets/logo-linkyourskill.png" alt="">
+        <div>
+          <h3>Questions about the assembly?</h3>
+          <p>LinkYourSkill support will help you until your agent searches and you can see its tool call in the log.</p>
+        </div>
+      </aside>
+
+    </section>
+
+  </main>
+
+  <nav class="lesson__nav">
+    <a href="0001-connect.html">‹ Lesson 01 · Connect</a>
+    <a href="../../../GLOSSARY.md">Glossary</a>
+  </nav>
+
+  <p class="lesson__brand">
+    <img src="../../../assets/design-system/assets/logo-linkyourskill.png" alt="LinkYourSkill">
+    <span>Designed in the LinkYourSkill design system</span>
+  </p>
+
+  <script src="../../../assets/design-system/quiz.js"></script>
+</body>
+</html>
