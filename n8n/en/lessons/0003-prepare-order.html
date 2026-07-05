@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<!--
+  Your agent in n8n · Lesson 03 — Your agent orders (EN, mirror of de/ canonical)
+  Builder track for Agentowners. Arc 3 of 4 ("Your agent orders").
+  Through-line: "Your agent acts — you stay in control. This time you build it yourself."
+
+  Provenance: grounded against linkyourskill.ai/en/docs/mcp-integration + docs/mcp-guide.md @ 2026-07-05;
+  verified live against n8n 2.4.5 @ 2026-07-05 (internal staging environment: prepare_order run up to
+  status pending_approval + Messenger approval message observed; batch trap prepare_orders and the
+  pre-search on "Test" titles reproduced live).
+  OPEN before release: decline persistence — the Messenger reject was acknowledged on staging but not
+  persisted (platform bug, reported); in-app decline path not yet located. Re-verify the finale steps
+  live after the fix. Endpoint linkyourskill.ai goes live publicly on 2026-07-10.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>03 — Your agent orders · Your agent in n8n · LinkYourSkill</title>
+  <link rel="stylesheet" href="../../../assets/design-system/lessons.css">
+</head>
+<body>
+  <main class="lesson">
+
+    <header class="lesson__header">
+      <p class="lesson__eyebrow">Mission · Why this matters</p>
+      <h1>Your agent prepares an order — <span class="gradient-text">you have the last word</span></h1>
+      <p class="lesson__lead">
+        Searching was the warm-up. Today you allow your agent the Tool that counts:
+        <code>prepare_order</code>. It prepares a real practice order, the platform requests
+        your Freigabe (approval) — and you deliberately decline. That closes the circle back
+        to the Agentowner course: your agent acts, you decide.
+      </p>
+      <p class="lesson__meta">Lesson 03 · ~8 minutes · Knowledge &amp; practice</p>
+    </header>
+
+    <section class="lesson__body">
+
+      <h2>What you'll be able to do</h2>
+      <ul class="objectives">
+        <li>Extend the whitelist deliberately — by exactly the one Tool <code>prepare_order</code>.</li>
+        <li>Let your agent prepare a practice order that really lands in your Freigabe.</li>
+        <li>Inspect the practice order and deliberately decline it — control in both directions.</li>
+      </ul>
+
+      <h2>There is no sandbox</h2>
+      <p>
+        Before you enable the Tool, you need to know one thing: <code>prepare_order</code>
+        creates a <strong>real order</strong> on the platform. There is no practice
+        environment — your self-built agent works on the real marketplace from the very
+        first second. Real doesn't mean uncontrolled: the order only takes effect once you
+        approve it. But it exists, and Skillanbieter (skill providers) could see it after
+        an approval.
+      </p>
+
+      <div class="callout">
+        <p class="callout__label">Core idea</p>
+        <p>
+          That's why the practice order wears two seat belts you fasten yourself: its title
+          starts with <strong>"Test:"</strong>, so it is instantly recognizable as practice —
+          and at the end it gets <strong>declined</strong>, not approved. You never approve a
+          practice order; you only approve what you genuinely want to commission.
+        </p>
+      </div>
+
+      <h2>One more Tool — exactly one</h2>
+      <ol>
+        <li>In the workflow from lesson 2, open the <strong>MCP Client Tool</strong> node.</li>
+        <li>Under <strong>Tools to Include → Selected</strong>, add the Tool <code>prepare_order</code>. Your selection now spans three Tools.</li>
+        <li>Check the checkbox twice: <code>prepare_order</code> — <strong>without the s</strong>. Its neighbor <code>prepare_orders</code> creates many orders at once and stays off.</li>
+      </ol>
+
+      <div class="callout callout--note">
+        <p class="callout__label">Why the singular matters so much</p>
+        <p>
+          Your chat model takes whichever allowed Tool fits the job. If both variants are
+          allowed, it happily reaches for the batch Tool — and then reports something like
+          <em>"Created 1 orders"</em>. For a single order that's the wrong path, and for
+          many orders at once you have no reason in this course. The whitelist is your
+          precision control: one Tool, one intent.
+        </p>
+      </div>
+
+      <h2>The practice order</h2>
+      <p>
+        Open the chat and give your agent this job — verbatim or adapted, as long as "Test:"
+        stays in the title:
+      </p>
+      <p>
+        <code>Don't search first, prepare an order directly: title "Test: Fensterreinigung"
+        (window cleaning), description "Practice order from the n8n course — please decline",
+        location Münster, time frame next week, budget 50 to 80 euros.</code>
+      </p>
+      <p>
+        The "don't search first" is there on purpose: without it, your agent likes to search
+        for Skillanbieter matching "Test" first — and finds astonishing things along the way.
+        With it, it calls <code>prepare_order</code> directly.
+      </p>
+      <p>
+        Then things move fast: your agent reports the prepared order, the platform sets it to
+        the status <code>prepared</code> — the "Vorbereitet" badge from the Agentowner
+        course — and requests your Freigabe. The familiar approval message appears in your
+        linked Messenger. The only thing that's new is who caused it: this time it was
+        <em>your own</em> agent.
+      </p>
+
+      <h2>Read it up, then decline</h2>
+      <p>
+        The control check first: in the <strong>execution log</strong> you see the call to
+        <code>prepare_order</code> with the fields your agent made out of your sentence —
+        title, location, time frame, budget. Does everything match? You'd run exactly this
+        check on a real order too.
+      </p>
+      <p>
+        Then the finale, in your <strong>Freigabe</strong>: inspect the order "Test:
+        Fensterreinigung" like a real one — and <strong>decline it</strong>. If it were an
+        order you actually wanted to place, this is where you'd approve. A practice order
+        always gets declined: that keeps the marketplace clean, and you have now operated
+        both sides of control yourself — building and deciding.
+      </p>
+
+      <h2>If it doesn't work</h2>
+      <ul class="objectives">
+        <li>Your agent searches first instead of preparing — the "don't search first, prepare directly" part is missing from the prompt. Send the job again with that addition.</li>
+        <li>The answer mentions "batch" or <em>"Created 1 orders"</em> — then <code>prepare_orders</code> (plural) is allowed. Correct the whitelist to the singular and restart the chat.</li>
+        <li>No approval message in your Messenger — check the Messenger link-up from the <a href="../../../agentowner/en/lessons/0002-set-limits.html">Agentowner course</a>; that's where you set it up.</li>
+      </ul>
+
+      <hr class="lesson__divider">
+
+      <h2>Your turn</h2>
+      <p>Test yourself — retrieving from memory is what builds real retention.</p>
+
+      <div class="quiz">
+        <p class="quiz__label">Knowledge check</p>
+        <p class="quiz__q">Why does the practice order's title start with "Test:"?</p>
+        <div class="quiz__options">
+          <button class="quiz__option" data-correct="true">Because the order is real and must stay recognizable</button>
+          <button class="quiz__option">Because the platform then deletes it again by itself</button>
+          <button class="quiz__option">Because the chat model would not create it otherwise</button>
+        </div>
+        <p class="quiz__feedback" hidden>
+          There is no sandbox: <code>prepare_order</code> creates a real order. The "Test:"
+          in the title makes it instantly recognizable as practice — nothing gets deleted by
+          itself, and your chat model doesn't care about the title. That's why every practice
+          order needs both: "Test:" in front, and your deliberate decline afterwards.
+        </p>
+      </div>
+
+      <aside class="primary-source">
+        <p class="primary-source__label">Primary source</p>
+        <p>
+          See for yourself: the <a href="https://linkyourskill.ai/en/docs/mcp-integration">MCP
+          Integration</a> page in the platform docs describes <code>prepare_order</code> and
+          the approval path — exactly the path your practice order just took.
+        </p>
+      </aside>
+
+      <aside class="ask-teacher">
+        <img class="ask-teacher__mark" src="../../../assets/design-system/assets/logo-linkyourskill.png" alt="">
+        <div>
+          <h3>Questions about the practice order?</h3>
+          <p>LinkYourSkill support will help you — from the whitelist checkbox to the declined Freigabe.</p>
+        </div>
+      </aside>
+
+    </section>
+
+  </main>
+
+  <nav class="lesson__nav">
+    <a href="0002-search.html">‹ Lesson 02 · Your agent searches</a>
+    <a href="../../../GLOSSARY.md">Glossary</a>
+  </nav>
+
+  <p class="lesson__brand">
+    <img src="../../../assets/design-system/assets/logo-linkyourskill.png" alt="LinkYourSkill">
+    <span>Designed in the LinkYourSkill design system</span>
+  </p>
+
+  <script src="../../../assets/design-system/quiz.js"></script>
+</body>
+</html>
