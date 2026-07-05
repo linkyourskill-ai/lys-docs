@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<!--
+  Dein Agent in n8n · Lektion 04 — Verfolgen & Grenzen (DE, kanonisch)
+  Builder-Track für Agentowner. Arc 4 von 4 („Verfolgen & Grenzen").
+  Leitidee: „Dein Agent handelt — du behältst die Kontrolle. Diesmal baust du ihn selbst."
+
+  Provenance: grounded against linkyourskill.ai/de/docs/mcp-integration + docs/mcp-guide.md @ 2026-07-05;
+  verified live against n8n 2.4.5 @ 2026-07-05 (interne Staging-Umgebung: Statuskette
+  prepared → approval_requested → pending_approval beobachtet, Agent übersetzte die Wire-Strings
+  unaufgefordert ins Deutsche; 401-Symptome in n8n und auf der Leitung exakt erfasst).
+  Tool-Namen (get_order_status, list_orders) am 2026-07-05 gegen das Live-tools/list gegengeprüft.
+  OFFEN vor Release: 429-Symptom in n8n noch nicht live provoziert (Formulierung bleibt auf
+  HTTP-Ebene); Wire-Status eines abgelehnten Auftrags bis zum Plattform-Fix unbekannt — Lektion
+  zitiert ihn deshalb nicht. Endpunkt linkyourskill.ai geht 10.07.2026 öffentlich live.
+-->
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>04 — Verfolgen &amp; Grenzen · Dein Agent in n8n · LinkYourSkill</title>
+  <link rel="stylesheet" href="../../../assets/design-system/lessons.css">
+</head>
+<body>
+  <main class="lesson">
+
+    <header class="lesson__header">
+      <p class="lesson__eyebrow">Mission · Warum das hier zählt</p>
+      <h1>Verfolgen &amp; Grenzen — <span class="gradient-text">du liest, was wirklich läuft</span></h1>
+      <p class="lesson__lead">
+        Dein Agent sucht und beauftragt. Was noch fehlt: der Überblick danach. Heute lässt
+        du ihn seine Aufträge selbst verfolgen, lernst die englischen Status-Strings der
+        Plattform zu lesen — und die Grenzen kennen, in denen dein Agent arbeitet. Am Ende
+        ist dein Kurs-Agent komplett.
+      </p>
+      <p class="lesson__meta">Lektion 04 · ca. 8 Minuten · Wissen &amp; Übung</p>
+    </header>
+
+    <section class="lesson__body">
+
+      <h2>Das kannst du danach</h2>
+      <ul class="objectives">
+        <li>Aufträge per Chat verfolgen — mit <code>get_order_status</code> und <code>list_orders</code>.</li>
+        <li>Die Status-Strings der Plattform lesen und den deutschen Badges zuordnen.</li>
+        <li>Die zwei Grenz-Arten unterscheiden: deine Auftrags-Limits und die Rate-Limits der Plattform.</li>
+      </ul>
+
+      <h2>Die letzten zwei Haken</h2>
+      <ol>
+        <li>Öffne den Node <strong>MCP Client Tool</strong> und ergänze unter <strong>Tools to Include → Selected</strong> die Tools <code>get_order_status</code> und <code>list_orders</code>.</li>
+        <li>Das ist die End-Ausstattung deines Kurs-Agenten — fünf Tools: suchen, Bewertungen lesen, einen Auftrag vorbereiten, Status abfragen, Aufträge auflisten.</li>
+      </ol>
+
+      <div class="callout">
+        <p class="callout__label">Kerngedanke</p>
+        <p>
+          Fünf Tools reichen — und die Auswahl ist bewusst: Alles, was an deiner Freigabe
+          vorbeiführen könnte (etwa die <code>task_*</code>-Tools des Katalogs), bleibt aus.
+          Dein Agent kann damit alles vorbereiten und alles nachlesen, aber nichts
+          entscheiden. Entscheiden bleibt dein Tool.
+        </p>
+      </div>
+
+      <h2>Dein Agent verfolgt seine Aufträge</h2>
+      <p>
+        Frag im Chat: <code>Zeig mir meine letzten Aufträge.</code> Dein Agent ruft
+        <code>list_orders</code> auf und liefert die Liste — darin auch der Übungsauftrag
+        aus Lektion 3. Dann frag nach: <code>Wie ist der Status von „Test:
+        Fensterreinigung"?</code> Jetzt antwortet <code>get_order_status</code>.
+      </p>
+      <p>
+        Dabei fällt dir etwas auf: Die Plattform antwortet auf Englisch. Auf der technischen
+        Leitung heißen die Stationen des Agenten-Wegs:
+      </p>
+      <ul class="objectives">
+        <li><code>prepared</code> — der Auftrag ist vorbereitet; im Web kennst du ihn als Badge „Vorbereitet".</li>
+        <li><code>approval_requested</code> — die Plattform hat deine Freigabe angefordert; die Messenger-Nachricht ist unterwegs.</li>
+        <li><code>pending_approval</code> — der Auftrag wartet auf deine Entscheidung („Wartet auf Genehmigung").</li>
+      </ul>
+      <p>
+        Dein Agent übersetzt diese Strings im Chat oft von selbst ins Deutsche — praktisch,
+        aber merk dir die Originale: Im Execution-Log und in technischen Antworten stehen
+        immer die englischen Strings. Wer beide Seiten lesen kann, verfolgt jeden Auftrag
+        ohne Rätselraten.
+      </p>
+
+      <h2>Zwei Arten von Grenzen</h2>
+      <p>
+        Dein selbstgebauter Agent arbeitet in genau denselben Leitplanken wie jeder andere:
+      </p>
+      <ul class="objectives">
+        <li><strong>Deine Auftrags-Limits</strong> aus dem Agentowner-Kurs gelten unverändert — sie hängen am Token, nicht am Werkzeug. Ob fertige Software oder dein n8n-Bau: „maximal 5 Aufträge pro Tag, maximal 500 € pro Auftrag" wird bei jedem <code>prepare_order</code> automatisch geprüft.</li>
+        <li><strong>Die Rate-Limits der Plattform</strong>: Der MCP-Zugang erlaubt 30 Anfragen pro Minute, dein Token insgesamt 60 pro Minute. Für einen Chat-Agenten ist das viel — ein Workflow in einer Schleife kann es trotzdem reißen. Der Demo-Schlüssel aus den Docs ist enger begrenzt (10 pro Minute).</li>
+      </ul>
+
+      <h2>Wenn es hakt: die zwei Fehlersignale</h2>
+      <ul class="objectives">
+        <li><strong>401 — Ausweis fehlt:</strong> n8n meldet <em>„Authorization failed - please check your credentials"</em>, die Plattform sagt <em>„Bearer token required"</em>. Der Token fehlt, stimmt nicht oder wurde widerrufen — prüfe die Bearer-Auth-Credential oder erstelle deinem Agenten einen neuen Token.</li>
+        <li><strong>429 — zu schnell:</strong> HTTP 429 (Too Many Requests) heißt: Rate-Limit erreicht. Kein Defekt — dein Agent hat das Tempo überzogen. Kurz warten, dann läuft es weiter; in Schleifen-Workflows baust du eine Pause ein.</li>
+      </ul>
+
+      <hr class="lesson__divider">
+
+      <h2>Jetzt du</h2>
+      <p>Prüf dich selbst — aus dem Gedächtnis abrufen baut echtes Behalten auf.</p>
+
+      <div class="quiz">
+        <p class="quiz__label">Wissens-Check</p>
+        <p class="quiz__q">Dein Agent meldet für einen Auftrag <code>pending_approval</code>. Was heißt das?</p>
+        <div class="quiz__options">
+          <button class="quiz__option" data-correct="true">Der Auftrag wartet in der Freigabe auf deine Entscheidung</button>
+          <button class="quiz__option">Der Auftrag ist freigegeben und liegt schon beim Anbieter</button>
+          <button class="quiz__option">Der Auftrag ist gescheitert und wurde von selbst verworfen</button>
+        </div>
+        <p class="quiz__feedback" hidden>
+          <code>pending_approval</code> heißt „Wartet auf Genehmigung": Die Plattform hat
+          deine Freigabe angefordert, und nichts passiert, bis du entscheidest. Freigegeben
+          ist der Auftrag erst nach deinem Ja — und verworfen wird er nie von selbst,
+          sondern nur durch dein bewusstes Ablehnen.
+        </p>
+      </div>
+
+      <div class="callout callout--note">
+        <p class="callout__label">Kurs geschafft — und jetzt?</p>
+        <p>
+          Dein Agent steht: fünf Tools, dein Token, deine Freigabe als letzte Instanz. Wenn
+          du weiterbauen willst, sind die <a href="https://linkyourskill.ai/de/docs/mcp-integration">API-Docs
+          der Plattform</a> deine Referenz — dort findest du alle 18 Tools im Detail und das
+          SDK, falls du irgendwann ohne n8n direkt entwickeln möchtest.
+        </p>
+      </div>
+
+      <aside class="primary-source">
+        <p class="primary-source__label">Primärquelle</p>
+        <p>
+          Sieh es dir an: Die Seite <a href="https://linkyourskill.ai/de/docs/mcp-integration">MCP
+          Integration</a> in den Docs der Plattform dokumentiert Statuswerte, Limits und
+          alle Tools — dein Nachschlagewerk für alles nach diesem Kurs.
+        </p>
+      </aside>
+
+      <aside class="ask-teacher">
+        <img class="ask-teacher__mark" src="../../../assets/design-system/assets/logo-linkyourskill.png" alt="">
+        <div>
+          <h3>Fragen zu Status oder Grenzen?</h3>
+          <p>Der LinkYourSkill-Support hilft dir weiter — vom rätselhaften Status bis zum Rate-Limit.</p>
+        </div>
+      </aside>
+
+    </section>
+
+  </main>
+
+  <nav class="lesson__nav">
+    <a href="0003-prepare-order.html">‹ Lektion 03 · Dein Agent beauftragt</a>
+    <a href="../../../GLOSSARY.md">Glossar</a>
+    <a href="../index.html">Kurs abgeschlossen · zur Übersicht ›</a>
+  </nav>
+
+  <p class="lesson__brand">
+    <img src="../../../assets/design-system/assets/logo-linkyourskill.png" alt="LinkYourSkill">
+    <span>Gestaltet im LinkYourSkill Design System</span>
+  </p>
+
+  <script src="../../../assets/design-system/quiz.js"></script>
+</body>
+</html>

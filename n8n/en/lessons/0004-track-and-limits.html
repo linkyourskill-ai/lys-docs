@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<!--
+  Your agent in n8n · Lesson 04 — Track & limits (EN, mirror of de/ canonical)
+  Builder track for Agentowners. Arc 4 of 4 ("Track & limits").
+  Through-line: "Your agent acts — you stay in control. This time you build it yourself."
+
+  Provenance: grounded against linkyourskill.ai/en/docs/mcp-integration + docs/mcp-guide.md @ 2026-07-05;
+  verified live against n8n 2.4.5 @ 2026-07-05 (internal staging environment: status chain
+  prepared → approval_requested → pending_approval observed, the agent translated the wire strings
+  into German unprompted; 401 symptoms captured exactly in n8n and on the wire).
+  Tool names (get_order_status, list_orders) re-checked against the live tools/list on 2026-07-05.
+  OPEN before release: the 429 symptom has not been provoked live in n8n yet (wording stays at the
+  HTTP level); the wire status of a declined order is unknown until the platform fix — this lesson
+  therefore doesn't quote it. Endpoint linkyourskill.ai goes live publicly on 2026-07-10.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>04 — Track &amp; limits · Your agent in n8n · LinkYourSkill</title>
+  <link rel="stylesheet" href="../../../assets/design-system/lessons.css">
+</head>
+<body>
+  <main class="lesson">
+
+    <header class="lesson__header">
+      <p class="lesson__eyebrow">Mission · Why this matters</p>
+      <h1>Track &amp; limits — <span class="gradient-text">you read what's really running</span></h1>
+      <p class="lesson__lead">
+        Your agent searches and orders. What's still missing: the overview afterwards. Today
+        you let it track its own orders, learn to read the platform's English status strings —
+        and get to know the limits your agent works within. At the end, your course agent is
+        complete.
+      </p>
+      <p class="lesson__meta">Lesson 04 · ~8 minutes · Knowledge &amp; practice</p>
+    </header>
+
+    <section class="lesson__body">
+
+      <h2>What you'll be able to do</h2>
+      <ul class="objectives">
+        <li>Track orders from the chat — with <code>get_order_status</code> and <code>list_orders</code>.</li>
+        <li>Read the platform's status strings and map them to the German badges.</li>
+        <li>Tell the two kinds of limits apart: your Auftrags-Limits and the platform's rate limits.</li>
+      </ul>
+
+      <h2>The last two checkboxes</h2>
+      <ol>
+        <li>Open the <strong>MCP Client Tool</strong> node and add the Tools <code>get_order_status</code> and <code>list_orders</code> under <strong>Tools to Include → Selected</strong>.</li>
+        <li>That's your course agent's final loadout — five Tools: search, read ratings, prepare one order, query a status, list orders.</li>
+      </ol>
+
+      <div class="callout">
+        <p class="callout__label">Core idea</p>
+        <p>
+          Five Tools are enough — and the selection is deliberate: everything that could
+          route around your Freigabe (such as the catalog's <code>task_*</code> Tools) stays
+          off. With this loadout your agent can prepare everything and look up everything,
+          but decide nothing. Deciding remains your Tool.
+        </p>
+      </div>
+
+      <h2>Your agent tracks its orders</h2>
+      <p>
+        Ask in the chat: <code>Show me my recent orders.</code> Your agent calls
+        <code>list_orders</code> and returns the list — including the practice order from
+        lesson 3. Then follow up: <code>What's the status of "Test: Fensterreinigung"?</code>
+        Now <code>get_order_status</code> answers.
+      </p>
+      <p>
+        And you'll notice something: the platform answers in English. On the technical wire,
+        the stations of the agent path are called:
+      </p>
+      <ul class="objectives">
+        <li><code>prepared</code> — the order is prepared; on the web you know it as the "Vorbereitet" badge.</li>
+        <li><code>approval_requested</code> — the platform has requested your Freigabe; the Messenger message is on its way.</li>
+        <li><code>pending_approval</code> — the order is waiting for your decision ("Wartet auf Genehmigung").</li>
+      </ul>
+      <p>
+        In the chat, your agent often translates these strings on its own — convenient, but
+        memorize the originals: the execution log and technical responses always carry the
+        English strings. If you can read both sides, you can track any order without
+        guesswork.
+      </p>
+
+      <h2>Two kinds of limits</h2>
+      <p>
+        Your self-built agent works inside exactly the same guardrails as any other:
+      </p>
+      <ul class="objectives">
+        <li><strong>Your Auftrags-Limits</strong> from the Agentowner course apply unchanged — they are tied to the Token, not to the tooling. Finished software or your n8n build: "at most 5 orders per day, at most €500 per order" is checked automatically on every <code>prepare_order</code>.</li>
+        <li><strong>The platform's rate limits</strong>: the MCP access allows 30 requests per minute, your Token 60 per minute in total. Plenty for a chat agent — a workflow in a loop can still tear through it. The demo key from the docs is capped tighter (10 per minute).</li>
+      </ul>
+
+      <h2>If it doesn't work: the two error signals</h2>
+      <ul class="objectives">
+        <li><strong>401 — ID missing:</strong> n8n reports <em>"Authorization failed - please check your credentials"</em>, the platform says <em>"Bearer token required"</em>. The Token is missing, wrong, or revoked — check the Bearer Auth credential or create a new Token for your agent.</li>
+        <li><strong>429 — too fast:</strong> HTTP 429 (Too Many Requests) means: rate limit reached. Not a defect — your agent overdid the pace. Wait briefly and it continues; in looping workflows, build in a pause.</li>
+      </ul>
+
+      <hr class="lesson__divider">
+
+      <h2>Your turn</h2>
+      <p>Test yourself — retrieving from memory is what builds real retention.</p>
+
+      <div class="quiz">
+        <p class="quiz__label">Knowledge check</p>
+        <p class="quiz__q">Your agent reports <code>pending_approval</code> for an order. What does that mean?</p>
+        <div class="quiz__options">
+          <button class="quiz__option" data-correct="true">The order is waiting in your Freigabe for your decision</button>
+          <button class="quiz__option">The order is approved and already sits with the provider</button>
+          <button class="quiz__option">The order has failed and the platform quietly dropped it</button>
+        </div>
+        <p class="quiz__feedback" hidden>
+          <code>pending_approval</code> means "Wartet auf Genehmigung" (waiting for approval):
+          the platform has requested your Freigabe, and nothing happens until you decide. The
+          order is only approved after your yes — and it is never dropped on its own, only
+          through your deliberate decline.
+        </p>
+      </div>
+
+      <div class="callout callout--note">
+        <p class="callout__label">Course complete — what now?</p>
+        <p>
+          Your agent stands: five Tools, your Token, your Freigabe as the final authority. If
+          you want to keep building, the platform's <a href="https://linkyourskill.ai/en/docs/mcp-integration">API
+          docs</a> are your reference — there you'll find all 18 Tools in detail and the SDK,
+          in case you ever want to develop directly without n8n.
+        </p>
+      </div>
+
+      <aside class="primary-source">
+        <p class="primary-source__label">Primary source</p>
+        <p>
+          See for yourself: the <a href="https://linkyourskill.ai/en/docs/mcp-integration">MCP
+          Integration</a> page in the platform docs documents status values, limits, and all
+          Tools — your reference for everything after this course.
+        </p>
+      </aside>
+
+      <aside class="ask-teacher">
+        <img class="ask-teacher__mark" src="../../../assets/design-system/assets/logo-linkyourskill.png" alt="">
+        <div>
+          <h3>Questions about statuses or limits?</h3>
+          <p>LinkYourSkill support will help you — from the puzzling status to the rate limit.</p>
+        </div>
+      </aside>
+
+    </section>
+
+  </main>
+
+  <nav class="lesson__nav">
+    <a href="0003-prepare-order.html">‹ Lesson 03 · Your agent orders</a>
+    <a href="../../../GLOSSARY.md">Glossary</a>
+    <a href="../index.html">Course complete · to the overview ›</a>
+  </nav>
+
+  <p class="lesson__brand">
+    <img src="../../../assets/design-system/assets/logo-linkyourskill.png" alt="LinkYourSkill">
+    <span>Designed in the LinkYourSkill design system</span>
+  </p>
+
+  <script src="../../../assets/design-system/quiz.js"></script>
+</body>
+</html>
