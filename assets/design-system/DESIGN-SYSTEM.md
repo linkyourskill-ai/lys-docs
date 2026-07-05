@@ -4,6 +4,8 @@ Every lesson and reference document this skill produces is built on the
 **LinkYourSkill Design System** ("Dark Cosmic"). This folder is the
 self-contained copy that `lys-teach` ships with.
 Source: <https://github.com/linkyourskill-ai/lys-design-system>.
+Synced: upstream **v1.1.3** — 2026-07-05 (brand files verbatim; repo machinery
+like `package.json`/`SKILL.md` deliberately not vendored).
 
 The point: a learner returns to these lessons again and again, so they must
 look like **one coherent, beautiful course** — not a pile of one-offs. The
@@ -15,7 +17,10 @@ LinkYourSkill system is that visual foundation.
 design-system/
   styles.css            ← the brand entry point. Imports every token + the
                           base layer (glass cards, buttons, eyebrows…). Verbatim upstream.
+  tokens.css            ← tokens-ONLY entry point (no fonts, no base layer) for
+                          consumers that bring their own. Lessons don't use it.
   tokens/               ← CSS custom properties: colors, typography, spacing, effects, fonts, base.
+  tokens/fonts/         ← self-hosted Inter woff2 subsets + SIL OFL license.
   README.md             ← the full upstream brand guide (product context, voice, foundations).
 
   lessons.css           ← lys-teach's shared stylesheet. Imports styles.css, adds the
@@ -49,8 +54,8 @@ After that, **every lesson and reference document links one stylesheet**:
 ```
 
 `lessons.css` `@import`s `styles.css`, which pulls in the tokens and the
-brand base layer (and loads Inter). Don't link `styles.css` separately;
-`lessons.css` already pulls it in.
+brand base layer (and loads the self-hosted Inter face — no CDN). Don't link
+`styles.css` separately; `lessons.css` already pulls it in.
 
 The fastest way to start a lesson is to **copy `lesson-template.html`** into
 `./lessons/0001-<name>.html` and replace the placeholders.
@@ -135,11 +140,19 @@ Lessons read like LinkYourSkill surfaces. Apply consistently:
 
 ## Caveats (flag, don't hide)
 
-- **Fonts now load online.** Inter comes from **Google Fonts** (`tokens/fonts.css`),
-  not vendored `.woff2`. Lessons fall back to `system-ui` offline, but the brand
-  face needs a network. If you need a fully offline build, self-host Inter woff2
-  and point `--font-inter` at it — and flag it. (This is a change from the old
-  Atruvia bundle, which was fully offline.)
+- **Fonts are self-hosted** (upstream v1.1.1+). Inter ships as vendored `.woff2`
+  subsets in `tokens/fonts/` (SIL OFL 1.1) — no Google Fonts CDN, no visitor-IP
+  leak, fully offline-capable. `unicode-range` means a browser only downloads
+  the subsets a page actually uses (de/en lessons → latin, ~48K).
+- **"Self-hosting" stops at the lesson pipeline.** The reference specimens —
+  `ui_kits/*/index.html` and `components/*.card.html` — still load React,
+  ReactDOM and Babel from **unpkg.com**. No lesson or index page links them,
+  but opening a specimen URL directly does call out to unpkg. Accepted and
+  scoped for now; revisit upstream if specimens ever become learner-facing.
+- **Glass blur is desktop-only** (upstream v1.1.2+): `.glass-card` applies
+  `backdrop-filter` only from 768px up — phones render cards translucent
+  without blur (mobile-GPU perf), and they stay legible by design. Light theme
+  never blurs.
 - **Icons via CDN.** The brand uses **Lucide** from a CDN for UI icons
   (`<script src="https://unpkg.com/lucide@latest"></script>`); none are vendored.
   The template doesn't require it — `→`, `·` and the ✓ pill cover most needs.

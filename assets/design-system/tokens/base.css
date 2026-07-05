@@ -60,8 +60,20 @@ a { color: inherit; text-decoration: none; }
   border-radius: var(--radius-xl);
   padding: var(--pad-card);
   transition: border-color var(--dur-base), box-shadow var(--dur-base);
-  backdrop-filter: var(--blur-glass);
-  -webkit-backdrop-filter: var(--blur-glass);
+}
+/* backdrop-filter is an expensive paint operation on mobile GPUs — apply the
+   glass blur only from the tablet/desktop breakpoint up. Light theme disables
+   it entirely (higher-specificity rule below). */
+@media (min-width: 768px) {
+  .glass-card {
+    /* Standard property ONLY. Tailwind v4 / Lightning CSS treats
+       backdrop-filter and -webkit-backdrop-filter as aliases and keeps only the
+       LAST declaration when both are authored — shipping both made consumers
+       lose the standard property, leaving a -webkit-only rule that Chromium
+       ignores (no blur). Standard alone renders in Chromium/Firefox/Safari 18+;
+       Safari < 18 degrades gracefully (no blur, card stays legible). */
+    backdrop-filter: var(--blur-glass);
+  }
 }
 .glass-card:hover {
   box-shadow: var(--shadow-card);

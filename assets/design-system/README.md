@@ -112,7 +112,7 @@ This system was reverse-engineered from the product source. Store these for deep
 - `SKILL.md` — Agent-Skills-compatible front-matter for use in Claude Code.
 
 **`tokens/`** — imported by `styles.css` in order:
-- `fonts.css` — Inter via Google Fonts; `--font-inter` alias.
+- `fonts.css` — self-hosted Inter (variable) via `@font-face`; binaries in `tokens/fonts/`; `--font-inter` alias.
 - `colors.css` — dark-cosmic palette + `html.light` theme scope.
 - `typography.css` — families, weights, fluid sizes, tracking, leading.
 - `spacing.css` — 4px scale + layout frame variables (responsive).
@@ -136,6 +136,12 @@ This system was reverse-engineered from the product source. Store these for deep
 
 ## Caveats & substitutions
 
-- **Fonts:** Inter is loaded from **Google Fonts** rather than shipping `.woff2` binaries (the product uses `next/font`). This is the genuine typeface, not a substitute — but if you need self-hosted binaries for an offline build, add them and flag it.
+- **Fonts:** Inter (variable) is **self-hosted** — the `.woff2` binaries ship in `tokens/fonts/` and `tokens/fonts.css` declares them via `@font-face` (no Google Fonts CDN). This keeps consumers offline-capable and DSGVO-clean (no visitor-IP leak to Google). The face is Inter under the SIL OFL 1.1, vendored from `@fontsource-variable/inter`; the product loads the same typeface via `next/font`.
 - **Icons:** Lucide is referenced from CDN (matching the product's `lucide-react`); no icon binaries are vendored here.
 - The component `_ds_bundle.js` is generated automatically by the compiler — component cards and UI kits resolve it at runtime.
+
+---
+
+## License
+
+Released under the [MIT License](LICENSE) © 2026 LinkYourSkill.
