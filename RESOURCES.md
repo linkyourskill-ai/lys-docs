@@ -3,6 +3,8 @@
 > Geteilte, kuratierte Quellen für alle Personas-Kurse (Skillanbieter, Customer, Agentowner …).
 > **v1 ist docs-only**: Lektionen werden ausschließlich gegen die folgenden Dokumente geprüft,
 > nie gegen parametrisches Wissen und (in v1) nicht gegen die Live-App.
+> Einzige, bewusst begrenzte Ausnahme: der n8n-Builder-Track — siehe
+> „Externe Quellen (nur n8n-Kurs)" unten.
 
 ## Wissen (Quellen, gegen die Lektionen geprüft werden)
 
@@ -39,6 +41,23 @@
   Use for: Primärquelle von „Gefunden werden" (Skillanbieter) und „Auf dem Marktplatz finden" (Kunde).
 - **In-App: Meine Skills → Neuen Skill erstellen**
   Der echte Anlegen-Flow, in dem Lernende handeln.
+
+## Externe Quellen (nur n8n-Kurs)
+
+Der Builder-Track „Dein Agent in n8n" ist die einzige, bewusst begrenzte Ausnahme von docs-only:
+
+- [MCP Integration (de)](https://linkyourskill.ai/de/docs/mcp-integration)
+  ([en](https://linkyourskill.ai/en/docs/mcp-integration)) — Primärquelle des Kurses:
+  Endpunkt, Tools, Token-Scopes, Limits.
+- [n8n-Dokumentation — docs.n8n.io](https://docs.n8n.io/) — einzige sanktionierte externe
+  Quelle (Nodes: „HTTP Request", „AI Agent", „MCP Client Tool"). n8n-UI-Strings bleiben auch
+  in deutscher Kurs-Copy englisch, damit Lernende sie in der n8n-Oberfläche wortgleich
+  wiederfinden.
+- **Live-Verifikation zusätzlich zu docs:** Jede n8n-Lektion trägt den Stempel
+  `verified live against n8n <X.Y> @ <Datum>` — Klickwege, Fehlertexte und Statuswerte sind
+  in einer echten n8n-Instanz gegen die Plattform verifiziert.
+
+Für alle anderen Kurse gilt weiterhin docs-only.
 
 ## Wisdom (Communities)
 
