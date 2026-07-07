@@ -221,6 +221,46 @@ body::after {               /* bottom-left nebula */
 }
 .callout--note .callout__label { color: var(--muted); }
 
+/* A danger variant — warns off an anti-pattern (e.g. auto mode
+   bypassing the permission gate). Uses the brand's danger token. */
+.callout--danger {
+  background: rgba(239, 68, 68, 0.07);
+  border-color: rgba(239, 68, 68, 0.35);
+}
+.callout--danger .callout__label { color: var(--danger-text-dark); }
+
+/* ============================================================
+   Terminal transcript — builder-track lessons (n8n, Claude Code)
+   show real CLI I/O the learner must READ: the /mcp catalog, a
+   permission prompt, a tool call + its result. Inline `code` stays
+   for copy-me one-liners; THIS block is for multi-line output to
+   read. lys-docs-owned overlay component — not in the upstream
+   brand. Composes only from brand tokens (mono font, code surface).
+   ============================================================ */
+
+.terminal {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  color: var(--text);
+  background: var(--code-bg);
+  border: 1px solid var(--code-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  margin: var(--space-6) 0;
+  overflow-x: auto;
+  white-space: pre;                 /* terminal output never re-wraps */
+  -webkit-overflow-scrolling: touch;
+  tab-size: 2;
+}
+.terminal b,                        /* emphasise the line that matters */
+.terminal strong {
+  color: var(--accent-light);
+  font-weight: var(--weight-semibold);
+}
+.terminal .t-ok { color: var(--success-on-dark); }   /* ✔ connected */
+.terminal .t-warn { color: var(--accent-light); }     /* ⏸ pending / prompts */
+
 /* ============================================================
    Primary source — the single best resource to read/watch next.
    lys-teach: every lesson recommends one high-trust primary source.
@@ -420,6 +460,12 @@ body::after {               /* bottom-left nebula */
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
   }
+  .terminal {
+    background: #f4f1fb !important;
+    border: 1px solid #d9cdf0 !important;
+    color: #14121f !important;
+  }
+  .terminal b, .terminal strong, .terminal .t-ok, .terminal .t-warn { color: #6d28d9 !important; }
   .lesson__divider { box-shadow: none !important; }
 
   a { color: #6d28d9 !important; }

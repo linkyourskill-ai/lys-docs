@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<!--
+  Your agent in Claude Code · Lesson 01 — Connect (EN, mirror of de/ canonical)
+  2nd builder track for Agentowners (terminal flavor, sibling of "Your agent in n8n").
+  Through-line: "Your agent acts — you stay in control. This time you build it yourself."
+
+  Provenance: grounded against linkyourskill.ai/en/docs/mcp-integration + docs.claude.com/claude-code @ 2026-07-06;
+  verified live against Claude Code 2.1.201 @ 2026-07-06 (internal staging environment; all output observed).
+  Altitude: builder track — MCP/Bearer/CLI deliberately allowed here; the Agentowner course
+  stays at the "key" altitude. Claude Code CLI strings (commands, /mcp, mcp__lys__…) in English, word for word.
+  Endpoint linkyourskill.ai goes live publicly on 2026-07-10 — re-verify before course release.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>01 — Connect · Your agent in Claude Code · LinkYourSkill</title>
+  <link rel="stylesheet" href="../../../assets/design-system/lessons.css">
+</head>
+<body>
+  <main class="lesson">
+
+    <header class="lesson__header">
+      <p class="lesson__eyebrow">Mission · Why this matters</p>
+      <h1>Connect Claude Code to the platform — <span class="gradient-text">one command, the line is live</span></h1>
+      <p class="lesson__lead">
+        In the Agentowner course you gave your KI-Agent (AI agent) its Token. Today you use that
+        Token yourself for the first time: a single command connects Claude Code to LinkYourSkill's
+        MCP access, and you see with your own eyes what the platform offers your agent there. No
+        chat involved yet — first the line, then the brain.
+      </p>
+      <p class="lesson__meta">Lesson 01 · ~7 minutes · Knowledge &amp; practice</p>
+    </header>
+
+    <section class="lesson__body">
+
+      <h2>What you'll be able to do</h2>
+      <ul class="objectives">
+        <li>Connect the MCP access to Claude Code with a single command — using your Token.</li>
+        <li>Check which Tools your agent is offered before you ever chat — with <code>/mcp</code>.</li>
+      </ul>
+
+      <h2>You already steer — now you build</h2>
+      <p>
+        From the <a href="../../../agentowner/en/index.html">Agentowner course</a> you know the
+        rule: your <strong>KI-Agent</strong> acts in your name, and nothing becomes real before you
+        approve it. So far the agent has been finished software to you. In this course you build it
+        yourself — here in the terminal, with <strong>Claude Code</strong>. It's the terminal flavor
+        of <a href="../../../n8n/en/index.html">"Your agent in n8n"</a>: same through-line, same
+        marketplace, only your tool is different. You don't need n8n here.
+      </p>
+
+      <div class="callout">
+        <p class="callout__label">Core idea</p>
+        <p>
+          The <strong>Token</strong> (your key) you created in the Agentowner course is exactly what
+          your agent identifies itself with at this access point. There is no second secret: whoever
+          holds the Token acts as your agent — inside your limits. That's why it stays as secret as a
+          password, in the terminal too.
+        </p>
+      </div>
+
+      <h2>Before you start</h2>
+      <ul class="objectives">
+        <li>You've done the Agentowner course: an agent exists, and its Token is stored safely with you.</li>
+        <li>Claude Code is installed and signed in. Quick test: type <code>claude</code> — the prompt appears. Anthropic describes the install at <a href="https://docs.claude.com/claude-code">docs.claude.com/claude-code</a>.</li>
+        <li>A terminal you're comfortable in. Verified with Claude Code 2.1.201.</li>
+      </ul>
+
+      <div class="callout callout--note">
+        <p class="callout__label">This course is allowed to get technical</p>
+        <p>
+          The Agentowner course deliberately stays at the "key" altitude — no jargon. This builder
+          track goes one level deeper: you'll see terms like <strong>MCP</strong>,
+          <strong>Bearer</strong> and real commands. Claude Code's commands stay in English, word for
+          word — so you find them again in your terminal exactly as written.
+        </p>
+      </div>
+
+      <h2>What is the MCP access?</h2>
+      <p>
+        <strong>MCP</strong> (Model Context Protocol) is the standardized access an AI agent uses to
+        talk to LinkYourSkill. Three things are enough to understand it:
+      </p>
+      <ul class="objectives">
+        <li><strong>One endpoint:</strong> <code>https://linkyourskill.ai/mcp</code> — an address your agent sends its requests to.</li>
+        <li><strong>Your Token:</strong> it is sent along with every request as a "Bearer Token" — that's how your agent identifies itself.</li>
+        <li><strong>Tools:</strong> the access offers a catalog of <strong>Tools</strong> — individual capabilities like <code>search_skillanbieter</code>. Which of them your agent may use is your decision, later.</li>
+      </ul>
+
+      <h2>The first connection — one command</h2>
+      <p>
+        In Claude Code you need no workflow and no building blocks. A single command connects the
+        MCP access. Open your terminal and enter it — putting your own Token where marked (don't
+        type the angle brackets):
+      </p>
+      <div class="terminal">claude mcp add --transport http lys https://linkyourskill.ai/mcp --header "Authorization: Bearer <span class="t-warn">&lt;your-token&gt;</span>" -s user</div>
+      <p>Claude Code confirms:</p>
+      <div class="terminal">Added HTTP MCP server lys with URL: https://linkyourskill.ai/mcp to user config
+Headers: {
+  "Authorization": "<span class="t-ok">[REDACTED]</span>"
+}
+File modified: ~/.claude.json</div>
+      <p>What's inside that command:</p>
+      <ul class="objectives">
+        <li><code>lys</code> — the name you give the access. Free to choose; we keep <code>lys</code>, because your Tools will be named <code>mcp__lys__…</code> later.</li>
+        <li><code>--transport http</code> — the MCP access speaks "HTTP Streamable". That's exactly the transport you specify.</li>
+        <li><code>--header "Authorization: Bearer &lt;your-token&gt;"</code> — this is where your Token travels along.</li>
+        <li><code>-s user</code> — the access applies across <em>all</em> your projects and is stored nowhere you might share by accident.</li>
+      </ul>
+
+      <div class="callout callout--note">
+        <p class="callout__label">Token hygiene</p>
+        <p>
+          In its confirmation Claude Code shows <code>[REDACTED]</code> instead of your Token — good.
+          It is stored in cleartext in <code>~/.claude.json</code>. Two things follow: <code>claude
+          mcp get lys</code> shows the Token <em>in full</em> (so don't run it on a shared screen),
+          and if you use <code>-s project</code> instead of <code>-s user</code>, it lands in a file
+          <code>.mcp.json</code> in the project folder — handy for a team, but never commit it to Git.
+          With <code>-s project</code> Claude Code also asks once to approve the server on first
+          start (status <code>⏸ Pending approval</code>). <code>-s user</code> avoids both.
+        </p>
+      </div>
+
+      <h2>See what's offered — <code>/mcp</code></h2>
+      <p>
+        First the line, then the brain. Before you chat with your agent, you check the connection.
+        Start Claude Code with <code>claude</code> and enter the command <code>/mcp</code>:
+      </p>
+      <div class="terminal">Manage MCP servers
+
+  lys · <span class="t-ok">✔ connected</span></div>
+      <p>
+        <code>✔ connected</code> means the line is live. Select <code>lys</code> to see the whole
+        catalog — capabilities like <code>search_skillanbieter</code>, <code>prepare_order</code> and
+        <code>get_order_status</code>. Which of them your agent may actually use is your call — we get
+        to that in <a href="0004-track-and-limits.html">Lesson 4</a>.
+      </p>
+
+      <div class="callout">
+        <p class="callout__label">Your deterministic proof</p>
+        <p>
+          <code>/mcp</code> shows the catalog <em>without the AI doing anything</em>. No chat, no
+          guessing: the connection is live before a single word reaches the model. That's exactly
+          what "first the line, then the brain" means.
+        </p>
+      </div>
+
+      <h2>If it doesn't work</h2>
+      <ul class="objectives">
+        <li><code>⏸ Pending approval</code> — you used <code>-s project</code>. Start <code>claude</code> and approve the server once. With <code>-s user</code> this doesn't happen.</li>
+        <li>No <code>✔ connected</code>, an authentication error instead — the Token is missing or wrong. Check it with <code>claude mcp get lys</code> (shows it in cleartext); if in doubt, create a new Token for your agent in the Agentowner dashboard.</li>
+        <li>Just to experiment without your own Token: the platform's <a href="https://linkyourskill.ai/en/docs/mcp-integration">MCP docs</a> name a public demo key that can only read (no <code>prepare_order</code>).</li>
+      </ul>
+
+      <hr class="lesson__divider">
+
+      <h2>Your turn</h2>
+      <p>Test yourself — retrieving from memory is what builds real retention.</p>
+
+      <div class="quiz">
+        <p class="quiz__label">Knowledge check</p>
+        <p class="quiz__q">How do you check the line is live — before the AI does anything?</p>
+        <div class="quiz__options">
+          <button class="quiz__option">I send the agent a short first test message</button>
+          <button class="quiz__option" data-correct="true">I have the tool catalog shown in my terminal</button>
+          <button class="quiz__option">I reload the platform's web page in a browser</button>
+        </div>
+        <p class="quiz__feedback" hidden>
+          <code>/mcp</code> shows the tool catalog and the connection status without the AI doing
+          anything — your deterministic proof that the line is live. A test message would already
+          engage the model (and call Tools), and the web page says nothing about your agent's
+          connection.
+        </p>
+      </div>
+
+      <aside class="primary-source">
+        <p class="primary-source__label">Primary source</p>
+        <p>
+          See for yourself: the <a href="https://linkyourskill.ai/en/docs/mcp-integration">MCP
+          Integration</a> page in the platform docs shows the endpoint, the Token and the tool
+          catalog — the same connection you just built in Claude Code.
+        </p>
+      </aside>
+
+      <aside class="ask-teacher">
+        <img class="ask-teacher__mark" src="../../../assets/design-system/assets/logo-linkyourskill.png" alt="">
+        <div>
+          <h3>Questions about the connection?</h3>
+          <p>LinkYourSkill support will help you until <code>/mcp</code> shows your access as <code>✔ connected</code>.</p>
+        </div>
+      </aside>
+
+    </section>
+
+  </main>
+
+  <nav class="lesson__nav">
+    <a href="../index.html">‹ Course overview</a>
+    <a href="../../../GLOSSARY.md">Glossary</a>
+    <a href="0002-search.html">Lesson 02 · Your agent searches ›</a>
+  </nav>
+
+  <p class="lesson__brand">
+    <img src="../../../assets/design-system/assets/logo-linkyourskill.png" alt="LinkYourSkill">
+    <span>Designed in the LinkYourSkill design system</span>
+  </p>
+
+  <script src="../../../assets/design-system/quiz.js"></script>
+</body>
+</html>

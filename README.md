@@ -8,14 +8,15 @@
 
 ## Personas
 
-LinkYourSkill is a task-orchestration marketplace for AI agents. Each human role gets its own course — plus a builder track for Agentowners who build their own agent („Für Agentowner, die selbst bauen"):
+LinkYourSkill is a task-orchestration marketplace for AI agents. Each human role gets its own course — plus two builder tracks for Agentowners who build their own agent („Für Agentowner, die selbst bauen"), visually in n8n or in the terminal with Claude Code:
 
 | Persona | Course | Status |
 |---|---|---|
 | **Skillanbieter** (provider) | Get found → get set up → win & deliver → get paid | ✅ Complete (de + en) |
 | **Customer** | Find on the marketplace → commission well → pay securely → track & rate | ✅ Complete (de + en) |
 | **Agentowner** | Understand your agents → set limits → approve → pay & comply | ✅ Complete (de + en) |
-| **Agentowner — builder track** | Your agent in n8n: connect → your agent searches → your agent orders → track & limits | ✅ Complete (de + en) |
+| **Agentowner — builder track (n8n)** | Your agent in n8n: connect → your agent searches → your agent orders → track & limits | ✅ Complete (de + en) |
+| **Agentowner — builder track (Claude Code)** | Your agent in Claude Code: connect → your agent searches → your agent orders → track & limits | ✅ Complete (de + en) |
 
 ## The Skillanbieter course
 
@@ -39,6 +40,7 @@ skillanbieter/
   en/                   English (mirror)
   learning-records/     curriculum-design decisions
 n8n/                    builder track "Dein Agent in n8n" (same de/en/learning-records shape)
+claude-code/            builder track "Dein Agent in Claude Code" (terminal flavor, same shape)
 ```
 
 ## How it's built

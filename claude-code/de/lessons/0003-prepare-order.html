@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<!--
+  Dein Agent in Claude Code · Lektion 03 — Dein Agent beauftragt (DE, kanonisch)
+  2. Builder-Track für Agentowner (Terminal-Variante). Arc 3 von 4 — das Finale.
+  Leitidee: „Dein Agent handelt — du behältst die Kontrolle. Diesmal baust du ihn selbst."
+
+  Provenance: grounded against linkyourskill.ai/de/docs/mcp-integration + docs.claude.com/claude-code @ 2026-07-06;
+  verified live against Claude Code 2.1.201 @ 2026-07-06 (interne Staging-Umgebung).
+  Zwei-Netze-Finale komplett live verifiziert: prepare_order-Erlaubnis-Dialog WORTGLEICH; Ablehnen (Option 3) =
+  kein Auftrag; Freigeben (Option 1) → echter Auftrag Status `prepared`; Messenger-Reject → `rejected`,
+  Verlauf `prepared → approval_requested → rejected` (persistiert). „WhatsApp" in der Tool-Beschreibung =
+  Plattform-Kanal „Messenger". Kein Sandkasten: prepare_order erzeugt einen ECHTEN Auftrag.
+  Altitude: Builder-Track — CLI/mcp__lys__… englisch, Wort für Wort.
+-->
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>03 — Dein Agent beauftragt · Dein Agent in Claude Code · LinkYourSkill</title>
+  <link rel="stylesheet" href="../../../assets/design-system/lessons.css">
+</head>
+<body>
+  <main class="lesson">
+
+    <header class="lesson__header">
+      <p class="lesson__eyebrow">Mission · Du behältst die Kontrolle</p>
+      <h1>Dein Agent bereitet einen Auftrag vor — <span class="gradient-text">du hast das letzte Wort</span></h1>
+      <p class="lesson__lead">
+        Jetzt wird es ernst: Dein Agent kann echte Aufträge vorbereiten. Es gibt keinen
+        Sandkasten — <code>prepare_order</code> erzeugt einen echten Auftrag. Genau deshalb übst
+        du hier zwei Sicherheitsnetze: erst im Erlaubnis-Dialog ablehnen, dann bewusst freigeben
+        und in deiner ganz normalen Freigabe verwerfen.
+      </p>
+      <p class="lesson__meta">Lektion 03 · ca. 8 Minuten · Wissen &amp; Übung</p>
+    </header>
+
+    <section class="lesson__body">
+
+      <h2>Das kannst du danach</h2>
+      <ul class="objectives">
+        <li>Den Erlaubnis-Dialog als erstes Netz nutzen: einen Tool-Aufruf ablehnen, bevor etwas echt wird.</li>
+        <li>Einen echten Übungsauftrag bewusst vorbereiten — und ihn in deiner Freigabe ablehnen.</li>
+      </ul>
+
+      <div class="callout callout--danger">
+        <p class="callout__label">Kein Sandkasten</p>
+        <p>
+          <code>prepare_order</code> erzeugt einen <strong>echten</strong> Auftrag in der
+          Produktion — es gibt keine Übungsumgebung. Darum trägt jeder Übungsauftrag den Titel
+          <code>Test:</code> und die Bitte „bitte ablehnen", und du lehnst ihn ab. Bereitet dein
+          Agent später einmal einen echten Auftrag vor, den du wirklich willst, gibst du ihn
+          natürlich frei.
+        </p>
+      </div>
+
+      <h2>Zwei Netze statt einem</h2>
+      <p>
+        Im <a href="../../../n8n/de/index.html">n8n-Kurs</a> war die Freigabe im Messenger dein
+        einziges Netz: Das Tool lief immer, der Auftrag wurde echt, und du musstest ihn dort
+        abfangen. In Claude Code hast du ein Netz <em>mehr</em>: den Erlaubnis-Dialog. Er fängt
+        den Auftrag ab, <strong>bevor</strong> er überhaupt echt wird.
+      </p>
+
+      <h2>Netz 1 — schon im Dialog ablehnen</h2>
+      <p>Gib deinem Agenten den Übungsauftrag:</p>
+      <div class="terminal">Bereite einen Auftrag vor: Titel 'Test: Fensterreinigung', Beschreibung
+'Übungsauftrag aus dem Claude-Code-Kurs — bitte ablehnen', Ort Münster,
+Zeitrahmen nächste Woche, Budget 50 bis 80 Euro. Suche nicht erst, bereite direkt vor.</div>
+      <p>Claude Code hält an und zeigt dir den kompletten Aufruf:</p>
+      <div class="terminal">Tool use
+  lys - prepare_order(title: "Test: Fensterreinigung", description: "Übungsauftrag
+  aus dem Claude-Code-Kurs — bitte ablehnen", location: "Münster", timeframe:
+  "Nächste Woche", price_range_min: 50, price_range_max: 80) (MCP)
+  Prepare a new order for Agentowner approval. The order will be sent via WhatsApp for approval.
+
+Do you want to proceed?
+  1. Yes
+  2. Yes, and don't ask again for lys - prepare_order commands in dein-projekt
+<span class="t-warn">❯ 3. No</span></div>
+      <p>
+        Wähle <code>3. No</code>. Der Aufruf wird angezeigt, aber <strong>nichts läuft</strong> —
+        es entsteht kein Auftrag. Dein Agent bestätigt selbst, dass der Abbruch aus der
+        Freigabe-Ebene kam, nicht aus einem Fehler. Das ist Netz 1: Du liest den ganzen Aufruf —
+        Titel, Beschreibung, Ort, Budget — und ein klares „Nein" genügt.
+      </p>
+
+      <div class="callout callout--note">
+        <p class="callout__label">„WhatsApp" in der Beschreibung?</p>
+        <p>
+          Die Tool-Beschreibung sagt „sent via WhatsApp for approval". Auf der Plattform heißt
+          dieser Kanal schlicht <strong>Messenger</strong> — gemeint ist dasselbe: Der Auftrag
+          erreicht dich als Nachricht, in der du freigibst oder ablehnst.
+        </p>
+      </div>
+
+      <h2>Netz 2 — freigeben und in der Freigabe verwerfen</h2>
+      <p>
+        Jetzt bewusst der andere Weg: Löse denselben Auftrag noch einmal aus und wähle diesmal
+        <code>1. Yes</code>. Dein Agent legt einen echten Auftrag an — Status <code>prepared</code> —
+        und die Freigabe erreicht dich als Nachricht (Messenger) mit einem Ablehnen-Knopf. Tippe
+        auf <strong>ablehnen</strong>. Frag danach nach dem Status:
+      </p>
+      <div class="terminal">Der Test-Auftrag wurde im Messenger abgelehnt, Status prüfen</div>
+      <p>Dein Agent liest den Status aus und übersetzt ihn dir:</p>
+      <div class="terminal">Aktueller Status   <span class="t-warn">🔴 rejected</span>
+Letztes Ereignis   abgelehnt am 06.07.2026
+Verlauf            prepared → approval_requested → rejected</div>
+      <p>
+        Der Auftrag ist <code>rejected</code> (Badge „Abgelehnt") — abgelehnt und dokumentiert.
+        Kein echter Reinigungstermin ist entstanden. Genau wie im Agentowner-Kurs landete der
+        vorbereitete Auftrag in deiner Freigabe — nur hast du ihn diesmal selbst gebaut.
+      </p>
+
+      <div class="callout">
+        <p class="callout__label">Der Kreis schließt sich</p>
+        <p>
+          Zwei Netze, zwei Chancen, „Nein" zu sagen: der Erlaubnis-Dialog, bevor etwas echt wird,
+          und die Freigabe, nachdem der Auftrag angelegt ist. „Dein Agent handelt — du behältst
+          die Kontrolle" ist hier keine Regel von außen mehr, sondern in dein Werkzeug eingebaut.
+        </p>
+      </div>
+
+      <hr class="lesson__divider">
+
+      <h2>Jetzt du</h2>
+      <p>Prüf dich selbst — aus dem Gedächtnis abrufen baut echtes Behalten auf.</p>
+
+      <div class="quiz">
+        <p class="quiz__label">Wissens-Check</p>
+        <p class="quiz__q">Wo fängst du einen Auftrag ab, <em>bevor</em> er echt wird?</p>
+        <div class="quiz__options">
+          <button class="quiz__option">Erst in der Freigabe, nachdem er angelegt ist</button>
+          <button class="quiz__option" data-correct="true">Schon im Erlaubnis-Dialog, mit einem klaren Nein</button>
+          <button class="quiz__option">Gar nicht — ein Auftrag wird sofort echt gemacht</button>
+        </div>
+        <p class="quiz__feedback" hidden>
+          Der Erlaubnis-Dialog ist Netz 1: Wählst du dort <code>No</code>, wird der Auftrag nie
+          angelegt. Die Freigabe im Messenger ist Netz 2 — sie greift erst, wenn der Auftrag
+          schon <code>prepared</code> ist. Zwei unabhängige Chancen, „Nein" zu sagen; „sofort
+          echt" ohne deine Zustimmung wird nichts.
+        </p>
+      </div>
+
+      <aside class="primary-source">
+        <p class="primary-source__label">Primärquelle</p>
+        <p>
+          Die Seite <a href="https://linkyourskill.ai/de/docs/mcp-integration">MCP Integration</a>
+          beschreibt <code>prepare_order</code> und die Auftrags-Status — dieselben, die dein
+          Agent dir gerade übersetzt hat.
+        </p>
+      </aside>
+
+      <aside class="ask-teacher">
+        <img class="ask-teacher__mark" src="../../../assets/design-system/assets/logo-linkyourskill.png" alt="">
+        <div>
+          <h3>Fragen zur Freigabe?</h3>
+          <p>Der LinkYourSkill-Support hilft dir, wenn ein Auftrag nicht den Status zeigt, den du erwartest.</p>
+        </div>
+      </aside>
+
+    </section>
+
+  </main>
+
+  <nav class="lesson__nav">
+    <a href="0002-search.html">‹ Lektion 02 · Dein Agent sucht</a>
+    <a href="../../../GLOSSARY.md">Glossar</a>
+    <a href="0004-track-and-limits.html">Lektion 04 · Verfolgen &amp; Grenzen ›</a>
+  </nav>
+
+  <p class="lesson__brand">
+    <img src="../../../assets/design-system/assets/logo-linkyourskill.png" alt="LinkYourSkill">
+    <span>Gestaltet im LinkYourSkill Design System</span>
+  </p>
+
+  <script src="../../../assets/design-system/quiz.js"></script>
+</body>
+</html>

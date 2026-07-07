@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<!--
+  Your agent in Claude Code · Lesson 04 — Track & limits (EN, mirror of de/ canonical)
+  2nd builder track for Agentowners (terminal flavor). Arc 4 of 4.
+  Through-line: "Your agent acts — you stay in control. This time you build it yourself."
+
+  Provenance: grounded against linkyourskill.ai/en/docs/mcp-integration + docs.claude.com/claude-code @ 2026-07-06;
+  verified live against Claude Code 2.1.201 @ 2026-07-06 (internal staging environment).
+  VERIFIED live: get_order_status output (history prepared → approval_requested → rejected);
+  permission dialog option 2 "…don't ask again … in <cwd>" (directory-scoped = durable whitelist);
+  tool-name form mcp__lys__… ; catalog contains prepare_orders/task_execute (deliberately NOT allowed).
+  DESCRIBED, NOT LIVE-CAPTURED (spike session ended early) — re-verify in the L4 recapture:
+  exact /permissions panel output; exact 401/429 error strings in Claude Code. Hence described
+  functionally here, without inventing terminal output. Rate-limit numbers deliberately unquoted (docs pointer).
+  Badge "Genehmigung ausstehend" = pending_approval (from the platform's messages/de.json, n8n spike).
+  Altitude: builder track — CLI/mcp__lys__… in English, word for word.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>04 — Track &amp; limits · Your agent in Claude Code · LinkYourSkill</title>
+  <link rel="stylesheet" href="../../../assets/design-system/lessons.css">
+</head>
+<body>
+  <main class="lesson">
+
+    <header class="lesson__header">
+      <p class="lesson__eyebrow">Mission · Set limits</p>
+      <h1>Track what your agent does — <span class="gradient-text">and draw clear limits</span></h1>
+      <p class="lesson__lead">
+        Your agent is running. To finish, you learn two things: to read and interpret the state of an
+        order — and to set durable limits on which Tools your agent may use at all. That's how you
+        stay in control even when you're not sitting next to every single call.
+      </p>
+      <p class="lesson__meta">Lesson 04 · ~7 minutes · Knowledge &amp; practice</p>
+    </header>
+
+    <section class="lesson__body">
+
+      <h2>What you'll be able to do</h2>
+      <ul class="objectives">
+        <li>Read an order's status and interpret the stages <code>prepared → approval_requested → …</code>.</li>
+        <li>Durably allow your agent only the Tools you want — in the dialog and with <code>/permissions</code>.</li>
+      </ul>
+
+      <h2>Read the status — <code>get_order_status</code></h2>
+      <p>
+        You don't have to memorize order numbers. Ask your agent in plain language, and it calls
+        <code>get_order_status</code> (only after your permission, of course) and translates the
+        answer. The platform moves an order through fixed stages — the names are in English, because
+        that's how they appear in the app and in the log too:
+      </p>
+      <ul class="objectives">
+        <li><code>prepared</code> — prepared, waiting for you. Badge "Vorbereitet".</li>
+        <li><code>approval_requested</code> — the Freigabe was requested and is in your Messenger.</li>
+        <li><code>pending_approval</code> — waiting for your approval. Badge "Genehmigung ausstehend".</li>
+        <li><code>rejected</code> — declined by you. Badge "Abgelehnt". (That's how your practice order from Lesson 3 ended.)</li>
+      </ul>
+      <p>
+        The <strong>history</strong> shows the path with no gaps — e.g.
+        <code>prepared → approval_requested → rejected</code>. So you can read back at any time what
+        happened to your agent's order, and who moved it when.
+      </p>
+
+      <h2>Set limits — only these Tools</h2>
+      <p>
+        In the Agentowner course you set <strong>Auftrags-Limits</strong> (order limits) for your
+        agent. Here you draw the line at the build level: <em>which Tools</em> it may call at all. You
+        already know your instrument for that — the permission dialog:
+      </p>
+      <ul class="objectives">
+        <li><strong>Allow once:</strong> <code>1. Yes</code> — for this single call only.</li>
+        <li><strong>Allow durably:</strong> <code>2. Yes, and don't ask again …</code> — Claude Code remembers this Tool for your current project. Step by step you build a whitelist of exactly the Tools you want.</li>
+        <li><strong>Decline:</strong> <code>3. No</code> — and the Tool stays out.</li>
+      </ul>
+      <p>
+        With the command <code>/permissions</code> you see at any time what you've allowed, and can
+        revoke it. The decisive protection: the dialog always names the <em>exact</em> Tool name. If
+        your agent unexpectedly reaches for <code>mcp__lys__prepare_orders</code> (the batch variant)
+        or even <code>mcp__lys__task_execute</code>, <strong>you see it</strong> — and say No.
+      </p>
+
+      <div class="callout callout--note">
+        <p class="callout__label">Pin it down durably (optional)</p>
+        <p>
+          To anchor the whitelist for good, add the allowed Tools to the settings file
+          <code>settings.json</code> under <code>permissions.allow</code> — for example
+          <code>mcp__lys__search_skillanbieter</code> and <code>mcp__lys__prepare_order</code>. For
+          the course the dialog is entirely enough; this is just the way to hold it across projects.
+        </p>
+      </div>
+
+      <div class="callout callout--danger">
+        <p class="callout__label">Deliberately left out</p>
+        <p>
+          <code>task_execute</code>, <code>auto_approve</code> and the <code>⏵⏵</code> auto mode skip
+          your Freigabe. That's exactly why you <strong>don't</strong> allow them in this course: they
+          contradict the through-line that you keep the last word.
+        </p>
+      </div>
+
+      <h2>When the platform draws limits</h2>
+      <p>
+        Two errors you'll see sooner or later. Claude Code shows both directly in the chat when a tool
+        call fails:
+      </p>
+      <ul class="objectives">
+        <li><strong>Authentication:</strong> the Token is missing or wrong — the access won't let your agent in (see Lesson 1). Check the connection with <code>/mcp</code>.</li>
+        <li><strong>Too many requests:</strong> the access limits how often your agent may call in a short time. When you hit that limit, waiting a moment and retrying helps. The exact limits are in the platform's MCP docs.</li>
+      </ul>
+
+      <h2>Keep learning</h2>
+      <p>
+        You've built an AI agent in the terminal, had it search and order, and set it limits — never
+        giving up control. Two sources take you deeper:
+      </p>
+      <ul class="objectives">
+        <li><a href="https://linkyourskill.ai/en/docs/mcp-integration">MCP Integration</a> — endpoint, all Tools, Token scopes and the platform's limits.</li>
+        <li><a href="https://docs.claude.com/claude-code">docs.claude.com/claude-code</a> — MCP servers, permissions and modes in Claude Code itself.</li>
+      </ul>
+
+      <hr class="lesson__divider">
+
+      <h2>Your turn</h2>
+      <p>Test yourself — retrieving from memory is what builds real retention.</p>
+
+      <div class="quiz">
+        <p class="quiz__label">Knowledge check</p>
+        <p class="quiz__q">How do you durably allow your agent only certain Tools?</p>
+        <div class="quiz__options">
+          <button class="quiz__option">Not at all, my agent is always allowed every Tool</button>
+          <button class="quiz__option" data-correct="true">With "allow always" in the dialog and /permissions</button>
+          <button class="quiz__option">I leave the fast auto mode permanently switched on</button>
+        </div>
+        <p class="quiz__feedback" hidden>
+          With <code>2. Yes, and don't ask again</code> Claude Code remembers a Tool durably for the
+          project, and <code>/permissions</code> shows and revokes what's allowed — so your whitelist
+          grows. Auto mode does the opposite: it removes your control. "Every Tool, always" would be
+          exactly the limitlessness you avoid here.
+        </p>
+      </div>
+
+      <aside class="primary-source">
+        <p class="primary-source__label">Primary source</p>
+        <p>
+          The <a href="https://linkyourskill.ai/en/docs/mcp-integration">MCP Integration</a> page
+          names the Token scopes and limits — what your Token may do and how often. It's the yardstick
+          for reading your agent's limits.
+        </p>
+      </aside>
+
+      <aside class="ask-teacher">
+        <img class="ask-teacher__mark" src="../../../assets/design-system/assets/logo-linkyourskill.png" alt="">
+        <div>
+          <h3>Questions about limits &amp; errors?</h3>
+          <p>LinkYourSkill support helps you place a status or an error message from your agent.</p>
+        </div>
+      </aside>
+
+    </section>
+
+  </main>
+
+  <nav class="lesson__nav">
+    <a href="0003-prepare-order.html">‹ Lesson 03 · Your agent orders</a>
+    <a href="../../../GLOSSARY.md">Glossary</a>
+    <a href="../index.html">Done! · To the course overview ›</a>
+  </nav>
+
+  <p class="lesson__brand">
+    <img src="../../../assets/design-system/assets/logo-linkyourskill.png" alt="LinkYourSkill">
+    <span>Designed in the LinkYourSkill design system</span>
+  </p>
+
+  <script src="../../../assets/design-system/quiz.js"></script>
+</body>
+</html>

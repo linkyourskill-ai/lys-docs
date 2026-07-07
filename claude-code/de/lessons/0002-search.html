@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<!--
+  Dein Agent in Claude Code · Lektion 02 — Dein Agent sucht (DE, kanonisch)
+  2. Builder-Track für Agentowner (Terminal-Variante). Arc 2 von 4.
+  Leitidee: „Dein Agent handelt — du behältst die Kontrolle. Diesmal baust du ihn selbst."
+
+  Provenance: grounded against linkyourskill.ai/de/docs/mcp-integration + docs.claude.com/claude-code @ 2026-07-06;
+  verified live against Claude Code 2.1.201 @ 2026-07-06 (interne Staging-Umgebung).
+  Verifiziert: der Erlaubnis-Dialog („Tool use"-Box + „Do you want to proceed?" + 3 Optionen, Option 2
+  verzeichnis-gebunden) wortgleich aus dem prepare_order-Aufruf beobachtet; hier auf search_skillanbieter
+  übertragen (gleiche, tool-unabhängige Box). Die tool-spezifische Beschreibungszeile für search_skillanbieter
+  wurde nicht erfasst und daher bewusst weggelassen. Suchverhalten (Anna Behrens Münster 0 km zuerst,
+  Rating N/A) live beobachtet. AUTO-MODUS-BEFUND: `⏵⏵ auto mode on` unterdrückt den Dialog — Kernwarnung der Lektion.
+  Altitude: Builder-Track — CLI/mcp__lys__… englisch, Wort für Wort. „WhatsApp" in der Tool-Beschreibung =
+  Plattform-Kanal „Messenger" (übersetzen, nicht transkribieren).
+-->
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>02 — Dein Agent sucht · Dein Agent in Claude Code · LinkYourSkill</title>
+  <link rel="stylesheet" href="../../../assets/design-system/lessons.css">
+</head>
+<body>
+  <main class="lesson">
+
+    <header class="lesson__header">
+      <p class="lesson__eyebrow">Mission · Dein Agent handelt</p>
+      <h1>Lass deinen Agenten suchen — <span class="gradient-text">du liest jeden Schritt mit</span></h1>
+      <p class="lesson__lead">
+        In Lektion 1 stand die Leitung. Jetzt kommt das Gehirn dazu: Du gibst deinem Agenten
+        einen Auftrag in normaler Sprache, und er greift auf den Marktplatz zu. Aber vor jedem
+        Tool-Aufruf fragt Claude Code dich zuerst um Erlaubnis — du siehst genau, was er vorhat,
+        und du entscheidest.
+      </p>
+      <p class="lesson__meta">Lektion 02 · ca. 7 Minuten · Wissen &amp; Übung</p>
+    </header>
+
+    <section class="lesson__body">
+
+      <h2>Das kannst du danach</h2>
+      <ul class="objectives">
+        <li>Deinem Agenten im Chat einen Suchauftrag geben — und im Erlaubnis-Dialog sehen, was er vorhat.</li>
+        <li>Im Protokoll nachlesen, welches Tool er mit welchen Werten aufgerufen hat.</li>
+      </ul>
+
+      <h2>Vom Zugang zum Agenten</h2>
+      <p>
+        In Lektion 1 hast du den MCP-Zugang mit Claude Code verbunden. Jetzt <em>ist</em> Claude
+        Code dein Agent: Du schreibst ihm in normaler Sprache, was du brauchst, und er entscheidet,
+        welche seiner Tools er dafür einsetzt. Starte Claude Code mit <code>claude</code> und gib ein:
+      </p>
+      <div class="terminal">Finde eine Reinigungskraft in Münster. Zeig mir die besten 3.</div>
+
+      <h2>Der erste Erlaubnis-Dialog</h2>
+      <p>
+        Bevor dein Agent das Tool <code>search_skillanbieter</code> wirklich aufruft, hält Claude
+        Code an und fragt dich:
+      </p>
+      <div class="terminal">Tool use
+  lys - search_skillanbieter(query: "Reinigung Münster") (MCP)
+
+Do you want to proceed?
+<span class="t-warn">❯ 1. Yes</span>
+  2. Yes, and don't ask again for lys - search_skillanbieter commands in dein-projekt
+  3. No</div>
+      <p>
+        Das ist der Kern dieses Kurses. Der Dialog zeigt dir <strong>das Tool</strong>
+        (<code>lys - search_skillanbieter</code>) und <strong>die Werte</strong>, die dein Agent
+        senden will (hier die Suchanfrage). Nichts passiert, bevor du zustimmst. Für die Suche
+        wählst du <code>1. Yes</code> — es wird ja nur gelesen.
+      </p>
+
+      <div class="callout callout--danger">
+        <p class="callout__label">Achtung: der Auto-Modus schaltet deine Kontrolle ab</p>
+        <p>
+          Steht in der Statuszeile <code>⏵⏵ auto mode on</code>, ruft Claude Code Tools
+          <em>ohne</em> zu fragen auf — der Dialog fällt weg, und damit deine wichtigste Kontrolle.
+          Drücke <strong>Shift+Tab</strong>, bis der Hinweis verschwindet und du wieder im
+          Standard-Modus bist, der bei jedem Schritt fragt. In diesem Kurs bleibst du immer im
+          Standard-Modus.
+        </p>
+      </div>
+
+      <h2>Lies mit, was dein Agent tat</h2>
+      <p>
+        Nach deinem <code>Yes</code> arbeitet der Agent und fasst zusammen. Für eine ehrliche
+        Rangfolge ruft er oft noch <code>get_skillanbieter_ratings</code> auf (auch dafür fragt er
+        erst). Claude Code klappt solche Aufrufe zusammen:
+      </p>
+      <div class="terminal">Called lys (ctrl+o to expand)</div>
+      <p>
+        Drücke <strong>Ctrl+O</strong>, um den Aufruf aufzuklappen — dort steht Wort für Wort,
+        welches Tool mit welchen Werten lief und was zurückkam. Genau dieses Mitlesen ist deine
+        Kontrolle in der Praxis: Du glaubst deinem Agenten nicht, du <em>prüfst</em> ihn.
+      </p>
+
+      <div class="callout">
+        <p class="callout__label">Was zurückkam</p>
+        <p>
+          Auf dem Test-Marktplatz sitzt nur <strong>Anna Behrens</strong> wirklich in Münster
+          (0 km); die übrigen Anbieter sind 100 km+ entfernt. Weil noch niemand Bewertungen hat
+          („Rating: N/A"), sortiert der Agent ehrlich nach Nähe statt nach Sternen — und sagt das
+          auch dazu. Ein guter Agent erfindet keine Sterne.
+        </p>
+      </div>
+
+      <hr class="lesson__divider">
+
+      <h2>Jetzt du</h2>
+      <p>Prüf dich selbst — aus dem Gedächtnis abrufen baut echtes Behalten auf.</p>
+
+      <div class="quiz">
+        <p class="quiz__label">Wissens-Check</p>
+        <p class="quiz__q">Was bedeutet <code>⏵⏵ auto mode on</code> in der Statuszeile?</p>
+        <div class="quiz__options">
+          <button class="quiz__option">Dein Agent arbeitet spürbar schneller als sonst</button>
+          <button class="quiz__option" data-correct="true">Dein Agent ruft Tools auf, ohne vorher zu fragen</button>
+          <button class="quiz__option">Dein Agent fragt bei jedem Schritt lieber zweimal</button>
+        </div>
+        <p class="quiz__feedback" hidden>
+          Im Auto-Modus überspringt Claude Code den Erlaubnis-Dialog und ruft Tools ohne deine
+          Zustimmung auf — deine wichtigste Kontrolle fällt weg. Mit <strong>Shift+Tab</strong>
+          kommst du zurück in den Standard-Modus, der bei jedem Schritt fragt. Schneller oder
+          doppelt nachfragen tut der Modus nicht.
+        </p>
+      </div>
+
+      <aside class="primary-source">
+        <p class="primary-source__label">Primärquelle</p>
+        <p>
+          Die Seite <a href="https://linkyourskill.ai/de/docs/mcp-integration">MCP Integration</a>
+          listet die Tools deines Agenten mit ihren Werten — dieselben, die im Erlaubnis-Dialog
+          und beim Aufklappen mit Ctrl+O auftauchen.
+        </p>
+      </aside>
+
+      <aside class="ask-teacher">
+        <img class="ask-teacher__mark" src="../../../assets/design-system/assets/logo-linkyourskill.png" alt="">
+        <div>
+          <h3>Unsicher beim Mitlesen?</h3>
+          <p>Der LinkYourSkill-Support hilft dir, den Erlaubnis-Dialog und das Protokoll deines Agenten zu deuten.</p>
+        </div>
+      </aside>
+
+    </section>
+
+  </main>
+
+  <nav class="lesson__nav">
+    <a href="0001-connect.html">‹ Lektion 01 · Verbinden</a>
+    <a href="../../../GLOSSARY.md">Glossar</a>
+    <a href="0003-prepare-order.html">Lektion 03 · Dein Agent beauftragt ›</a>
+  </nav>
+
+  <p class="lesson__brand">
+    <img src="../../../assets/design-system/assets/logo-linkyourskill.png" alt="LinkYourSkill">
+    <span>Gestaltet im LinkYourSkill Design System</span>
+  </p>
+
+  <script src="../../../assets/design-system/quiz.js"></script>
+</body>
+</html>
