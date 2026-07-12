@@ -8,7 +8,7 @@
   verified live against n8n 2.4.5 @ 2026-07-05 (interne Staging-Umgebung, alle Fehlertexte beobachtet).
   Altitude: Builder-Track — MCP/Bearer/JSON hier bewusst erlaubt; der Agentowner-Kurs bleibt
   auf der „Schlüssel"-Höhe. n8n-UI-Beschriftungen englisch, Wort für Wort.
-  Endpunkt linkyourskill.ai geht 10.07.2026 öffentlich live — vor Kurs-Release gegenprüfen.
+  Update 2026-07-12: Endpunkt seit 2026-07-11 live auf app.linkyourskill.ai (linkyourskill.ai = nur Landing) — Zitate umgestellt, Ziele verifiziert.
 -->
 <html lang="de">
 <head>
@@ -82,9 +82,9 @@
         ein KI-Agent mit LinkYourSkill spricht. Drei Dinge reichen, um ihn zu verstehen:
       </p>
       <ul class="objectives">
-        <li><strong>Ein Endpunkt:</strong> <code>https://linkyourskill.ai/mcp</code> — eine Adresse, die Anfragen per POST entgegennimmt.</li>
+        <li><strong>Ein Endpunkt:</strong> <code>https://app.linkyourskill.ai/mcp</code> — eine Adresse, die Anfragen per POST entgegennimmt.</li>
         <li><strong>Dein Token:</strong> Er wird bei jeder Anfrage als „Bearer Token" mitgeschickt — so weist sich dein Agent aus.</li>
-        <li><strong>Tools:</strong> Der Zugang bietet einen Katalog von 18 <strong>Tools</strong> an — einzelne Fähigkeiten wie <code>search_skillanbieter</code>. Welche davon dein Agent nutzen darf, entscheidest später du.</li>
+        <li><strong>Tools:</strong> Der Zugang bietet einen Katalog von <strong>Tools</strong> an — einzelne Fähigkeiten wie <code>search_skillanbieter</code>. Welche davon dein Agent nutzen darf, entscheidest später du.</li>
       </ul>
 
       <h2>Die erste Verbindung — ohne KI</h2>
@@ -94,7 +94,7 @@
       <ol>
         <li>Lege einen neuen Workflow an und füge den Node <strong>HTTP Request</strong> hinzu.</li>
         <li>Stelle <strong>Method</strong> auf <code>POST</code> — der Standard ist GET, und der funktioniert hier nicht.</li>
-        <li>Trage als <strong>URL</strong> ein: <code>https://linkyourskill.ai/mcp</code></li>
+        <li>Trage als <strong>URL</strong> ein: <code>https://app.linkyourskill.ai/mcp</code></li>
         <li>Aktiviere <strong>Send Headers</strong> und setze den Header <code>Accept</code> auf <code>application/json, text/event-stream</code>.</li>
         <li>Aktiviere <strong>Send Body</strong>, wähle als <strong>Body Content Type</strong> „JSON" und trage ein: <code>{"jsonrpc":"2.0","method":"tools/list","id":1}</code></li>
         <li>Führe den Node aus — <strong>absichtlich noch ohne Anmeldung</strong>. Du bekommst einen Fehler: <em>„Authorization failed - please check your credentials"</em>. Gut so: Die Plattform kennt dich noch nicht.</li>
@@ -107,7 +107,7 @@
         <p>
           n8n zeigt die Antwort als langen Text, der mit <code>event: message</code> beginnt.
           Das ist das Streaming-Format des MCP-Zugangs, kein Fehler. Entscheidend ist, was
-          darin steht: <code>"tools":[</code> gefolgt von 18 Einträgen. Wenn du
+          darin steht: <code>"tools":[</code> gefolgt von der Tool-Liste. Wenn du
           <code>search_skillanbieter</code> und <code>prepare_order</code> entdeckst, ist
           deine Leitung offiziell in Betrieb.
         </p>
@@ -117,7 +117,7 @@
       <ul class="objectives">
         <li><em>„Method not allowed. Use POST for stateless MCP."</em> — Method steht noch auf GET. Schritt 2 nachholen.</li>
         <li><em>„Authorization failed - please check your credentials"</em> — der Token fehlt oder stimmt nicht. Prüfe die Bearer-Auth-Credential; zur Not erstellst du deinem Agenten einfach einen neuen Token.</li>
-        <li>Nur zum Ausprobieren ohne eigenen Token: In den <a href="https://linkyourskill.ai/de/docs/mcp-integration">API-Docs der Plattform</a> gibt es einen öffentlichen Demo-Schlüssel, der nur lesen darf.</li>
+        <li>Nur zum Ausprobieren ohne eigenen Token: In den <a href="https://app.linkyourskill.ai/de/docs/mcp-integration">API-Docs der Plattform</a> gibt es einen öffentlichen Demo-Schlüssel, der nur lesen darf.</li>
       </ul>
 
       <hr class="lesson__divider">
@@ -144,7 +144,7 @@
       <aside class="primary-source">
         <p class="primary-source__label">Primärquelle</p>
         <p>
-          Sieh es dir an: Die Seite <a href="https://linkyourskill.ai/de/docs/mcp-integration">MCP
+          Sieh es dir an: Die Seite <a href="https://app.linkyourskill.ai/de/docs/mcp-integration">MCP
           Integration</a> in den Docs der Plattform zeigt den Endpunkt und Code-Beispiele —
           dieselbe Verbindung, die du gerade in n8n gebaut hast.
         </p>

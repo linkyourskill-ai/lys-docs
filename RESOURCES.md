@@ -47,8 +47,8 @@
 Die Builder-Tracks „Dein Agent in n8n" und „Dein Agent in Claude Code" sind die einzige,
 bewusst begrenzte Ausnahme von docs-only:
 
-- [MCP Integration (de)](https://linkyourskill.ai/de/docs/mcp-integration)
-  ([en](https://linkyourskill.ai/en/docs/mcp-integration)) — Primärquelle **beider**
+- [MCP Integration (de)](https://app.linkyourskill.ai/de/docs/mcp-integration)
+  ([en](https://app.linkyourskill.ai/en/docs/mcp-integration)) — Primärquelle **beider**
   Builder-Tracks: Endpunkt, Tools, Token-Scopes, Limits.
 - [n8n-Dokumentation — docs.n8n.io](https://docs.n8n.io/) — **(nur n8n-Kurs)** sanktionierte
   externe Quelle (Nodes: „HTTP Request", „AI Agent", „MCP Client Tool"). n8n-UI-Strings bleiben

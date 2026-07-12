@@ -9,7 +9,7 @@
   Model/Claude Sonnet 5 + MCP Client Tool „HTTP Streamable", Whitelist „Selected", Chat-Lauf mit
   search_skillanbieter im Execution-Log beobachtet; Batch-Tool-Falle prepare_orders live reproduziert).
   Altitude: Builder-Track — MCP/Bearer/JSON hier bewusst erlaubt. n8n-UI-Beschriftungen englisch,
-  Wort für Wort. Endpunkt linkyourskill.ai geht 10.07.2026 öffentlich live — vor Kurs-Release gegenprüfen.
+  Wort für Wort. Update 2026-07-12: Endpunkt seit 2026-07-11 live auf app.linkyourskill.ai (linkyourskill.ai = nur Landing) — Zitate umgestellt, Ziele verifiziert.
 -->
 <html lang="de">
 <head>
@@ -66,9 +66,9 @@
         <li>Schließe als Chat-Model den Node <strong>Anthropic Chat Model</strong> an, hinterlege deinen Anthropic-API-Schlüssel als Credential und wähle das Modell <strong>Claude Sonnet 5</strong>.</li>
         <li>Schließe als Tool den Node <strong>MCP Client Tool</strong> an.</li>
         <li>Stelle darin <strong>Server Transport</strong> auf <code>HTTP Streamable</code>. Die zweite Option <em>„Server Sent Events (Deprecated)"</em> ist veraltet — nicht wählen.</li>
-        <li>Trage im Feld <strong>Endpoint</strong> ein: <code>https://linkyourskill.ai/mcp</code></li>
+        <li>Trage im Feld <strong>Endpoint</strong> ein: <code>https://app.linkyourskill.ai/mcp</code></li>
         <li>Stelle <strong>Authentication</strong> auf <strong>Bearer Auth</strong> und wähle die Credential aus Lektion 1 — es ist derselbe Token, dein Agent weist sich genauso aus wie du.</li>
-        <li>Stelle <strong>Tools to Include</strong> auf <strong>Selected</strong>. Jetzt füllt sich die Auswahlliste mit allen 18 Tools — der Node macht dafür selbst den Handschlag mit der Plattform. Wenn die Liste erscheint, weißt du: Die Verbindung stimmt.</li>
+        <li>Stelle <strong>Tools to Include</strong> auf <strong>Selected</strong>. Jetzt füllt sich die Auswahlliste mit dem kompletten Tool-Katalog — der Node macht dafür selbst den Handschlag mit der Plattform. Wenn die Liste erscheint, weißt du: Die Verbindung stimmt.</li>
         <li>Wähle <strong>genau zwei</strong> Tools aus: <code>search_skillanbieter</code> und <code>get_skillanbieter_ratings</code>. Alles andere bleibt aus.</li>
       </ol>
 
@@ -139,7 +139,7 @@
       <aside class="primary-source">
         <p class="primary-source__label">Primärquelle</p>
         <p>
-          Sieh es dir an: Die Seite <a href="https://linkyourskill.ai/de/docs/mcp-integration">MCP
+          Sieh es dir an: Die Seite <a href="https://app.linkyourskill.ai/de/docs/mcp-integration">MCP
           Integration</a> in den Docs der Plattform beschreibt den Endpunkt und die Tools —
           darunter <code>search_skillanbieter</code>, das dein Agent gerade benutzt hat.
         </p>

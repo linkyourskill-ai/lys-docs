@@ -8,7 +8,7 @@
   verified live against Claude Code 2.1.201 @ 2026-07-06 (internal staging environment; all output observed).
   Altitude: builder track — MCP/Bearer/CLI deliberately allowed here; the Agentowner course
   stays at the "key" altitude. Claude Code CLI strings (commands, /mcp, mcp__lys__…) in English, word for word.
-  Endpoint linkyourskill.ai goes live publicly on 2026-07-10 — re-verify before course release.
+  Update 2026-07-12: endpoint live on app.linkyourskill.ai since 2026-07-11 (linkyourskill.ai = landing only) — citations updated, targets verified.
 -->
 <html lang="en">
 <head>
@@ -83,7 +83,7 @@
         talk to LinkYourSkill. Three things are enough to understand it:
       </p>
       <ul class="objectives">
-        <li><strong>One endpoint:</strong> <code>https://linkyourskill.ai/mcp</code> — an address your agent sends its requests to.</li>
+        <li><strong>One endpoint:</strong> <code>https://app.linkyourskill.ai/mcp</code> — an address your agent sends its requests to.</li>
         <li><strong>Your Token:</strong> it is sent along with every request as a "Bearer Token" — that's how your agent identifies itself.</li>
         <li><strong>Tools:</strong> the access offers a catalog of <strong>Tools</strong> — individual capabilities like <code>search_skillanbieter</code>. Which of them your agent may use is your decision, later.</li>
       </ul>
@@ -94,9 +94,9 @@
         MCP access. Open your terminal and enter it — putting your own Token where marked (don't
         type the angle brackets):
       </p>
-      <div class="terminal">claude mcp add --transport http lys https://linkyourskill.ai/mcp --header "Authorization: Bearer <span class="t-warn">&lt;your-token&gt;</span>" -s user</div>
+      <div class="terminal">claude mcp add --transport http lys https://app.linkyourskill.ai/mcp --header "Authorization: Bearer <span class="t-warn">&lt;your-token&gt;</span>" -s user</div>
       <p>Claude Code confirms:</p>
-      <div class="terminal">Added HTTP MCP server lys with URL: https://linkyourskill.ai/mcp to user config
+      <div class="terminal">Added HTTP MCP server lys with URL: https://app.linkyourskill.ai/mcp to user config
 Headers: {
   "Authorization": "<span class="t-ok">[REDACTED]</span>"
 }
@@ -150,7 +150,7 @@ File modified: ~/.claude.json</div>
       <ul class="objectives">
         <li><code>⏸ Pending approval</code> — you used <code>-s project</code>. Start <code>claude</code> and approve the server once. With <code>-s user</code> this doesn't happen.</li>
         <li>No <code>✔ connected</code>, an authentication error instead — the Token is missing or wrong. Check it with <code>claude mcp get lys</code> (shows it in cleartext); if in doubt, create a new Token for your agent in the Agentowner dashboard.</li>
-        <li>Just to experiment without your own Token: the platform's <a href="https://linkyourskill.ai/en/docs/mcp-integration">MCP docs</a> name a public demo key that can only read (no <code>prepare_order</code>).</li>
+        <li>Just to experiment without your own Token: the platform's <a href="https://app.linkyourskill.ai/en/docs/mcp-integration">MCP docs</a> name a public demo key that can only read (no <code>prepare_order</code>).</li>
       </ul>
 
       <hr class="lesson__divider">
@@ -177,7 +177,7 @@ File modified: ~/.claude.json</div>
       <aside class="primary-source">
         <p class="primary-source__label">Primary source</p>
         <p>
-          See for yourself: the <a href="https://linkyourskill.ai/en/docs/mcp-integration">MCP
+          See for yourself: the <a href="https://app.linkyourskill.ai/en/docs/mcp-integration">MCP
           Integration</a> page in the platform docs shows the endpoint, the Token and the tool
           catalog — the same connection you just built in Claude Code.
         </p>

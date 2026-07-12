@@ -8,7 +8,7 @@
   verified live against n8n 2.4.5 @ 2026-07-05 (internal staging environment, all error strings observed).
   Altitude: builder track — MCP/Bearer/JSON deliberately allowed here; the Agentowner course
   stays at the "key" altitude. n8n UI labels in English, word for word.
-  Endpoint linkyourskill.ai goes live publicly on 2026-07-10 — re-verify before course release.
+  Update 2026-07-12: endpoint live on app.linkyourskill.ai since 2026-07-11 (linkyourskill.ai = landing only) — citations updated, targets verified.
 -->
 <html lang="en">
 <head>
@@ -82,9 +82,9 @@
         uses to talk to LinkYourSkill. Three things are enough to understand it:
       </p>
       <ul class="objectives">
-        <li><strong>One endpoint:</strong> <code>https://linkyourskill.ai/mcp</code> — an address that accepts requests via POST.</li>
+        <li><strong>One endpoint:</strong> <code>https://app.linkyourskill.ai/mcp</code> — an address that accepts requests via POST.</li>
         <li><strong>Your Token:</strong> it is sent along with every request as a "Bearer Token" — that's how your agent identifies itself.</li>
-        <li><strong>Tools:</strong> the access offers a catalog of 18 <strong>Tools</strong> — individual capabilities like <code>search_skillanbieter</code>. Which of them your agent may use is your decision, later.</li>
+        <li><strong>Tools:</strong> the access offers a catalog of <strong>Tools</strong> — individual capabilities like <code>search_skillanbieter</code>. Which of them your agent may use is your decision, later.</li>
       </ul>
 
       <h2>The first connection — without AI</h2>
@@ -94,7 +94,7 @@
       <ol>
         <li>Create a new workflow and add the <strong>HTTP Request</strong> node.</li>
         <li>Set <strong>Method</strong> to <code>POST</code> — the default is GET, and GET won't work here.</li>
-        <li>As the <strong>URL</strong>, enter: <code>https://linkyourskill.ai/mcp</code></li>
+        <li>As the <strong>URL</strong>, enter: <code>https://app.linkyourskill.ai/mcp</code></li>
         <li>Enable <strong>Send Headers</strong> and set the header <code>Accept</code> to <code>application/json, text/event-stream</code>.</li>
         <li>Enable <strong>Send Body</strong>, choose "JSON" as the <strong>Body Content Type</strong>, and enter: <code>{"jsonrpc":"2.0","method":"tools/list","id":1}</code></li>
         <li>Execute the node — <strong>deliberately without signing in yet</strong>. You get an error: <em>"Authorization failed - please check your credentials"</em>. Good: the platform doesn't know you yet.</li>
@@ -107,7 +107,7 @@
         <p>
           n8n shows the response as one long text starting with <code>event: message</code>.
           That's the MCP access's streaming format, not an error. What matters is what's
-          inside: <code>"tools":[</code> followed by 18 entries. If you spot
+          inside: <code>"tools":[</code> followed by the Tool list. If you spot
           <code>search_skillanbieter</code> and <code>prepare_order</code>, your line is
           officially in business.
         </p>
@@ -117,7 +117,7 @@
       <ul class="objectives">
         <li><em>"Method not allowed. Use POST for stateless MCP."</em> — Method is still set to GET. Redo step 2.</li>
         <li><em>"Authorization failed - please check your credentials"</em> — the Token is missing or wrong. Check the Bearer Auth credential; if in doubt, simply create a new Token for your agent.</li>
-        <li>Just to experiment without your own Token: the platform's <a href="https://linkyourskill.ai/en/docs/mcp-integration">API docs</a> offer a public demo key that can only read.</li>
+        <li>Just to experiment without your own Token: the platform's <a href="https://app.linkyourskill.ai/en/docs/mcp-integration">API docs</a> offer a public demo key that can only read.</li>
       </ul>
 
       <hr class="lesson__divider">
@@ -144,7 +144,7 @@
       <aside class="primary-source">
         <p class="primary-source__label">Primary source</p>
         <p>
-          See for yourself: the <a href="https://linkyourskill.ai/en/docs/mcp-integration">MCP
+          See for yourself: the <a href="https://app.linkyourskill.ai/en/docs/mcp-integration">MCP
           Integration</a> page in the platform docs shows the endpoint and code examples —
           the same connection you just built in n8n.
         </p>
