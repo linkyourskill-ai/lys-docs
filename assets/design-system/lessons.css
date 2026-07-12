@@ -262,6 +262,53 @@ body::after {               /* bottom-left nebula */
 .terminal .t-warn { color: var(--accent-light); }     /* ⏸ pending / prompts */
 
 /* ============================================================
+   Chat transcript — the Mistral track's HUMAN layer: what you
+   typed, what the agent wrote back, what it says it did. Its
+   sibling .terminal is the WIRE layer (the raw tool call and its
+   result). The two must LOOK different, because telling them
+   apart IS the lesson: the chat prose is a retelling, the wire
+   is what happened. So: lifted panel + the sans face here vs.
+   the near-black code surface + mono there.
+   lys-docs-owned overlay component — brand tokens only.
+   ============================================================ */
+
+.chat {
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  line-height: var(--leading-relaxed);
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  margin: var(--space-6) 0;
+}
+.chat__turn { margin: 0 0 var(--space-5); }
+.chat__turn:last-child { margin-bottom: 0; }
+.chat__turn > :last-child { margin-bottom: 0; }
+
+.chat__who {                        /* „Du" / „Dein Agent" */
+  display: block;
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-eyebrow);
+  color: var(--muted);
+  margin: 0 0 var(--space-1);
+}
+.chat__turn--agent {
+  border-left: 3px solid var(--accent-1);
+  padding-left: var(--space-4);
+}
+.chat__turn--agent .chat__who { color: var(--accent-light); }
+
+.chat__meta {                       /* Mistrals sichtbare Zwischenschritte */
+  font-size: var(--text-xs);
+  color: var(--muted);
+  margin: var(--space-2) 0 0;
+}
+
+/* ============================================================
    Primary source — the single best resource to read/watch next.
    lys-teach: every lesson recommends one high-trust primary source.
    ============================================================ */
@@ -466,6 +513,14 @@ body::after {               /* bottom-left nebula */
     color: #14121f !important;
   }
   .terminal b, .terminal strong, .terminal .t-ok, .terminal .t-warn { color: #6d28d9 !important; }
+  .chat {
+    background: #faf8ff !important;
+    border: 1px solid #d9cdf0 !important;
+    color: #14121f !important;
+  }
+  .chat__who { color: #6d28d9 !important; }
+  .chat__meta { color: #555a66 !important; }
+  .chat__turn--agent { border-left-color: #6d28d9 !important; }
   .lesson__divider { box-shadow: none !important; }
 
   a { color: #6d28d9 !important; }
