@@ -91,6 +91,7 @@ highlighted phrase per headline** — never whole sentences.
 
 | Class | Purpose |
 |---|---|
+| `.lesson__home` | Top bar above the panel: the way back to the course hub (`btn-secondary small`) |
 | `.lesson`, `.reference` | The readable glass reading surface floating on the cosmic backdrop |
 | `.lesson__eyebrow` / `h1` + `.gradient-text` / `.lesson__lead` | Header: mission kicker → title with one highlight → why |
 | `.objectives` | "Das kannst du danach" list, green ✓ check-badge markers |
@@ -100,7 +101,7 @@ highlighted phrase per headline** — never whole sentences.
 | `.cite` | Inline citation that backs up a claim |
 | `.quiz` (+ `quiz.js`) | Retrieval-practice MCQ with instant feedback |
 | `.ask-teacher` | Closing reminder to ask the agent (the teacher) |
-| `.lesson__nav` / `.lesson__brand` | Prev / next / reference footer + brand strip |
+| `.lesson__nav` / `.lesson__brand` | Footer: back (`btn-secondary small`) · glossary link · next lesson as the primary CTA (`btn-primary small`) + brand strip |
 | `.btn-primary` / `.btn-secondary` (from `styles.css`) | Gradient+glow button / outline button |
 
 Reuse the brand base classes directly where they fit: `.glass-card`,
