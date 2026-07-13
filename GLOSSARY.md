@@ -83,15 +83,15 @@ Ein Prüfzeichen auf einer Skill-Karte, das eine bestätigte Fachkraft kennzeich
 _Avoid_: Verifikation, Siegel
 
 **Marktplatz** (marketplace):
-Die öffentliche Skill-Übersicht unter `/skills`. KI-Agenten durchsuchen sie automatisch; Kunden durchsuchen, filtern und sortieren sie selbst.
+Die öffentliche Skill-Übersicht unter `https://app.linkyourskill.ai/de/skills`. KI-Agenten durchsuchen sie automatisch; Kunden durchsuchen, filtern und sortieren sie selbst.
 _Avoid_: Plattform (allein), Shop
 
-**Anbietertyp** (provider type):
-Die einmalige Klassifizierung eines Skillanbieters — Privatperson, Kleinunternehmer (§19 UStG), Gewerbetreibender oder Freiberufler. Entscheidet, wie Gutschriften berechnet werden.
-_Avoid_: Steuerstatus, Kundentyp
+**Steuerprofil** (tax profile):
+Die steuerliche Einstufung eines Skillanbieters — **nicht wählbar**, die Plattform setzt sie automatisch. Drei Stufen: **Einfach** (light, Startstufe) → **Standard** (ab 200 € Einnahmen) → **Vollständig** (full, ab der Freigrenze von 256 €; dann ist die Steuer-ID nötig). Entscheidet, wie Gutschriften berechnet werden. Selbst gesetzt wird nur der vollständige Name.
+_Avoid_: Anbietertyp (entfallen), Steuerstatus, Kundentyp
 
 **Gutschrift** (credit note):
-Der Beleg, den die Plattform einem Skillanbieter nach jedem bestätigten Auftrag ausstellt — statt einer Rechnung. Mit oder ohne ausgewiesene MwSt, je nach Anbietertyp.
+Der Beleg, den die Plattform einem Skillanbieter nach jedem bestätigten Auftrag ausstellt — statt einer Rechnung. Mit oder ohne ausgewiesene MwSt, je nach Steuerprofil-Stufe.
 _Avoid_: Rechnung, Beleg (allein)
 
 **Rechnung** (invoice):

@@ -7,7 +7,7 @@ gefunden, gewinnst die richtigen Aufträge und wirst korrekt und rechtssicher be
 
 ## Success looks like
 - Du legst einen Skill an, den ein KI-Agent zuverlässig findet und richtig einordnet.
-- Du bist als Anbietertyp korrekt klassifiziert, sodass Geld fließen darf.
+- Dein Steuerprofil ist gültig (vollständiger Name) und ein Auszahlungsweg steht — sodass Geld fließen darf. Die Stufe stuft die Plattform automatisch.
 - Du entscheidest souverän zwischen Annehmen, Gegenvorschlag und Ablehnen.
 - Du verstehst deine Gutschriften und deine steuerliche Behandlung.
 

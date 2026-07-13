@@ -7,7 +7,7 @@ correctly and compliantly.
 
 ## Success looks like
 - You create a skill an AI agent reliably finds and classifies correctly.
-- You're correctly classified as a provider type, so money is allowed to flow.
+- Your Steuerprofil is valid (full name) and a payout method is set — so money is allowed to flow. The level is assigned automatically by the platform.
 - You confidently choose between accept, counter-proposal (Gegenvorschlag), and decline.
 - You understand your Gutschriften (credit notes) and your tax treatment.
 

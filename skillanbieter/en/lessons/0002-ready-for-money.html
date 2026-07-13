@@ -6,6 +6,12 @@
   Provenance: grounded against docs/journeys/skillanbieter.md (steps 2, 9, 10)
   + docs/database.md (provider_type, provider_business_info, provider_gutschrift,
   tax_profiles, earnings_summary) @ 2026-06-27 (docs-only, v1).
+  REVISED 2026-07-13: the Anbietertyp (4 types, manually chosen) is gone from the
+  product. Replaced by the automatically assigned Steuerprofil with three levels —
+  Einfach (light, the start) → Standard (from 200 €) → Vollständig (full, from the
+  256 € Freigrenze, which then requires the Steuer-ID). Only two things stay manual:
+  full name (Einstellungen → Steuer & Einnahmen) and payout method
+  (Einstellungen → Auszahlung).
   Altitude: platform mechanics, NOT tax advice. Translated, not transcribed.
 -->
 <html lang="en">
@@ -20,10 +26,11 @@
 
     <header class="lesson__header">
       <p class="lesson__eyebrow">Mission · Before the first order pays out</p>
-      <h1>Classified correctly, so your <span class="gradient-text">money can flow</span></h1>
+      <h1>Classified automatically, so your <span class="gradient-text">money can flow</span></h1>
       <p class="lesson__lead">
-        A perfectly found skill still pays nothing until you're cleanly set up. In this lesson
-        you classify yourself once and become payout-ready — so orders turn into real money.
+        A perfectly found skill still pays nothing until you're cleanly set up. The good news:
+        you don't classify yourself — the platform does it for you. You only handle two small
+        things, so orders turn into real money.
       </p>
       <p class="lesson__meta">Lesson 02 · ~7 minutes · Knowledge &amp; practice</p>
     </header>
@@ -32,58 +39,53 @@
 
       <h2>What you'll be able to do</h2>
       <ul class="objectives">
-        <li>Honestly pick the right Anbietertyp and know what it triggers.</li>
-        <li>Understand what must be done before your first paid order.</li>
+        <li>Understand how the platform assigns your Steuerprofil automatically — and what the three levels mean.</li>
+        <li>Handle the two things you set yourself: your full name and your payout method.</li>
       </ul>
 
-      <h2>Money flows only after classification</h2>
+      <h2>Money flows only with a valid Steuerprofil</h2>
       <p>
         On LinkYourSkill you don't write invoices. Instead, after each completed order
         (Auftrag) confirmed by the <strong>Agentowner</strong>, the platform issues you a
         <strong>Gutschrift</strong> (credit note). How that Gutschrift is calculated — with or
-        without stated MwSt (VAT) — depends on your <strong>Anbietertyp</strong> (provider
-        type). So you classify yourself once before money can flow.
+        without stated MwSt (VAT) — depends on your <strong>Steuerprofil</strong> (tax profile).
+        And that profile is <em>not something you pick</em>: the platform sets it, and raises it
+        automatically as you grow.
       </p>
 
-      <h2>The four provider types</h2>
-      <p>During setup you pick one option under <strong>Anbietertyp</strong>:</p>
+      <h2>The three levels — assigned automatically</h2>
+      <p>Everyone starts on <strong>Einfach</strong>. You're moved up on your own:</p>
       <ul class="objectives">
-        <li><strong>Privatperson</strong> — you offer as a private individual.</li>
-        <li><strong>Kleinunternehmer (§19 UStG)</strong> — small business; your Gutschrift is usually issued <em>without</em> stated MwSt.</li>
-        <li><strong>Gewerbetreibender</strong> — registered trader; business details (Firmierung, USt-IdNr, Handelsregisternr.) are required.</li>
-        <li><strong>Freiberufler</strong> — freelancer; also with business details.</li>
+        <li><strong>Einfach</strong> (light) — your starting level. Nothing needed here beyond your full name.</li>
+        <li><strong>Standard</strong> (standard) — assigned automatically once your earnings pass <strong>200 €</strong>.</li>
+        <li><strong>Vollständig</strong> (full) — assigned automatically once you pass the <strong>256 €</strong> Freigrenze (tax-free allowance). From here you add your <strong>Steuer-ID</strong> (tax ID), and business details become relevant.</li>
       </ul>
-
-      <h2>What your type triggers</h2>
-      <ul class="objectives">
-        <li><strong>Gutschrift with or without MwSt:</strong> your type decides net/gross. Kleinunternehmer → without stated MwSt.</li>
-        <li><strong>Required before the first order:</strong> as a Gewerbetreibender or Freiberufler you must add your business details (e.g. USt-IdNr) before you can <em>accept</em> your first order.</li>
-        <li><strong>Self-employment declaration:</strong> you confirm the Selbständigkeitserklärung once during setup.</li>
-        <li><strong>Kleinunternehmer threshold:</strong> the platform totals your yearly earnings so you can see when you're approaching the threshold.</li>
-      </ul>
-
-      <h2>Set up once: Steuerprofil &amp; bank details</h2>
       <p>
-        You finish the rest under <strong>Einstellungen → Steuerprofil</strong> (Settings → Tax
-        profile): provider type, business details (USt-IdNr, Handelsregisternr.) and — crucially
-        — your <strong>bank details for payouts</strong>. Without bank details on file, there's
-        no payout. These settings also drive how your Gutschriften are calculated.
+        You don't have to watch the thresholds or switch anything. The platform totals your
+        yearly earnings and moves the level itself.
       </p>
+
+      <h2>What you set yourself — two places</h2>
+      <ul class="objectives">
+        <li><strong>Einstellungen → Steuer &amp; Einnahmen</strong> (Settings → Tax &amp; earnings): enter your <strong>full name</strong> — first name <em>and</em> last name — and click <strong>Steuerprofil speichern</strong> (save tax profile). Without a full name your Steuerprofil isn't valid.</li>
+        <li><strong>Einstellungen → Auszahlung</strong> (Settings → Payout): choose your payout method — <strong>Banküberweisung (SEPA)</strong> (bank transfer) or <strong>PayPal</strong>. No payout method, no money.</li>
+      </ul>
 
       <div class="callout">
         <p class="callout__label">Core idea</p>
         <p>
-          Your classification isn't a checkbox to click away — it decides <em>whether</em> and
-          <em>how</em> you get paid. Set it honestly once, and the money flows correctly.
+          You don't classify yourself — the platform does, and it moves you up as you grow. Your
+          job is small: <em>full name</em> and <em>payout method</em>. If you get moved up, you
+          add your Steuer-ID.
         </p>
       </div>
 
       <div class="callout callout--note">
         <p class="callout__label">Not tax advice</p>
         <p>
-          This lesson explains how classification works <em>on the platform</em> — it is not tax
-          advice. Which type applies to you is something to settle, if in doubt, with your
-          Steuerberater:in (tax advisor) or the Finanzamt (tax office).
+          This lesson explains how the classification works <em>on the platform</em> — it is not
+          tax advice. What your level means for you fiscally is something to settle, if in doubt,
+          with your Steuerberater:in (tax advisor) or the Finanzamt (tax office).
         </p>
       </div>
 
@@ -94,24 +96,27 @@
 
       <div class="quiz">
         <p class="quiz__label">Knowledge check</p>
-        <p class="quiz__q">What must a Gewerbetreibender complete before their first order?</p>
+        <p class="quiz__q">How do you get your Steuerprofil level?</p>
         <div class="quiz__options">
-          <button class="quiz__option" data-correct="true">Add the business details, including the USt-IdNr</button>
-          <button class="quiz__option">Publish five own skills on the marketplace first</button>
-          <button class="quiz__option">Collect a first rating from an Agentowner already</button>
+          <button class="quiz__option" data-correct="true">You don't — the platform assigns it automatically, starting at “Einfach”</button>
+          <button class="quiz__option">You pick it yourself from a list during setup</button>
+          <button class="quiz__option">You request the right level from support</button>
         </div>
         <p class="quiz__feedback" hidden>
-          For Gewerbetreibender and Freiberufler, the business details — such as the USt-IdNr —
-          are required before the first order can be accepted. Publishing skills and collecting
-          ratings belong to getting found, not to the payout prerequisites.
+          The level is not something you choose. Everyone starts on <em>Einfach</em>; once your
+          earnings pass 200 € the platform switches you to <em>Standard</em>, and past the 256 €
+          Freigrenze to <em>Vollständig</em> — where you add your Steuer-ID. You set only two
+          things yourself: your full name and your payout method.
         </p>
       </div>
 
       <aside class="primary-source">
         <p class="primary-source__label">Primary source</p>
         <p>
-          Set it up now in the app: <strong>Einstellungen → Steuerprofil</strong> — pick your
-          Anbietertyp, add your business details and your bank details for payouts.
+          Set it up now in the app — two places, two minutes:
+          <strong>Einstellungen → Steuer &amp; Einnahmen</strong>: enter your full name (first and
+          last) and click <strong>Steuerprofil speichern</strong>. Then
+          <strong>Einstellungen → Auszahlung</strong>: choose Banküberweisung (SEPA) or PayPal.
         </p>
       </aside>
 
