@@ -35,7 +35,7 @@
 
 ## Nutzer-Oberflächen (Primärquellen in den Lektionen)
 
-- **Öffentlicher Marktplatz — `/skills`**
+- **Öffentlicher Marktplatz — `https://app.linkyourskill.ai/de/skills`** (EN: `/en/skills`)
   Wie Skills öffentlich erscheinen, von KI-Agenten durchsucht und von Kunden durchsucht,
   gefiltert und sortiert werden.
   Use for: Primärquelle von „Gefunden werden" (Skillanbieter) und „Auf dem Marktplatz finden" (Kunde).
