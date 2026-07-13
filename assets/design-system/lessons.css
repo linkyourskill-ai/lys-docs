@@ -128,8 +128,13 @@ body::after {               /* bottom-left nebula */
 .lesson__body > * + * { margin-top: var(--space-5); }
 .lesson__body h2 { margin-top: var(--space-10); }
 .lesson__body h3 { margin-top: var(--space-8); }
-.lesson__body a { color: var(--accent-light); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
-.lesson__body a:hover { color: var(--text); }
+.lesson__body a:not(.btn-primary):not(.btn-secondary) { color: var(--accent-light); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+.lesson__body a:not(.btn-primary):not(.btn-secondary):hover { color: var(--text); }
+/* Buttons rendered as <a>: keep base.css button styling, never underline. */
+.lesson__body a.btn-primary, .lesson__body a.btn-secondary,
+.lesson__body a.btn-primary:hover, .lesson__body a.btn-secondary:hover,
+.lesson__body a.btn-primary:focus, .lesson__body a.btn-secondary:focus,
+.lesson__body a.btn-primary:active, .lesson__body a.btn-secondary:active { text-decoration: none; }
 .lesson__body strong { color: var(--text); font-weight: var(--weight-semibold); }
 .lesson__body code {
   font-family: var(--font-mono);
