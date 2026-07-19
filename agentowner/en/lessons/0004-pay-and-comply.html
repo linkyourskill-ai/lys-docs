@@ -5,9 +5,13 @@
   Through-line: "Your agent acts — you stay in control."
 
   Provenance: grounded against docs/journeys/agentowner.md @ 2026-06-27 (docs-only, v1).
-  Altitude: invoice AFTER completion & closure; securely through the platform by card (Stripe)
-  or PayPal; status → „bezahlt". NO escrow/held-funds claim. Compliance: accept terms + manage
-  data-protection consent (GDPR Art. 7 append-only audit detail dropped). Channel generalized
+  REVISED 2026-07-18 (content audit): payment logic corrected — the order amount is due at
+  assignment (before work starts, isOrderFunded), the platform fee runs as a monthly combined
+  bill. The earlier "invoice only AFTER completion" claim was wrong. Still to verify against the
+  live Rechnungen UI.
+  Altitude: order amount at assignment + monthly platform fee; securely through the platform by
+  card (Stripe) or PayPal; status → „bezahlt". NO escrow/held-funds claim. Compliance: accept
+  terms + manage data-protection consent (GDPR Art. 7 append-only audit detail dropped). Channel generalized
   to "messenger". In-app-only: no public CTA, primary source names UI labels as text w/o href.
   Translated, not transcribed — no internal dev artifacts.
 -->
@@ -28,10 +32,11 @@
       <p class="lesson__eyebrow">Mission · Why this matters</p>
       <h1>Pay securely and <span class="gradient-text">stay compliant</span></h1>
       <p class="lesson__lead">
-        Your agent's order is done — now you pay. On LinkYourSkill you settle an invoice
-        (Rechnung) securely through the platform, only after completion. And you keep your account
-        clean: accept the current terms of service, manage your data-protection settings. That
-        closes the circle — from setup to payment, always under your control.
+        Your agent's order is done — now it's about the money. On LinkYourSkill all money runs
+        securely through the platform: you pay the order amount once a provider is assigned, and
+        the platform fee once a month as a single bill. And you keep your account clean: accept the
+        current terms of service, manage your data-protection settings. That closes the circle —
+        from setup to payment, always under your control.
       </p>
       <p class="lesson__meta">Lesson 04 · ~6 minutes · Knowledge &amp; practice</p>
     </header>
@@ -40,30 +45,32 @@
 
       <h2>What you'll be able to do</h2>
       <ul class="objectives">
-        <li>Pay an invoice securely through the platform after completion.</li>
+        <li>Pay the order amount at assignment and the monthly platform fee securely through the platform.</li>
         <li>Keep your account compliant: accept the terms of service and manage data protection.</li>
       </ul>
 
-      <h2>When the invoice arrives</h2>
+      <h2>Two kinds of payment</h2>
       <p>
-        You don't pay upfront. Only once an <strong>order</strong> (Auftrag) is completed and
-        closed does the platform issue you an <strong>invoice</strong> (Rechnung) for it. You find
-        it under <strong>„Rechnungen"</strong> ("Invoices"). So the invoice is the trigger for
-        paying — for work that's already done.
+        On LinkYourSkill you keep two things apart. You pay the <strong>order amount</strong>
+        (Auftragsbetrag) as soon as a <strong>Skillanbieter</strong> is assigned — that is,
+        <em>before</em> the work starts; the provider may only begin once your money is in. The
+        platform <strong>brokerage fee</strong> (Plattform-Gebühr), by contrast, is billed
+        <em>once a month</em> as a single bill — not per order. You find both under
+        <strong>„Rechnungen"</strong> ("Invoices").
       </p>
 
       <div class="callout">
         <p class="callout__label">Core idea</p>
         <p>
           You give no cash to a stranger and no bank details. You pay <em>through the platform</em>
-          — against an invoice, by card (Stripe) or PayPal. And you pay for what's done: the
-          invoice comes after completion, not before.
+          — by card (Stripe) or PayPal. You pay the order amount at assignment so the provider can
+          start; the platform collects its fee and bills it monthly.
         </p>
       </div>
 
       <h2>How you pay</h2>
       <ol>
-        <li>Under <strong>„Rechnungen"</strong> ("Invoices"), open the invoice for your completed order — you see the line items in detail.</li>
+        <li>Under <strong>„Rechnungen"</strong> ("Invoices"), open the open payment — the order amount at assignment, or the monthly platform fee — and see the line items in detail.</li>
         <li>If you need to, download it as a PDF (<strong>„PDF herunterladen"</strong>, "Download PDF").</li>
         <li>Choose <strong>„Bezahlen"</strong> ("Pay") and your <strong>payment method</strong> (Zahlungsart) — card (Stripe) or PayPal.</li>
         <li>You're taken to the provider's secure page and complete the payment there. After that, the invoice status turns to <strong>„bezahlt"</strong> ("paid").</li>
@@ -93,24 +100,24 @@
 
       <div class="quiz">
         <p class="quiz__label">Knowledge check</p>
-        <p class="quiz__q">When do you receive the invoice for an order?</p>
+        <p class="quiz__q">When do you pay the amount for an order?</p>
         <div class="quiz__options">
-          <button class="quiz__option" data-correct="true">Only after the order is completed and fully closed</button>
-          <button class="quiz__option">Right upfront, as soon as your agent prepares it</button>
-          <button class="quiz__option">At approval already, before the work is carried out</button>
+          <button class="quiz__option" data-correct="true">At assignment — your money must be in before the provider starts</button>
+          <button class="quiz__option">Only after completion, for work already done</button>
+          <button class="quiz__option">Never directly — everything runs through the monthly combined bill</button>
         </div>
         <p class="quiz__feedback" hidden>
-          The invoice comes only after the order is completed and closed — so you pay for work
-          already done, not upfront and not at approval. You find it under „Rechnungen" and settle
-          it securely through the platform by card (Stripe) or PayPal.
+          You pay the order amount at assignment: the Skillanbieter may only start once your money
+          is in. Only the platform's brokerage fee is combined — billed once a month. You settle
+          both securely through the platform by card (Stripe) or PayPal.
         </p>
       </div>
 
       <aside class="primary-source">
         <p class="primary-source__label">Primary source</p>
         <p>
-          See it in the app: under <strong>„Rechnungen"</strong> ("Invoices") open the invoice for
-          a completed order, look over the line items, and choose <strong>„Bezahlen"</strong>
+          See it in the app: under <strong>„Rechnungen"</strong> ("Invoices") open an open
+          payment, look over the line items, and choose <strong>„Bezahlen"</strong>
           ("Pay") — card (Stripe) or PayPal. You manage your consents under
           <strong>„Einstellungen → Datenschutz"</strong> ("Settings → Data protection").
         </p>

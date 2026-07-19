@@ -5,9 +5,13 @@
   Leitidee: „Dein Agent handelt — du behältst die Kontrolle."
 
   Provenance: grounded against docs/journeys/agentowner.md @ 2026-06-27 (docs-only, v1).
-  Altitude: Rechnung NACH Abschluss & Schließung; sicher über die Plattform per Karte (Stripe)
-  oder PayPal; Status → „bezahlt". KEINE Treuhand-/Escrow-Aussage. Compliance: Nutzungs-
-  bedingungen annehmen + Datenschutz/Einwilligung verwalten (GDPR-Art.-7-Audit-Detail gedroppt).
+  REVIDIERT 2026-07-18 (Content-Audit): Zahlungslogik korrigiert — Auftragsbetrag wird bei der
+  Zuweisung fällig (vor Arbeitsbeginn, isOrderFunded), die Plattform-Gebühr läuft als monatliche
+  Sammelrechnung. Die frühere Aussage „Rechnung nur NACH Abschluss" war falsch. Gegen die Live-
+  Rechnungen-UI noch zu verifizieren.
+  Altitude: Auftragsbetrag bei Zuweisung + monatliche Plattform-Gebühr; sicher über die Plattform
+  per Karte (Stripe) oder PayPal; Status → „bezahlt". KEINE Treuhand-/Escrow-Aussage. Compliance:
+  Nutzungsbedingungen annehmen + Datenschutz/Einwilligung verwalten (GDPR-Art.-7-Audit-Detail gedroppt).
   In-App-only: kein öffentlicher CTA, Primärquelle nennt UI-Beschriftungen als Text ohne Link.
   Übersetzt, nicht transkribiert — keine internen Dev-Artefakte.
 -->
@@ -28,8 +32,9 @@
       <p class="lesson__eyebrow">Mission · Warum das hier zählt</p>
       <h1>Bezahl sicher und <span class="gradient-text">bleib konform</span></h1>
       <p class="lesson__lead">
-        Der Auftrag deines Agenten ist erledigt — jetzt zahlst du. Auf LinkYourSkill begleichst du
-        eine Rechnung sicher über die Plattform, erst nach Abschluss. Und du hältst dein Konto
+        Der Auftrag deines Agenten ist erledigt — jetzt geht es ums Geld. Auf LinkYourSkill läuft
+        alles Geld sicher über die Plattform: den Auftragsbetrag zahlst du, sobald ein Anbieter
+        zugewiesen ist, die Plattform-Gebühr gesammelt einmal im Monat. Und du hältst dein Konto
         sauber: aktuelle Nutzungsbedingungen annehmen, Datenschutz-Einstellungen verwalten. Damit
         schließt sich der Kreis — vom Einrichten bis zur Zahlung, immer unter deiner Kontrolle.
       </p>
@@ -40,30 +45,33 @@
 
       <h2>Das kannst du danach</h2>
       <ul class="objectives">
-        <li>Eine Rechnung nach Abschluss sicher über die Plattform bezahlen.</li>
+        <li>Den Auftragsbetrag bei der Zuweisung und die monatliche Plattform-Gebühr sicher über die Plattform zahlen.</li>
         <li>Dein Konto konform halten: Nutzungsbedingungen annehmen und Datenschutz verwalten.</li>
       </ul>
 
-      <h2>Wann die Rechnung kommt</h2>
+      <h2>Zwei Arten von Zahlung</h2>
       <p>
-        Du zahlst nicht im Voraus. Erst wenn ein <strong>Auftrag</strong> abgeschlossen und
-        geschlossen ist, stellt die Plattform dir dafür eine <strong>Rechnung</strong>. Du findest
-        sie unter <strong>Rechnungen</strong>. Die Rechnung ist also der Auslöser fürs Bezahlen —
-        für Arbeit, die bereits erledigt ist.
+        Auf LinkYourSkill trennst du zwei Dinge. Den <strong>Auftragsbetrag</strong> zahlst du,
+        sobald ein <strong>Skillanbieter</strong> zugewiesen ist — also <em>bevor</em> die Arbeit
+        beginnt; erst wenn dein Geld da ist, darf der Anbieter loslegen. Die
+        <strong>Plattform-Gebühr</strong> für die Vermittlung rechnet die Plattform dagegen
+        <em>einmal im Monat</em> gesammelt ab — nicht pro Auftrag. Beides findest du unter
+        <strong>Rechnungen</strong>.
       </p>
 
       <div class="callout">
         <p class="callout__label">Kerngedanke</p>
         <p>
           Du gibst keiner fremden Person Bargeld und keine Bankdaten. Du zahlst <em>über die
-          Plattform</em> — gegen eine Rechnung, per Karte (Stripe) oder PayPal. Und du zahlst für
-          Erledigtes: Die Rechnung kommt nach Abschluss, nicht vorher.
+          Plattform</em> — per Karte (Stripe) oder PayPal. Den Auftragsbetrag zahlst du bei der
+          Zuweisung, damit der Anbieter starten kann; die Plattform-Gebühr sammelt die Plattform
+          und rechnet sie monatlich ab.
         </p>
       </div>
 
       <h2>So bezahlst du</h2>
       <ol>
-        <li>Öffne unter <strong>Rechnungen</strong> die Rechnung zu deinem abgeschlossenen Auftrag — du siehst die Posten im Detail.</li>
+        <li>Öffne unter <strong>Rechnungen</strong> die offene Zahlung — den Auftragsbetrag bei der Zuweisung oder die monatliche Plattform-Gebühr — und sieh dir die Posten im Detail an.</li>
         <li>Bei Bedarf lädst du sie als PDF herunter (<strong>„PDF herunterladen"</strong>).</li>
         <li>Wähle <strong>„Bezahlen"</strong> und deine <strong>Zahlungsart</strong> — Karte (Stripe) oder PayPal.</li>
         <li>Du wirst zur gesicherten Seite des Anbieters geleitet und schließt die Zahlung dort ab. Danach wird der Status der Rechnung <strong>„bezahlt"</strong>.</li>
@@ -93,25 +101,25 @@
 
       <div class="quiz">
         <p class="quiz__label">Wissens-Check</p>
-        <p class="quiz__q">Wann erhältst du die Rechnung für einen Auftrag?</p>
+        <p class="quiz__q">Wann zahlst du den Betrag für einen Auftrag?</p>
         <div class="quiz__options">
-          <button class="quiz__option" data-correct="true">Erst nach dem Abschluss, für bereits getane Arbeit</button>
-          <button class="quiz__option">Sofort im Voraus, sobald dein Agent ihn vorbereitet</button>
-          <button class="quiz__option">Direkt bei der Freigabe, noch vor der Ausführung</button>
+          <button class="quiz__option" data-correct="true">Bei der Zuweisung — dein Geld muss da sein, bevor der Anbieter startet</button>
+          <button class="quiz__option">Erst nach dem Abschluss, für bereits getane Arbeit</button>
+          <button class="quiz__option">Gar nicht direkt — alles läuft über die monatliche Sammelrechnung</button>
         </div>
         <p class="quiz__feedback" hidden>
-          Die Rechnung kommt erst, nachdem der Auftrag abgeschlossen und geschlossen ist — du
-          zahlst also für bereits erledigte Arbeit, nicht im Voraus und nicht schon bei der
-          Freigabe. Du findest sie unter „Rechnungen" und begleichst sie sicher über die Plattform
-          per Karte (Stripe) oder PayPal.
+          Den Auftragsbetrag zahlst du bei der Zuweisung: Erst wenn dein Geld da ist, darf der
+          Skillanbieter loslegen. Gesammelt — einmal im Monat — kommt nur die Plattform-Gebühr für
+          die Vermittlung. Beides begleichst du sicher über die Plattform per Karte (Stripe) oder
+          PayPal.
         </p>
       </div>
 
       <aside class="primary-source">
         <p class="primary-source__label">Primärquelle</p>
         <p>
-          Sieh es dir in der App an: Öffne unter <strong>„Rechnungen"</strong> die Rechnung zu
-          einem abgeschlossenen Auftrag, sieh dir die Posten an und wähle <strong>„Bezahlen"</strong>
+          Sieh es dir in der App an: Öffne unter <strong>„Rechnungen"</strong> eine offene
+          Zahlung, sieh dir die Posten an und wähle <strong>„Bezahlen"</strong>
           — Karte (Stripe) oder PayPal. Deine Einwilligungen findest du unter
           <strong>„Einstellungen → Datenschutz"</strong>.
         </p>

@@ -11,6 +11,9 @@
   Einfach (Start) → Standard (ab 200 €) → Vollständig (ab Freigrenze 256 €, dann
   Steuer-ID nötig). Manuell bleiben nur: vollständiger Name (Einstellungen →
   Steuer & Einnahmen) und Auszahlungsweg (Einstellungen → Auszahlung).
+  REVIDIERT 2026-07-18 (Content-Audit): Steuer-ID ab Vollständig als harte Pflicht
+  klargestellt (TAX-GATE-1 — ohne sie stoppen neue Aufträge); Callout ergänzt,
+  Kerngedanke und Quiz-Feedback angepasst.
   Altitude: Plattform-Mechanik, KEINE Steuerberatung. Übersetzt, nicht transkribiert.
 -->
 <html lang="de">
@@ -61,12 +64,23 @@
       <ul class="objectives">
         <li><strong>Einfach</strong> — deine Startstufe. Mehr als deinen vollständigen Namen brauchst du hier nicht.</li>
         <li><strong>Standard</strong> — wird automatisch gesetzt, sobald deine Einnahmen <strong>200 €</strong> überschreiten.</li>
-        <li><strong>Vollständig</strong> — wird automatisch gesetzt, sobald du die Freigrenze von <strong>256 €</strong> überschreitest. Ab hier trägst du deine <strong>Steuer-ID</strong> nach, und Geschäftsangaben werden relevant.</li>
+        <li><strong>Vollständig</strong> — wird automatisch gesetzt, sobald du die Freigrenze von <strong>256 €</strong> überschreitest. Ab hier ist deine <strong>Steuer-ID</strong> Pflicht: Ohne sie nimmt die Plattform keine neuen Aufträge mehr für dich an. Trag sie gleich ein, dann läuft alles weiter; Geschäftsangaben werden jetzt ebenfalls relevant.</li>
       </ul>
       <p>
-        Du musst die Schwellen nicht überwachen und nichts umstellen. Die Plattform summiert
-        deine Jahres­einnahmen und schaltet die Stufe selbst um.
+        Du musst die Schwellen nicht überwachen und nichts umstellen — nur die Steuer-ID musst du
+        selbst nachtragen, sobald du auf Vollständig stehst. Die Plattform summiert deine
+        Jahres­einnahmen und schaltet die Stufe selbst um.
       </p>
+
+      <div class="callout callout--note">
+        <p class="callout__label">Ab „Vollständig" ist die Steuer-ID Pflicht</p>
+        <p>
+          Die Einstufung läuft automatisch — die Steuer-ID nicht. Erreichst du die Freigrenze,
+          <strong>brauchst du sie, um weiter Aufträge annehmen zu können</strong>: Fehlt sie,
+          stoppt die Plattform neue Aufträge, bis du sie einträgst. Am besten gleich erledigen,
+          dann bremst dich später nichts.
+        </p>
+      </div>
 
       <h2>Was du selbst setzt — zwei Stellen</h2>
       <ul class="objectives">
@@ -79,7 +93,8 @@
         <p>
           Du stufst dich nicht selbst ein — das erledigt die Plattform, und sie stuft dich hoch,
           wenn du wächst. Deine Aufgabe ist klein: <em>vollständiger Name</em> und
-          <em>Auszahlungsweg</em>. Wirst du hochgestuft, trägst du die Steuer-ID nach.
+          <em>Auszahlungsweg</em>. Wirst du hochgestuft, trägst du die Steuer-ID nach — ohne sie
+          stoppen neue Aufträge.
         </p>
       </div>
 
@@ -108,8 +123,9 @@
         <p class="quiz__feedback" hidden>
           Die Stufe ist nichts, was du auswählst. Jeder startet auf <em>Einfach</em>; überschreiten
           deine Einnahmen 200 €, schaltet die Plattform auf <em>Standard</em>, ab der Freigrenze von
-          256 € auf <em>Vollständig</em> — dann trägst du deine Steuer-ID nach. Selbst setzt du nur
-          zwei Dinge: deinen vollständigen Namen und deinen Auszahlungsweg.
+          256 € auf <em>Vollständig</em> — dann trägst du deine Steuer-ID nach (Pflicht, sonst
+          stoppen neue Aufträge). Selbst setzt du nur zwei Dinge: deinen vollständigen Namen und
+          deinen Auszahlungsweg.
         </p>
       </div>
 
