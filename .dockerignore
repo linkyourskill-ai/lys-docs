@@ -1,0 +1,8 @@
+# Never bake these into a served image — DEPLOY.md/.scratch/.env contain live credentials
+.git
+.env
+.scratch
+.claude
+DEPLOY.md
+Dockerfile
+.dockerignore
